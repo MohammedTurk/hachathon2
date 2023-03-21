@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import type { StepperActionsProps, Step } from "components/types";
 import type { APIResponseType, Children } from "types";
+ import { FieldNames, FieldValues , Control, FieldErrors, UseFieldArrayAppend, UseFieldArrayRemove, UseFormRegister } from "lib/react-hook-form/types";
 
 interface PayInvoiceLayoutProps extends StepperActionsProps {
   className?: string;
@@ -191,3 +192,48 @@ interface PaymentProps {
 }
 
 export type PaymentType = FC<PaymentProps>;
+
+export type CreateInvoiceFormInputsTypes = {
+  client: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    address: {
+      country: string;
+    };
+  };
+
+  fixed: {
+    itemName: string;
+    description: string;
+    price: number;
+  }[];
+
+  currency: string;
+};
+
+export type CreateFormType = {
+  register: UseFormRegister<CreateInvoiceFormInputsTypes>;
+  onSubmit: (
+    e?: React.BaseSyntheticEvent<object, any, any> | undefined
+  ) => Promise<void>;
+  errors: FieldErrors<CreateInvoiceFormInputsTypes>;
+  clearErrorOnChange: (name: FieldNames<CreateInvoiceFormInputsTypes>) => void;
+  fields: Record<"id", string>[];
+  append: UseFieldArrayAppend<FieldValues, "fixed">;
+  remove: UseFieldArrayRemove;
+  control: Control<CreateInvoiceFormInputsTypes, any>;
+ };
+
+export type CreateLinkFormInputsTypes = {
+ 
+
+  fixed: {
+    itemName: string;
+    description: string;
+    price: number;
+  }[];
+
+  currency: string;
+};
+ 

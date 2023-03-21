@@ -1,6 +1,10 @@
 import { MainMenu } from "./components";
 
-export const GeneralLayout = ({ children, rightSide, rightSideClasses }) => {
+export const GeneralLayout = ({
+  children,
+  rightSide,
+  rightSideClasses = "",
+}:any) => {
   return (
     <div>
       <MainMenu />
