@@ -18,6 +18,8 @@ import {
   InformationCircleIcon as InformationCircleIconOutline,
   QuestionMarkCircleIcon as QuestionMarkCircleIconOutline,
   HomeIcon as HomeIconOutline,
+  ChevronLeftIcon as ChevronLeftIconOutline,
+
 } from "@heroicons/react/24/outline";
 
 export {
@@ -37,4 +39,5 @@ export {
   HomeIconOutline,
   Cog8ToothIconMini,
   ArrowRightOnRectangleIconMini,
+  ChevronLeftIconOutline
 };
