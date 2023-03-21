@@ -19,3 +19,4 @@ export * from "./Divider";
 export * from "./Skeleton";
 export * from "./ToggleButtons";
 export * from "./BalanceCard";
+export * from "./Modal";
