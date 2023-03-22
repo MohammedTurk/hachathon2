@@ -73,7 +73,7 @@ export const Drawer = ({
     openModal: openModalRequestModal,
   } = useToggle();
 
-  const options = getOptions(data.status);
+  const options = data && getOptions(data?.status);
 
   return (
     <>

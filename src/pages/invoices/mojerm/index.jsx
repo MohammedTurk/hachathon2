@@ -29,7 +29,7 @@ export function Index() {
       <Drawer
         isOpen={isOpen}
         closeModal={closeModal}
-        data={data.data.invoice}
+        data={data?.data?.invoice}
         isMutating={isMutating}
       />
       <Button onClick={closeModal}>close</Button>
