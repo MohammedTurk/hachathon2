@@ -21,3 +21,4 @@ export * from "./ToggleButtons";
 export * from "./BalanceCard";
 export * from "./JobDetails";
 
+export * from "./Modal";
