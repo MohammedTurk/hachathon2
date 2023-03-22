@@ -6,6 +6,7 @@ import { useToggle } from "hooks";
 import { RequestMessage } from "./RequestMessage";
 import Status from './components/Status'
 import JobTitle from './components/JobTitle'
+import Total from './components/Total'
 
 function getOptions(status) {
   switch (status) {
@@ -112,8 +113,9 @@ export const Drawer = ({
             {/* {هنا راح يكون الكود تاعك يا صفدي} */}
             <Status />
             <JobTitle />
-            
-            
+            <hr />
+            <Total />
+
             <Card className="mb-5 p-5">
               <p className="pb-4 text-base font-bold">Timeline</p>
               <div className="flex flex-start items-center">
