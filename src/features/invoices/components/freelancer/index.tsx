@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import useForm, { Controller } from "lib/react-hook-form";
+import { useSWRMutationHook } from "hooks";
 import useFieldArray  from "lib/react-hook-form";
 import { Input, Button, Select, PhoneInput, HelperText, JobDetails } from "components";
 import { useAxios } from "hooks";
@@ -9,54 +10,32 @@ import {
   URL_PATHS,
   FORM_VALIDATION,
 } from "data";
+import { getCookie } from "lib/js-cookie";
+import { COOKIES_KEYS } from "data";
 import { ErrorIconMini } from "lib/@heroicons";
 import { getFieldHelperText } from "utils";
 
 export const SendInvoiceForm = () => {
   const router = useRouter();
-  
+  const CurrentUser = getCookie(COOKIES_KEYS.currentUser);
+  const headers = { 'Authorization': `Bearer ${CurrentUser?.accessToken || ""}`}    
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-    reset, trigger, setError,
+    reset, setError,
     clearErrorOnChange,
   } = useForm();
 
-
-
-  // {
-  //   defaultValues: {
-  //     fixed: [{ firstName: "Bill", lastName: "Luo" }]
-  //   }
-  // }
-  // const { fields, append, remove } = useFieldArray({
-  //   control,
-  //   name: "test"
-  // });
-
-  const {
-    fetchData: signUp,
-    error,
-    loading,
-  } = useAxios({
-    config: {
-      url: API_SERVICES_URLS.SIGN_UP,
-      method: "POST",
-    },
-    options: {
-      manual: true,
-    },
-    onSuccess: () => {
-      router.push(URL_PATHS.AUTH.SIGN_IN);
-    },
-  });
+  const {trigger ,data ,isMutating } = useSWRMutationHook(API_SERVICES_URLS.INVOICE.CREATE_INVOICE,
+    {method: "POST",headers:{headers}})
 
   const onSubmit = handleSubmit((data) => {
-    if (loading) return;
-    signUp(data);
+    SendInvoice(data);
   });
+
 
   return (
     <form onSubmit={onSubmit}>
@@ -99,7 +78,7 @@ export const SendInvoiceForm = () => {
       </div>
       <JobDetails/>
       <Button type="submit" buttonSize="small" fullWidth className="mb-5">
-        {loading ? "Loading..." : "Send Invoice"}
+        {"Send Invoice"}
       </Button>
       <Button type="button" className="bg-white text-black border hover:bg-white"buttonSize="small" fullWidth>
         Back
