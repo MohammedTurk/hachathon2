@@ -6,7 +6,9 @@ const InvoicesPage: NextPageWithLayout = () => {
   return (
     <NoSsr>
       <GeneralLayout rightSide={<BalanceCard />}>
-        <Card>
+       
+       
+        {/* <Card>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt unde
           iste cupiditate recusandae, non, delectus necessitatibus fuga est
           dolorum error voluptatem ducimus corporis optio quidem odit adipisci
@@ -67,7 +69,8 @@ const InvoicesPage: NextPageWithLayout = () => {
           recusandae, non, delectus necessitatibus fuga est dolorum error
           voluptatem ducimus corporis optio quidem odit adipisci perferendis
           assumenda commodi!
-        </Card>
+
+        </Card>\ */}
       </GeneralLayout>
     </NoSsr>
   );
