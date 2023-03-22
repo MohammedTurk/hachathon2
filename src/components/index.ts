@@ -20,3 +20,4 @@ export * from "./Skeleton";
 export * from "./ToggleButtons";
 export * from "./BalanceCard";
 export * from "./Modal";
+export * from "./TabTable"
