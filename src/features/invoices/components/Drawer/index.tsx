@@ -74,6 +74,7 @@ export const Drawer = ({
   } = useToggle();
 
   const options = data && getOptions(data?.status);
+  const status = "pending_verification";
 
   return (
     <>

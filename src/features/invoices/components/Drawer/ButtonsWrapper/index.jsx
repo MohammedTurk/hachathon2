@@ -1,9 +1,13 @@
 import { Button, Link } from "components";
-import { URL_PATHS } from "data";
+import { API_SERVICES_URLS } from "data";
 import React from "react";
 import { RequestMessage } from "../RequestMessage";
 
 export const ButtonsWrapper = ({ options, isOpen, closeModal, openModal }) => {
+  const { trigger, data, isMutating } = useSWRMutationHook(
+    API_SERVICES_URLS.INVOICE.CHANGESTATUS(id),
+    { method: "GET", headers: {} }
+  );
   return (
     <>
       <div className="p-2 flex gap-2 	">
@@ -14,9 +18,13 @@ export const ButtonsWrapper = ({ options, isOpen, closeModal, openModal }) => {
           {options?.buttonText || "not handle yet!"}
         </Button>
 
-        <Button className="  text-blue-500 text-xl   bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:bg-gray-50">
-          <Link href={"/invoices/edit-link"}>Edit</Link>
-        </Button>
+        <Link
+          href={"/invoices/edit-link"}
+          className="block  transition-colors  rounded-md text-blue-500 bg-white 
+            shadow-md font-[500]  text-center w-full hover:bg-gray-50 py-3 px-4 text-base"
+        >
+          Edit
+        </Link>
       </div>
       <RequestMessage
         isOpen={isOpen}

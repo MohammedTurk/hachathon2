@@ -16,11 +16,16 @@ export function Index() {
   function handleClickOnTabel(id) {
     openModal();
     setIdInvoice(id);
-    setTimeout(() => trigger(), 0);
   }
 
   useEffect(() => {
-    console.log(data?.data?.invoice.status);
+    if (idInvoice !== "") {
+      trigger();
+    }
+  }, [idInvoice]);
+
+  useEffect(() => {
+    console.log("request", data?.data?.invoice.status);
   }, [data]);
 
   return (
