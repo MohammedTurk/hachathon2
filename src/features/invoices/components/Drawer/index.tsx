@@ -1,17 +1,55 @@
 import React from "react";
-import { Button, Modal } from "components";
+import { Button, IconButton, Modal, Card, Skeleton } from "components";
 import { ChevronLeftIconOutline } from "lib/@heroicons";
-import { Card } from "components";
 import { BankIcon } from "components/svg";
 import { useToggle } from "hooks";
+import { RequestMessage } from "./RequestMessage";
 
-export const Drawer = ({ isOpen, closeDrawal, data, isMutating }:any) => {
-  const {
-    isOpen: isOpenRequestModal,
-    closeModal: closeModalRequestModal,
-    openModal: openModalRequestModal,
-  } = useToggle();
+function getOptions(status) {
+  switch (status) {
+    case "pending_verification":
+    case "pending_approval":
+      return {
+        buttonText: ["Cancel", "Edit"],
+        optionsMessage: ["No", "Yes"],
+        message: "cancel your invoice?",
+      };
+    case "disapproved":
+    case "cancelled":
+    case "canceled":
+      return {
+        buttonText: [<p className="text-red-500">Delete</p>, "Edit"],
+        optionsMessage: ["Cancel", "Delete"],
+        message: "delete your invoice?",
+      };
+    case "unpaid":
+      return {
+        edit: true,
+        cancel: true,
+      };
+    case "paid":
+      return {
+        edit: true,
+        cancel: true,
+      };
+    case "sent":
+      return {
+        edit: true,
+        cancel: true,
+      };
 
+    default:
+      break;
+  }
+}
+
+export const Drawer = ({
+  isOpen,
+  data,
+  closeModal,
+  isMutating,
+  title = "Invoice",
+}: any) => {
   // let ButtonTitle ="";
   // let requestPath =""
   // let confirmDescription =""
@@ -29,27 +67,46 @@ export const Drawer = ({ isOpen, closeDrawal, data, isMutating }:any) => {
   //   ButtonTitle= "Report a problem"
   // }
 
+  const {
+    isOpen: isOpenRequestModal,
+    closeModal: closeModalRequestModal,
+    openModal: openModalRequestModal,
+  } = useToggle();
+
+  const options = data && getOptions(data?.status);
+
   return (
     <>
       <Card
-        className={`bg-[#F2F4F7] h-screen fixed right-0 top-0 w-[400px]    px-5 border-solid border z-50  overflow-auto transition-transform   ${
+        className={`bg-[#F2F4F7] h-screen fixed right-0 top-0 w-[400px]    px-5 border-solid border z-50  overflow-auto transition-transform flex flex-col justify-between   ${
           isOpen ? "-translate-x-0" : "-translate-x-[-600px]"
         } `}
       >
         <div className="flex justify-center items-center py-9  ">
           <span
-            className="w-5 h-5  absolute left-5 top-15 	font-bold cursor-pointer"
-            onClick={closeDrawal}
+            className="w-6 h-6  absolute left-5 top-15 	font-bold cursor-pointer hover:bg-gray-200 rounded-full p-1"
+            onClick={closeModal}
           >
             <ChevronLeftIconOutline />
           </span>
 
-          <span className="text-center font-bold  text-lg  	">Withdrawal</span>
+          <span className="text-center font-bold  text-lg  	">{title}</span>
         </div>
+
         {isMutating ? (
-          <>{/* مجرم حط هان ال skeletone */}</>
+          <div className="flex flex-col justify-between flex-1 ">
+            <div className="flex flex-col gap-4">
+              <Skeleton height={80} />
+              <Skeleton height={80} />
+              <Skeleton height={80} />
+            </div>
+            <div>
+              <Skeleton height={50} />
+            </div>
+          </div>
         ) : (
           <>
+            {/* {هنا راح يكون الكود تاعك يا صفدي} */}
             <Card className="mb-5 p-5">
               <div className="flex justify-between items-center">
                 <p className="text-base font-bold text-[17px]">
@@ -125,21 +182,53 @@ export const Drawer = ({ isOpen, closeDrawal, data, isMutating }:any) => {
                 )}
               </ul>
             </Card>
-            <Card className="p-[4px] flex justify-center ease-linear	">
+
+            <div className="p-2 flex gap-2 	">
               <Button
                 onClick={openModalRequestModal}
-                className=" bg-transparent text-black text-xl hover:bg-transparent hover:text-blue-light font-[500] text-[17px] text-center	"
+                className="  text-black text-xl  bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:bg-gray-50"
               >
-                {/* {ButtonTitle} */}
+                {options?.buttonText?.[0] || "not handle yet!"}
               </Button>
-            </Card>
+              <Button
+                onClick={() => console.log("move to edit")}
+                className="  text-blue-500 text-xl   bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:bg-gray-50"
+              >
+                {options?.buttonText?.[1] || "not handle yet!"}
+              </Button>
+            </div>
           </>
         )}
       </Card>
-      <Modal isOpen={isOpenRequestModal} closeModal={closeModalRequestModal}>
-        {/* <Delete processDescription={confirmDescription} closeModal={closeModalRequestModal} handleDelete ={handleRequest} titleButton="yes"/> */}
-      </Modal>
+
+      <RequestMessage
+        isOpen={isOpenRequestModal}
+        closeModal={closeModalRequestModal}
+        message={options?.message}
+      >
+        <div className=" mt-[35px] flex gap-2">
+          <Button
+            onClick={closeModalRequestModal}
+            className="w-full border !p-2 text-black bg-white hover:bg-gray-100 "
+          >
+            {options?.optionsMessage?.[0]}
+          </Button>
+          <Button
+            onClick={() => console.log(options?.message)}
+            className="w-full border !p-2 text-white bg-[#D84242] hover:bg-[#b60a0a]"
+          >
+            {options?.optionsMessage?.[1]}
+          </Button>
+        </div>
+      </RequestMessage>
     </>
   );
 };
-export default Drawer
+export default Drawer;
+
+/**
+ * messageTitle = 'cancel the vicers'
+ * messageButtons
+ * mainButtons
+ * function request
+ */

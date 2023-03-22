@@ -20,5 +20,14 @@ export const useSWRMutationHook = (subUrl, options) => {
 
 export default useSWRMutationHook;
 
-// usage : 
-// const {trigger ,data ,isMutating } = useSWRMutationHook(API_SERVICES_URLS.WITHDRAW.WITHDRAW_DETAILS(idTransaction) , {method: "GET",headers:{}})
+// usage :
+//         
+//         function when i need to make request  ,    data,    isLoading
+// const {trigger ,data ,isMutating } = useSWRMutationHook(
+// API_SERVICES_URLS.WITHDRAW.WITHDRAW_DETAILS(idTransaction), { method: "GET", headers: {} })
+// <======== path =========================================>   <---- object ---------------->
+//                                                             don't put the token it's by default exist
+
+
+// returned data ==>  Data request 
+// {message:'...' ,status:'...' , data:'...'}
