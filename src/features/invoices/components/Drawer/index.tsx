@@ -5,12 +5,12 @@ import { BankIcon } from "components/svg";
 import { useToggle } from "hooks";
 import { RequestMessage } from "./RequestMessage";
 
-function getOptions(status) {
+function getOptions(status: string) {
   switch (status) {
     case "pending_verification":
     case "pending_approval":
       return {
-        buttonText: ["Cancel", "Edit"],
+        buttonText: "Cancel",
         optionsMessage: ["No", "Yes"],
         message: "cancel your invoice?",
       };
@@ -18,7 +18,7 @@ function getOptions(status) {
     case "cancelled":
     case "canceled":
       return {
-        buttonText: [<p className="text-red-500">Delete</p>, "Edit"],
+        buttonText: <span className="text-red-500">Delete</span>,
         optionsMessage: ["Cancel", "Delete"],
         message: "delete your invoice?",
       };
@@ -188,13 +188,13 @@ export const Drawer = ({
                 onClick={openModalRequestModal}
                 className="  text-black text-xl  bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:bg-gray-50"
               >
-                {options?.buttonText?.[0] || "not handle yet!"}
+                {options?.buttonText || "not handle yet!"}
               </Button>
               <Button
                 onClick={() => console.log("move to edit")}
                 className="  text-blue-500 text-xl   bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:bg-gray-50"
               >
-                {options?.buttonText?.[1] || "not handle yet!"}
+                Edit
               </Button>
             </div>
           </>
