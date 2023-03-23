@@ -1,12 +1,9 @@
-import React from "react";
-import { Button, IconButton, Modal, Card, Skeleton } from "components";
+import React, { useState } from "react";
+import { Button, Card, Skeleton } from "components";
 import { ChevronLeftIconOutline } from "lib/@heroicons";
-import { BankIcon } from "components/svg";
 import { useToggle } from "hooks";
 import { ButtonsWrapper } from "./ButtonsWrapper";
-import Status from "./components/Status";
-import JobTitle from "./components/JobTitle";
-import TimeLine from "./components/TimeLine";
+import { TimeLine, JobTitle, Status, Total } from "./components";
 // import Total from "./components/Total";
 export const Drawer = ({
   isOpen,
@@ -21,6 +18,10 @@ export const Drawer = ({
     openModal: openModalRequestModal,
   } = useToggle();
 
+  const [isShow, setIshow] = useState(true);
+  function handleShowInvoice() {
+    setIshow((prev) => !prev);
+  }
   return (
     <>
       <Card
@@ -52,12 +53,35 @@ export const Drawer = ({
           </div>
         ) : (
           <div className="flex flex-col justify-between flex-grow">
-            <div className="flex flex-col justify-between">
+            <div className="flex flex-col justify-between gap-5">
               {/* {هنا راح يكون الكود تاعك يا صفدي} */}
               <Status status={data?.status} date={data?.createdAt} />
-              <JobTitle />
-              <TimeLine data={data?.history} />
+              <div>
+                <JobTitle jobs={data?.fixed} currency={data?.currency} />
+                <Total
+                  currency={data?.currency}
+                  subTotal={data?.subTotal}
+                  Fees={data?.paymentFee + data?.ourFee}
+                />
+              </div>
+
+              <TimeLine date={data?.history} />
+              {/* {isShow && <Card className="h-[200px] bg-blue-500">sadasd</Card>} */}
+              <Card
+                className={`h-[200px] bg-blue-500 transition-all duration-500 ${
+                  isShow ? "h-[200px]" : "h-0 !py-0 overflow-hidden "
+                }`}
+              >
+                sadasd
+              </Card>
+              <Button
+                className="bg-transparent text-blue-500 w-fit hover:!bg-transparent !p-2"
+                onClick={handleShowInvoice}
+              >
+                Show Invoice
+              </Button>
             </div>
+
             <ButtonsWrapper
               data={data}
               isOpen={isOpenRequestModal}

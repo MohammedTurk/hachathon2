@@ -59,11 +59,11 @@ function getDayFormat(time) {
   }
 }
 
-export const TimeLine = ({ data = [] }) => {
+export const TimeLine = ({ date = [] }) => {
   return (
     <Card className="shadow-sm rounded-sm">
       <h4 className="mb-2">Timeline</h4>
-      <ol className="  flex flex-col  ">{getItems(data)}</ol>
+      <ol className="  flex flex-col  ">{getItems(date)}</ol>
     </Card>
   );
 };

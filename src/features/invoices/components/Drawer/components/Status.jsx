@@ -48,7 +48,7 @@ export const Status = ({ status, date }) => {
   const StatusOptions = getSettings(status);
   return (
     <>
-      <div className="flex justify-between my-5">
+      <div className="flex justify-between ">
         <div className="flex items-center gap-3">
           {StatusOptions.icon}
           <div className="leading-5">

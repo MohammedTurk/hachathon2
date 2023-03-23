@@ -14,6 +14,10 @@ function getOptions(status) {
         requestData: {
           status: "cancelled",
         },
+        isDisabled: {
+          Cancel: false,
+          Edit: false,
+        },
       };
     case "disapproved":
     case "cancelled":
@@ -22,27 +26,43 @@ function getOptions(status) {
         buttonText: <span className="text-red-500">Delete</span>,
         optionsMessage: ["Cancel", "Delete"],
         message: "delete your invoice?",
+        isDisabled: {
+          CancelDelete: false,
+          Edit: false,
+        },
       };
     case "unpaid":
       return {
-        edit: true,
-        cancel: true,
+        isDisabled: {
+          CancelDelete: true,
+          Edit: true,
+        },
       };
     case "paid":
       return {
-        edit: true,
-        cancel: true,
+        isDisabled: {
+          CancelDelete: true,
+          Edit: true,
+        },
       };
     case "sent":
       return {
-        edit: true,
-        cancel: true,
+        isDisabled: {
+          CancelDelete: true,
+          Edit: true,
+        },
       };
 
     default:
-      break;
+      return {
+        isDisabled: {
+          CancelDelete: true,
+          Edit: true,
+        },
+      };
   }
 }
+
 export const ButtonsWrapper = ({
   isOpen,
   closeModal,
@@ -79,24 +99,35 @@ export const ButtonsWrapper = ({
     closeModal();
     // closeDrawer();
   }
-
   return (
     <>
       <div className="p-2 flex gap-2 	">
         <Button
+          disabled={options?.isDisabled.CancelDelete}
           onClick={openModal}
-          className="  text-black text-xl  bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:bg-gray-50"
+          className="  text-black text-xl  bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:!bg-gray-50 hover:disabled:cursor-not-allowed "
         >
           {options?.buttonText || "not handle yet!"}
         </Button>
 
-        <Link
-          href={"/invoices/edit-link"}
-          className="block  transition-colors  rounded-md text-blue-500 bg-white 
-            shadow-md font-[500]  text-center w-full hover:bg-gray-50 py-3 px-4 text-base"
-        >
-          Edit
-        </Link>
+        {options?.isDisabled?.Edit ? (
+          <Link
+            href={"/invoices/edit-link"}
+            onClick={(e) => e.preventDefault()}
+            className="block  transition-colors  rounded-md shadow-md w-full  py-3 px-4   !bg-gray-50 text-gray-400
+            font-[500]  text-center text-base hover:cursor-not-allowed grayscale "
+          >
+            Edits
+          </Link>
+        ) : (
+          <Link
+            href={"/invoices/edit-link"}
+            className="block  transition-colors  rounded-md text-blue-500 bg-white 
+              shadow-md font-[500]  text-center w-full hover:bg-gray-50 py-3 px-4 text-base"
+          >
+            Edit
+          </Link>
+        )}
       </div>
 
       <RequestMessage
