@@ -1,14 +1,13 @@
 import React from "react";
-import Total from "./Total";
 
 export const JobTitle = ({ jobs = [], currency }) => {
   console.log("jobs ", jobs);
   // console.log("currency ", currency);
   return (
-    <div>
+    <div className="flex flex-col gap-2 ">
       {jobs.map((job) => {
         return (
-          <div className="flex justify-between mb-4">
+          <div className="flex justify-between ">
             <div>
               <p className="text-sm font-semibold capitalize">{job.itemName}</p>
               <p className="text-xs text-[#656565]">{job.description}</p>
@@ -20,7 +19,6 @@ export const JobTitle = ({ jobs = [], currency }) => {
           </div>
         );
       })}
-      <hr />
     </div>
   );
 };

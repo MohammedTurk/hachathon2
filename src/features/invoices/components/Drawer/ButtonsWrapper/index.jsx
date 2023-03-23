@@ -1,6 +1,7 @@
 import { Button, Link } from "components";
 import { API_SERVICES_URLS } from "data";
 import { useSWRMutationHook } from "hooks";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { RequestMessage } from "../RequestMessage";
 function getOptions(status) {
@@ -26,6 +27,9 @@ function getOptions(status) {
         buttonText: <span className="text-red-500">Delete</span>,
         optionsMessage: ["Cancel", "Delete"],
         message: "delete your invoice?",
+        requestData: {
+          status: "archived",
+        },
         isDisabled: {
           CancelDelete: false,
           Edit: false,
@@ -33,13 +37,17 @@ function getOptions(status) {
       };
     case "unpaid":
       return {
+        requestData: {
+          status: "cancelled",
+        },
         isDisabled: {
-          CancelDelete: true,
+          CancelDelete: false,
           Edit: true,
         },
       };
     case "paid":
       return {
+        withoutButtons: true,
         isDisabled: {
           CancelDelete: true,
           Edit: true,
@@ -47,8 +55,11 @@ function getOptions(status) {
       };
     case "sent":
       return {
+        requestData: {
+          status: "cancelled",
+        },
         isDisabled: {
-          CancelDelete: true,
+          CancelDelete: false,
           Edit: true,
         },
       };
@@ -71,7 +82,14 @@ export const ButtonsWrapper = ({
   closeDrawer,
 }) => {
   const options = data && getOptions(data?.status);
-  // data?._id
+  console.log(options?.requestData);
+  const router = useRouter();
+  function moveToEdit() {
+    router.push({
+      pathname: "/invoices/edit-invoices",
+      query: { id: data?._id },
+    });
+  }
   const {
     trigger,
     data: response,
@@ -100,36 +118,39 @@ export const ButtonsWrapper = ({
 
     // closeDrawer();
   }
+
   return (
     <>
-      <div className="p-2 flex gap-2 	">
-        <Button
-          disabled={options?.isDisabled.CancelDelete}
-          onClick={openModal}
-          className="  text-black text-xl  bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:!bg-gray-50 hover:disabled:cursor-not-allowed "
-        >
-          {options?.buttonText || "not handle yet!"}
-        </Button>
+      {!options?.withoutButtons && (
+        <div className="p-2 flex gap-2 	">
+          <Button
+            disabled={options?.isDisabled.CancelDelete}
+            onClick={openModal}
+            className="  text-black text-xl  bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:!bg-gray-50 hover:disabled:cursor-not-allowed "
+          >
+            {options?.buttonText || "not handle yet!"}
+          </Button>
 
-        {options?.isDisabled?.Edit ? (
-          <Link
-            href={"/invoices/edit-link"}
-            onClick={(e) => e.preventDefault()}
-            className="block  transition-colors  rounded-md shadow-md w-full  py-3 px-4   !bg-gray-50 text-gray-400
-            font-[500]  text-center text-base hover:cursor-not-allowed grayscale "
-          >
-            Edits
-          </Link>
-        ) : (
-          <Link
-            href={"/invoices/edit-link"}
-            className="block  transition-colors  rounded-md text-blue-500 bg-white 
+          {options?.isDisabled?.Edit ? (
+            <Link
+              href={"/invoices/edit-link"}
+              onClick={(e) => e.preventDefault()}
+              className="block  transition-colors  rounded-md shadow-md w-full  py-3 px-4   !bg-gray-50 text-gray-400
+            font-[500]  text-center text-base hover:cursor-not-allowed grayscale  "
+            >
+              Edits
+            </Link>
+          ) : (
+            <Link
+              href={"/invoices/edit-link"}
+              className="block  transition-colors  rounded-md text-blue-500 bg-white 
               shadow-md font-[500]  text-center w-full hover:bg-gray-50 py-3 px-4 text-base"
-          >
-            Edit
-          </Link>
-        )}
-      </div>
+            >
+              Edit
+            </Link>
+          )}
+        </div>
+      )}
 
       <RequestMessage
         isOpen={isOpen}

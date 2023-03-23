@@ -3,7 +3,7 @@ import { Button, Card, IconButton, Modal, Skeleton } from "components";
 import { ChevronLeftIconOutline } from "lib/@heroicons";
 import { useToggle } from "hooks";
 import { ButtonsWrapper } from "./ButtonsWrapper";
-import { TimeLine, JobTitle, Status, Total } from "./components";
+import { TimeLine, StatusWrapper } from "./components";
 import Preview from "../Create&EditInvoices/Preview";
 import { ArrowDownTrayIcon, XMarkIcon } from "@heroicons/react/20/solid";
 export const Drawer = ({
@@ -63,16 +63,7 @@ export const Drawer = ({
           <div className="flex flex-col justify-between flex-grow">
             <div className="flex flex-col justify-between gap-5">
               {/* {هنا راح يكون الكود تاعك يا صفدي} */}
-              <Status status={data?.status} date={data?.createdAt} />
-
-              <div>
-                <JobTitle jobs={data?.fixed} currency={data?.currency} />
-                <Total
-                  currency={data?.currency}
-                  subTotal={data?.subTotal}
-                  Fees={data?.paymentFee + data?.ourFee}
-                />
-              </div>
+              <StatusWrapper data={data} />
 
               <TimeLine date={data?.history} />
 

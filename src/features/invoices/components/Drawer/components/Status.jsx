@@ -4,6 +4,8 @@ import {
   Pending,
   Active,
   SendIcon,
+  CheckIcon,
+  Paypal,
 } from "components/svg";
 import { ErrorMessage } from "./ErrorMessage";
 import React from "react";
@@ -37,6 +39,25 @@ function getSettings(status) {
         statusColor: "text-[#000]",
         icon: <SendIcon />,
       };
+    case "paid":
+      return {
+        label: "Paid",
+        statusColor: "text-[#60AD5A]",
+        icon: <CheckIcon />,
+        text: (
+          <>
+            Paid by
+            <Paypal />
+            Paypal
+          </>
+        ),
+      };
+    case "Inactive":
+      return {
+        label: "Inactive",
+        statusColor: "text-[#4375FF]",
+        icon: <Active className="fill-gray-300" fill="gray-300" />,
+      };
     default:
       return {
         label: "Active",
@@ -58,7 +79,9 @@ export const Status = ({ status, date }) => {
             <p className={`${StatusOptions.statusColor} font-semibold text-sm`}>
               {StatusOptions.label}
             </p>
-            <span className="text-[#8C8C8C] text-xs">Estimate: 24 hours.</span>
+            <span className="text-[#8C8C8C] text-xs flex gap-[4px]">
+              {StatusOptions.text || "Estimate: 24 hours."}
+            </span>
           </div>
         </div>
         <span className="text-[#8C8C8C] text-xs">

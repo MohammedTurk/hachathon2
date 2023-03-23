@@ -57,10 +57,10 @@ export function Index() {
       <Button onClick={() => handleClickOnTabel("641c43c686abbe326e82bc92")}>
         paid
       </Button>
-      <Button onClick={() => handleClickOnTabel("641c40c486abbe326e82bb7c")}>
+      <Button onClick={() => handleClickOnTabel("641cc0174a984c6dd37300ec")}>
         pending_approval
       </Button>
-      <Button onClick={() => handleClickOnTabel("641c405986abbe326e82bb29")}>
+      <Button onClick={() => handleClickOnTabel("641c9cebe524b0786800e4f1")}>
         cancelled
       </Button>
       <Button onClick={() => handleClickOnTabel("641c450ae524b0786800a442")}>
