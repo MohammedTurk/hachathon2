@@ -4,6 +4,8 @@ import { ChevronLeftIconOutline } from "lib/@heroicons";
 import { useToggle } from "hooks";
 import { ButtonsWrapper } from "./ButtonsWrapper";
 import { TimeLine, JobTitle, Status, Total } from "./components";
+import Preview from "../Create&EditInvoices/Preview";
+import { Transition } from "@headlessui/react";
 // import Total from "./components/Total";
 export const Drawer = ({
   isOpen,
@@ -22,6 +24,8 @@ export const Drawer = ({
   function handleShowInvoice() {
     setIshow((prev) => !prev);
   }
+
+  console.log(data);
   return (
     <>
       <Card
@@ -68,13 +72,32 @@ export const Drawer = ({
 
               <TimeLine date={data?.history} />
               {/* {isShow && <Card className="h-[200px] bg-blue-500">sadasd</Card>} */}
-              <Card
+              {/* <Card
                 className={`h-[200px] bg-blue-500 transition-all duration-500 ${
                   isShow ? "h-[200px]" : "h-0 !py-0 overflow-hidden "
                 }`}
               >
                 sadasd
-              </Card>
+              </Card> */}
+              {/* {data && (
+                <Preview
+                  // className={` transition-all duration-500 overflow-hidden !text-xs !p-4 ${
+                  //   isShow ? "  !min-h-[500px]" : " !h-0 !py-0 overflow-hidden "
+                  // }`}
+                  className={`transition-all overflow-hidden  !text-xs   ${
+                    isShow ? "!h-fit !p-4" : " shadow-none !h-0 overflow !py-0"
+                  }`}
+                  spanClass="truncate w-[100px]"
+                  getValues={() => data}
+                />
+              )} */}
+              {data && isShow && (
+                <Preview
+                  className="transition-all overflow-hidden  !text-xs !h-fit !p-4 "
+                  spanClass="truncate w-[100px]"
+                  getValues={() => data}
+                />
+              )}
               <Button
                 className="bg-transparent text-blue-500 w-fit hover:!bg-transparent !p-2"
                 onClick={handleShowInvoice}

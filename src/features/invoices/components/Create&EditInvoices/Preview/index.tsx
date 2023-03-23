@@ -4,10 +4,14 @@ import { Fragment } from "react";
 import { UseFormWatch } from "react-hook-form";
 import { getFullName } from "utils";
 
-const Preview = ({
+export const Preview = ({
   getValues,
+  className = "",
+  spanClass = "",
 }: {
   getValues: UseFormWatch<CreateInvoiceFormInputsTypes>;
+  className: string;
+  spanClass: string;
 }) => {
   const { client, fixed } = getValues();
   const val = getValues();
@@ -20,7 +24,9 @@ const Preview = ({
   const generateDate = new Date().toDateString();
   return (
     // <div></div>
-    <Card className="py-8 mb-4 border shadow-sm px-11 max-w-[600px] h-[500px]  overflow-auto scrollbar-track-gray-200 scrollbar-thumb-gray-300 scrollbar-thin scrollbar-thumb-rounded-lg">
+    <Card
+      className={`py-8 mb-4 border shadow-sm px-11 max-w-[600px] h-[500px]  overflow-auto scrollbar-track-gray-200 scrollbar-thumb-gray-300 scrollbar-thin scrollbar-thumb-rounded-lg ${className}`}
+    >
       <div className="flex items-center justify-between">
         <h4 className="text-xl font-bold flex flex-col gap-1">
           Invoice
@@ -34,10 +40,10 @@ const Preview = ({
           <h5 className="mt-5 mb-4 text-gray-dark">From</h5>
           <h6>Talents Valley LLC</h6>
           <p className="flex flex-col text-sm text-gray-dark">
-            <span>30 North Gould St.</span>
-            <span>Sheridan, Wyoming 82801</span>
-            <span>United States</span>
-            <span>+1 307-217-6666</span>
+            <span className={spanClass}>30 North Gould St.</span>
+            <span className={spanClass}>Sheridan, Wyoming 82801</span>
+            <span className={spanClass}>United States</span>
+            <span className={spanClass}>+1 307-217-6666</span>
           </p>
         </div>
         <div className="w-1/3">
