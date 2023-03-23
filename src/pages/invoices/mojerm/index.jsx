@@ -61,10 +61,10 @@ export function Index() {
         pending_approval
       </Button>
       <Button onClick={() => handleClickOnTabel("641c405986abbe326e82bb29")}>
-        pending_approval
-      </Button>
-      <Button onClick={() => handleClickOnTabel("63e2a0e815282bd4cb0a49b0")}>
         cancelled
+      </Button>
+      <Button onClick={() => handleClickOnTabel("641c450ae524b0786800a442")}>
+        sent
       </Button>
       <Button onClick={openModal}>open</Button>
     </div>

@@ -5,5 +5,8 @@ export * from "./Invoices";
 export * from "./Send";
 export * from "./Withdraw";
 export * from "./BankIcon";
-export * from "./CashIcon";
- 
+export * from "./Cancelled";
+export * from "./Active";
+export * from "./Disapproved";
+export * from "./Pending";
+export * from "./SendIcon";

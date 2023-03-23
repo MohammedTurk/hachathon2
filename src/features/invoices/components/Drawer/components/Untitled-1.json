@@ -1,0 +1,23 @@
+"service": {
+  "_id": "641c418f86abbe326e82bc04",
+  "fixed": [
+      {
+          "itemName": "prode edit",
+          "description": "test service",
+          "price": 300,
+          "_id": "641c422686abbe326e82bc19"
+      },
+      {
+          "itemName": "edit job",
+          "description": "test service",
+          "price": 300,
+          "_id": "641c422686abbe326e82bc1a"
+      }
+  ],
+  "currency": "USD",
+  "subTotal": 600,
+  "status": "active",
+  "paidInvoice": 1,
+  "serviceNo": "LNK-2"
+},
+"type": "service",

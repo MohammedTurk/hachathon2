@@ -1,7 +1,10 @@
-import Active from "components/svg/Active";
-import Canceld from "components/svg/Canceld";
-import Disapproved from "components/svg/Disapproved";
-import Pending from "components/svg/Pending";
+import {
+  Cancelled,
+  Disapproved,
+  Pending,
+  Active,
+  SendIcon,
+} from "components/svg";
 import React from "react";
 
 function getSettings(status) {
@@ -16,15 +19,21 @@ function getSettings(status) {
     case "cancelled":
     case "canceled":
       return {
-        label: "Canceld",
+        label: "Cancelled",
         statusColor: "text-[#000]",
-        icon: <Canceld />,
+        icon: <Cancelled />,
       };
     case "disapproved":
       return {
         label: "Disapproved",
         statusColor: "text-[#000]",
         icon: <Disapproved />,
+      };
+    case "sent":
+      return {
+        label: "Sent",
+        statusColor: "text-[#000]",
+        icon: <SendIcon />,
       };
     default:
       return {
@@ -35,7 +44,7 @@ function getSettings(status) {
   }
 }
 
-export const Status = ({ status }) => {
+export const Status = ({ status, date }) => {
   const StatusOptions = getSettings(status);
   return (
     <>
@@ -49,7 +58,13 @@ export const Status = ({ status }) => {
             <span className="text-[#8C8C8C] text-xs">Estimate: 24 hours.</span>
           </div>
         </div>
-        <span className="text-[#8C8C8C] text-xs">13/13/2013</span>
+        <span className="text-[#8C8C8C] text-xs">
+          {new Date(date).toLocaleDateString("us-en", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })}
+        </span>
       </div>
     </>
   );

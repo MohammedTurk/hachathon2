@@ -54,7 +54,7 @@ export const Drawer = ({
           <div className="flex flex-col justify-between flex-grow">
             <div className="flex flex-col justify-between">
               {/* {هنا راح يكون الكود تاعك يا صفدي} */}
-              <Status status={data?.status} />
+              <Status status={data?.status} date={data?.createdAt} />
               <JobTitle />
               <TimeLine data={data?.history} />
             </div>
