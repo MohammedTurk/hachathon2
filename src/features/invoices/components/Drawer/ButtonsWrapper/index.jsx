@@ -97,6 +97,7 @@ export const ButtonsWrapper = ({
     console.log(options?.requestData);
     trigger(options?.requestData);
     closeModal();
+
     // closeDrawer();
   }
   return (
