@@ -20,6 +20,24 @@ function getOptions(status) {
           Edit: false,
         },
       };
+
+    case "sent":
+    case "unpaid":
+      return {
+        buttonText: "Cancel",
+        optionsMessage: ["No", "Yes"],
+        message: "cancel your invoice?",
+        requestData: {
+          status: "cancelled",
+        },
+        isDisabled: {
+          Cancel: false,
+          Edit: false,
+        },
+        hasThridButton: true,
+      };
+    // return { ...getOptions("unpaid"), hasThridButton: true };
+
     case "disapproved":
     case "cancelled":
     case "canceled":
@@ -35,41 +53,11 @@ function getOptions(status) {
           Edit: false,
         },
       };
-    case "unpaid":
-      return {
-        requestData: {
-          status: "cancelled",
-        },
-        isDisabled: {
-          CancelDelete: false,
-          Edit: true,
-        },
-      };
-    case "paid":
-      return {
-        withoutButtons: true,
-        isDisabled: {
-          CancelDelete: true,
-          Edit: true,
-        },
-      };
-    case "sent":
-      return {
-        requestData: {
-          status: "cancelled",
-        },
-        isDisabled: {
-          CancelDelete: false,
-          Edit: true,
-        },
-      };
 
+    case "paid":
     default:
       return {
-        isDisabled: {
-          CancelDelete: true,
-          Edit: true,
-        },
+        withoutButtons: true,
       };
   }
 }
@@ -81,8 +69,8 @@ export const ButtonsWrapper = ({
   data,
   closeDrawer,
 }) => {
-  const options = data && getOptions(data?.status);
-  console.log(options?.requestData);
+  // const options = data && getOptions(data?.status);
+  const options = data && getOptions("sent");
   const router = useRouter();
   function moveToEdit() {
     router.push({
@@ -148,6 +136,11 @@ export const ButtonsWrapper = ({
             >
               Edit
             </Link>
+          )}
+          {options?.hasThridButton && (
+            <Button className="  text-black text-xl  bg-white shadow-md font-[500] text-[17px] text-center	w-full hover:!bg-gray-50 hover:disabled:cursor-not-allowed ">
+              Send Reminder
+            </Button>
           )}
         </div>
       )}

@@ -6,7 +6,8 @@ import JobTitle from "./JobTitle";
 export const StatusWrapper = ({ data }) => {
   return (
     <Card className="shadow-sm rounded-sm flex flex-col gap-5">
-      <Status status={data?.status} date={data?.createdAt} />
+      {/* <Status status={data?.status} date={data?.createdAt} /> */}
+      <Status status={"sent"} date={data?.createdAt} />
       <JobTitle jobs={data?.fixed} currency={data?.currency} />
     </Card>
   );
