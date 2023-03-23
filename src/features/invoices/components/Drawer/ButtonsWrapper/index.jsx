@@ -43,7 +43,13 @@ function getOptions(status) {
       break;
   }
 }
-export const ButtonsWrapper = ({ isOpen, closeModal, openModal, data }) => {
+export const ButtonsWrapper = ({
+  isOpen,
+  closeModal,
+  openModal,
+  data,
+  closeDrawer,
+}) => {
   const options = data && getOptions(data?.status);
   // data?._id
   const {
@@ -71,6 +77,7 @@ export const ButtonsWrapper = ({ isOpen, closeModal, openModal, data }) => {
     console.log(options?.requestData);
     trigger(options?.requestData);
     closeModal();
+    // closeDrawer();
   }
 
   return (

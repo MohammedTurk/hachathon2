@@ -63,6 +63,7 @@ export const Drawer = ({
               isOpen={isOpenRequestModal}
               closeModal={closeModalRequestModal}
               openModal={openModalRequestModal}
+              closeDrawer={closeModal}
             />
           </div>
         )}
