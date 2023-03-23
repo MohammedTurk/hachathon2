@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Button, Card, Skeleton } from "components";
+import { Button, Card, IconButton, Modal, Skeleton } from "components";
 import { ChevronLeftIconOutline } from "lib/@heroicons";
 import { useToggle } from "hooks";
 import { ButtonsWrapper } from "./ButtonsWrapper";
 import { TimeLine, JobTitle, Status, Total } from "./components";
 import Preview from "../Create&EditInvoices/Preview";
-import { Transition } from "@headlessui/react";
-// import Total from "./components/Total";
+import { ArrowDownTrayIcon, XMarkIcon } from "@heroicons/react/20/solid";
 export const Drawer = ({
   isOpen,
   data,
@@ -19,6 +18,11 @@ export const Drawer = ({
     closeModal: closeModalRequestModal,
     openModal: openModalRequestModal,
   } = useToggle();
+  const {
+    isOpen: isOpenInvoices,
+    closeModal: closeModalInvoices,
+    openModal: openModalInvoices,
+  } = useToggle();
 
   const [isShow, setIshow] = useState(true);
   function handleShowInvoice() {
@@ -29,7 +33,7 @@ export const Drawer = ({
   return (
     <>
       <Card
-        className={`bg-[#F2F4F7] h-screen fixed right-0 top-0 w-[350px]    px-5  border rounded-none z-50  overflow-auto transition-transform duration-[500ms] flex flex-col    ${
+        className={`bg-[#F2F4F7] h-screen fixed right-0 top-0 w-[400px]    px-5  border rounded-none z-50  overflow-auto transition-transform duration-[500ms] flex flex-col    ${
           isOpen ? "-translate-x-0" : "translate-x-full"
         } `}
       >
@@ -60,7 +64,7 @@ export const Drawer = ({
             <div className="flex flex-col justify-between gap-5">
               {/* {هنا راح يكون الكود تاعك يا صفدي} */}
               <Status status={data?.status} date={data?.createdAt} />
-              {/* <Status status={"disapproved"} date={data?.createdAt} /> */}
+
               <div>
                 <JobTitle jobs={data?.fixed} currency={data?.currency} />
                 <Total
@@ -71,39 +75,47 @@ export const Drawer = ({
               </div>
 
               <TimeLine date={data?.history} />
-              {/* {isShow && <Card className="h-[200px] bg-blue-500">sadasd</Card>} */}
-              {/* <Card
-                className={`h-[200px] bg-blue-500 transition-all duration-500 ${
-                  isShow ? "h-[200px]" : "h-0 !py-0 overflow-hidden "
-                }`}
-              >
-                sadasd
-              </Card> */}
-              {/* {data && (
-                <Preview
-                  // className={` transition-all duration-500 overflow-hidden !text-xs !p-4 ${
-                  //   isShow ? "  !min-h-[500px]" : " !h-0 !py-0 overflow-hidden "
-                  // }`}
-                  className={`transition-all overflow-hidden  !text-xs   ${
-                    isShow ? "!h-fit !p-4" : " shadow-none !h-0 overflow !py-0"
-                  }`}
-                  spanClass="truncate w-[100px]"
-                  getValues={() => data}
-                />
-              )} */}
-              {data && isShow && (
-                <Preview
-                  className="transition-all overflow-hidden  !text-xs !h-fit !p-4 "
-                  spanClass="truncate w-[100px]"
-                  getValues={() => data}
-                />
-              )}
-              <Button
-                className="bg-transparent text-blue-500 w-fit hover:!bg-transparent !p-2"
-                onClick={handleShowInvoice}
-              >
-                Show Invoice
-              </Button>
+
+              <div>
+                <Modal
+                  className="rounded-sm"
+                  isOpen={isOpenInvoices}
+                  closeModal={closeModalInvoices}
+                >
+                  <Card className="flex flex-col gap-2">
+                    <div className="flex justify-end items-center gap-4">
+                      <Button
+                        className="!p-2 flex justify-center gap-1 bg-white text-blue shadow border hover:!bg-gray-100 transition-all"
+                        onClick={() => console.log("request Download")}
+                      >
+                        <ArrowDownTrayIcon className="h-5 w-5" />
+                        Download
+                      </Button>
+                      <IconButton onClick={closeModalInvoices}>
+                        <XMarkIcon className="h-5 w-5" />
+                      </IconButton>
+                    </div>
+                    <Preview
+                      className="h-fit max-h-[550px] select-none"
+                      getValues={() => data}
+                    />
+                  </Card>
+                </Modal>
+                {data && isShow && (
+                  <Preview
+                    className="transition-all overflow-hidden  !text-xs !h-fit !p-4 mb-0 select-none hover:cursor-zoom-in "
+                    spanClass="truncate  text-[80%]"
+                    getValues={() => data}
+                    onClick={openModalInvoices}
+                  />
+                )}
+                <Button
+                  className="bg-transparent text-blue-500 w-fit hover:!bg-transparent !p-2"
+                  onClick={handleShowInvoice}
+                >
+                  {isShow ? "Hide Invoice" : "Show Invoices"}
+                </Button>
+              </div>
             </div>
 
             <ButtonsWrapper

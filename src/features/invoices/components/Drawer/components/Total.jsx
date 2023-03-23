@@ -6,14 +6,14 @@ export const Total = ({ currency, subTotal, Fees }) => {
       <div className="flex flex-col">
         <span className="text-gray-400 text-sm">Subtotal</span>
         <span className="text-gray-400 text-sm">Fees</span>
-        <span className="font-semibold">Total</span>
+        <span className="font-semibold text-gray-400 text-sm">Total</span>
       </div>
       <div className="flex flex-col">
         <span className="text-gray-400 text-sm">
           {`${currency} ${subTotal}`}
         </span>
         <span className="text-gray-400 text-sm">{`${currency} ${Fees}`}</span>
-        <span className="font-semibold">
+        <span className="text-gray-400 text-sm font-semibold">
           {`${currency} ${subTotal - Fees}`}
         </span>
       </div>

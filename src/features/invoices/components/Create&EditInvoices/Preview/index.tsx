@@ -8,6 +8,7 @@ export const Preview = ({
   getValues,
   className = "",
   spanClass = "",
+  ...rest
 }: {
   getValues: UseFormWatch<CreateInvoiceFormInputsTypes>;
   className: string;
@@ -25,7 +26,8 @@ export const Preview = ({
   return (
     // <div></div>
     <Card
-      className={`py-8 mb-4 border shadow-sm px-11 max-w-[600px] h-[500px]  overflow-auto scrollbar-track-gray-200 scrollbar-thumb-gray-300 scrollbar-thin scrollbar-thumb-rounded-lg ${className}`}
+      className={`py-8  border shadow-sm px-11 max-w-[600px] h-[500px]  overflow-auto scrollbar-track-gray-200 scrollbar-thumb-gray-300 scrollbar-thin scrollbar-thumb-rounded-lg ${className}`}
+      {...rest}
     >
       <div className="flex items-center justify-between">
         <h4 className="text-xl font-bold flex flex-col gap-1">
@@ -72,7 +74,7 @@ export const Preview = ({
           <Fragment key={index}>
             <div className="flex items-start justify-between ">
               {item.itemName ? (
-                <span className="font-normal text-xl w-[60%] truncate">
+                <span className="font-normal text-[125%] w-[60%] truncate">
                   {item.itemName}
                 </span>
               ) : (
