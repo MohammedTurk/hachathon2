@@ -10,6 +10,11 @@ const myFetcher = async (url, method, options) => {
       ...options,
       headers: { ...getAuthorizationHeader() },
     });   
+<<<<<<< HEAD
+=======
+    // console.log(response.data); 
+    
+>>>>>>> turk
     return response.data;
   } catch (error) {
    console.log(error);
@@ -30,6 +35,7 @@ export const useSWRMutationHook = (
 };
 
 export default useSWRMutationHook;
+<<<<<<< HEAD
 // usage :
 //         
 //         function when i need to make request  ,    data,    isLoading
@@ -41,3 +47,6 @@ export default useSWRMutationHook;
 
 // returned data ==>  Data request 
 // {message:'...' ,status:'...' , data:'...'}
+=======
+ 
+>>>>>>> turk
