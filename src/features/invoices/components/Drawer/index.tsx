@@ -4,7 +4,9 @@ import { ChevronLeftIconOutline } from "lib/@heroicons";
 import { BankIcon } from "components/svg";
 import { useToggle } from "hooks";
 import { ButtonsWrapper } from "./ButtonsWrapper";
-
+import Status from "./components/Status";
+import JobTitle from "./components/JobTitle";
+// import Total from "./components/Total";
 export const Drawer = ({
   isOpen,
   data,
@@ -35,8 +37,6 @@ export const Drawer = ({
     openModal: openModalRequestModal,
   } = useToggle();
 
-  const status = "pending_verification";
-
   return (
     <>
       <Card
@@ -52,7 +52,7 @@ export const Drawer = ({
             <ChevronLeftIconOutline />
           </span>
 
-          <span className="text-center font-bold  text-lg  	">{title}</span>
+          <span className="text-center font-bold  text-lg">{title}</span>
         </div>
 
         {isMutating ? (
@@ -70,27 +70,9 @@ export const Drawer = ({
           <div className="flex flex-col justify-between flex-grow">
             <div className="flex flex-col justify-between">
               {/* {هنا راح يكون الكود تاعك يا صفدي} */}
-              <Card className="mb-5 p-5">
-                <div className="flex justify-between items-center">
-                  <p className="text-base font-bold text-[17px]">
-                    ${data?.withdraw?.amount}
-                  </p>
-                  <p className="bg-[#FFF9F0] text-[#DAA545] text-[13px] font-[600] text-center	pl-[7px] pr-[7px] rounded-[17px] border-[1px] border-solid border-[#DAA545]">
-                    {data?.withdraw?.status}
-                  </p>
-                </div>
-                <hr className="text-[#707070] mt-3 mb-3" />
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold flex flex-col gap-1">
-                    <span className="text-sm font-medium text-gray-dark">
-                      By:
-                    </span>
-                    {data?.withdraw?.bank?.accountName ||
-                      data?.withdraw?.office?.name}{" "}
-                  </span>
-                  <BankIcon className="h-6 w-6" />
-                </div>
-              </Card>
+              <Status status={data.status} />
+              <JobTitle />
+
               <Card className="mb-5 p-5">
                 <p className="pb-4 text-base font-bold">Timeline</p>
                 <div className="flex flex-start items-center">
