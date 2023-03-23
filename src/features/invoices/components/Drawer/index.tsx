@@ -5,44 +5,6 @@ import { BankIcon } from "components/svg";
 import { useToggle } from "hooks";
 import { ButtonsWrapper } from "./ButtonsWrapper";
 
-function getOptions(status: string) {
-  switch (status) {
-    case "pending_verification":
-    case "pending_approval":
-      return {
-        buttonText: "Cancel",
-        optionsMessage: ["No", "Yes"],
-        message: "cancel your invoice?",
-      };
-    case "disapproved":
-    case "cancelled":
-    case "canceled":
-      return {
-        buttonText: <span className="text-red-500">Delete</span>,
-        optionsMessage: ["Cancel", "Delete"],
-        message: "delete your invoice?",
-      };
-    case "unpaid":
-      return {
-        edit: true,
-        cancel: true,
-      };
-    case "paid":
-      return {
-        edit: true,
-        cancel: true,
-      };
-    case "sent":
-      return {
-        edit: true,
-        cancel: true,
-      };
-
-    default:
-      break;
-  }
-}
-
 export const Drawer = ({
   isOpen,
   data,
@@ -73,7 +35,6 @@ export const Drawer = ({
     openModal: openModalRequestModal,
   } = useToggle();
 
-  const options = data && getOptions(data?.status);
   const status = "pending_verification";
 
   return (
@@ -192,7 +153,7 @@ export const Drawer = ({
               </Card>
             </div>
             <ButtonsWrapper
-              options={options}
+              data={data}
               isOpen={isOpenRequestModal}
               closeModal={closeModalRequestModal}
               openModal={openModalRequestModal}

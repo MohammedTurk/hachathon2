@@ -1,13 +1,78 @@
 import { Button, Link } from "components";
 import { API_SERVICES_URLS } from "data";
-import React from "react";
+import { useSWRMutationHook } from "hooks";
+import React, { useEffect } from "react";
 import { RequestMessage } from "../RequestMessage";
+function getOptions(status) {
+  switch (status) {
+    case "pending_verification":
+    case "pending_approval":
+      return {
+        buttonText: "Cancel",
+        optionsMessage: ["No", "Yes"],
+        message: "cancel your invoice?",
+        requestData: {
+          status: "cancelled",
+        },
+      };
+    case "disapproved":
+    case "cancelled":
+    case "canceled":
+      return {
+        buttonText: <span className="text-red-500">Delete</span>,
+        optionsMessage: ["Cancel", "Delete"],
+        message: "delete your invoice?",
+      };
+    case "unpaid":
+      return {
+        edit: true,
+        cancel: true,
+      };
+    case "paid":
+      return {
+        edit: true,
+        cancel: true,
+      };
+    case "sent":
+      return {
+        edit: true,
+        cancel: true,
+      };
 
-export const ButtonsWrapper = ({ options, isOpen, closeModal, openModal }) => {
-  const { trigger, data, isMutating } = useSWRMutationHook(
-    API_SERVICES_URLS.INVOICE.CHANGESTATUS(id),
-    { method: "GET", headers: {} }
+    default:
+      break;
+  }
+}
+export const ButtonsWrapper = ({ isOpen, closeModal, openModal, data }) => {
+  const options = data && getOptions(data?.status);
+  // data?._id
+  const {
+    trigger,
+    data: response,
+    isMutating,
+  } = useSWRMutationHook(
+    API_SERVICES_URLS.INVOICE.CHANGESTATUS(data?._id),
+    "POST",
+    {
+      data: options?.requestData,
+    }
   );
+
+  useEffect(() => {
+    if (response) {
+      console.log("response ===> :", response);
+    }
+  }, [isMutating]);
+
+  function handleRequest() {
+    //  هنا راح يكون ال
+    // check message
+    console.log("Truk Pop here.");
+    console.log(options?.requestData);
+    trigger(options?.requestData);
+    closeModal();
+  }
+
   return (
     <>
       <div className="p-2 flex gap-2 	">
@@ -26,6 +91,7 @@ export const ButtonsWrapper = ({ options, isOpen, closeModal, openModal }) => {
           Edit
         </Link>
       </div>
+
       <RequestMessage
         isOpen={isOpen}
         closeModal={closeModal}
@@ -39,7 +105,7 @@ export const ButtonsWrapper = ({ options, isOpen, closeModal, openModal }) => {
             {options?.optionsMessage?.[0]}
           </Button>
           <Button
-            onClick={() => console.log(options?.message)}
+            onClick={handleRequest}
             className="w-full border !p-2 text-white bg-[#D84242] hover:bg-[#b60a0a]"
           >
             {options?.optionsMessage?.[1]}
