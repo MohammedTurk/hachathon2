@@ -29,6 +29,7 @@ export function Index() {
 
   useEffect(() => {
     console.log("request", data?.data?.invoice.status);
+    console.log("request", data?.data?.invoice);
   }, [data]);
 
   const router = useRouter();
@@ -56,7 +57,7 @@ export function Index() {
       <Button onClick={() => handleClickOnTabel("63fcabcb63f07e048d5af96c")}>
         paid
       </Button>
-      <Button onClick={() => handleClickOnTabel("641b324696719d501a4bae9c")}>
+      <Button onClick={() => handleClickOnTabel("641c20295997cba05216569d")}>
         pending_approval
       </Button>
       <Button onClick={() => handleClickOnTabel("63e2a0e815282bd4cb0a49b0")}>
