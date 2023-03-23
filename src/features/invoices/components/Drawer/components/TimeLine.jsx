@@ -37,7 +37,7 @@ function getItem(item, index, isActive) {
   const pStyle = isActive ? "text-black" : "text-gray-400";
   return (
     <li key={index}>
-      <h3
+      <div
         className={` w-full flex flex-row justify-between relative  capitalize text-xs  text-b font-semibold pb-4  ${pStyle}`}
       >
         <time className={`  text-sm font-normal leading-none text-gray-400 `}>
@@ -53,8 +53,8 @@ function getItem(item, index, isActive) {
         <div
           className={`absolute w-3 h-3 rounded-full    top-0 -translate-x-1/2 left-[50%]  border   ${className}`}
         ></div>
-        <span>{item.status.replace("_", " ")}</span>
-      </h3>
+        <p>{item.status.replace("_", " ")}</p>
+      </div>
     </li>
   );
 }
