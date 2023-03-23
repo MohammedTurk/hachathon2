@@ -201,3 +201,10 @@ export type ToggleButtonsContextType = {
   value: string | undefined;
   onChange: (value: string) => void;
 };
+
+export type TextAreaProps = CommonFormElementsType & {
+  placeholder?:string;
+  id:string | number;
+  rows?:number;
+  labelClassName?: string;
+ }

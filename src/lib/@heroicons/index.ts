@@ -19,7 +19,8 @@ import {
   QuestionMarkCircleIcon as QuestionMarkCircleIconOutline,
   HomeIcon as HomeIconOutline,
   ChevronLeftIcon as ChevronLeftIconOutline,
-
+  ChevronRightIcon  as ChevronRightIconOutline , 
+  XCircleIcon as XCircleIconOutline
 } from "@heroicons/react/24/outline";
 
 export {
@@ -39,5 +40,7 @@ export {
   HomeIconOutline,
   Cog8ToothIconMini,
   ArrowRightOnRectangleIconMini,
-  ChevronLeftIconOutline
+  ChevronLeftIconOutline,
+  XCircleIconOutline,
+  ChevronRightIconOutline
 };

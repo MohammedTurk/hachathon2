@@ -8,8 +8,9 @@ export const VALIDATION_RULES = {
 
 export const FORM_VALIDATION = {
   fullName: {
-    required: "First and last Name are required",
+    required: "Name is required",
   },
+
   email: {
     required: "Email address is required",
     pattern: {
@@ -34,6 +35,7 @@ export const FORM_VALIDATION = {
   country: {
     required: "Country is required",
   },
+
   otp: {
     pattern: VALIDATION_RULES.isNumber,
   },
@@ -70,5 +72,18 @@ export const FORM_VALIDATION = {
       value: VALIDATION_RULES.isNumber,
       message: "Should be numbers",
     },
+  },
+  currency: {
+    required: "currency is required",
+  },
+  itemName: {
+    required: "Job title is required",
+  },
+  price: {
+    required: "Price is required",
+  },
+
+  description: {
+    required: "Description is required",
   },
 } as const;

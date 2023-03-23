@@ -1,24 +1,35 @@
-import { COOKIES_KEYS } from "data";
-import { getCookie } from "lib/js-cookie";
-import useSWRMutation from "swr/mutation";
+import { useSWRMutation, type MutationFetcher } from "lib/swr";
+import axios from "lib/axios";
+import { getAuthorizationHeader } from "utils";
 
-export const useSWRMutationHook = (subUrl, options) => {
-  const url = process.env.NEXT_PUBLIC_API_ENDPOINT + "" + subUrl;
-  const currentUser = getCookie(COOKIES_KEYS.currentUser);
-  options.headers.Authorization = `Bearer ${currentUser.accessToken}`;
-
-  async function fetcher(url, { arg }: { arg: { username: string } }) {
-    return fetch(url, {
+const myFetcher = async (url, method, options) => {
+  try {
+    const response = await axios({
+      url,
+      method,
       ...options,
-      body: options.method.toLowerCase() != "delete" ? JSON.stringify(arg) : {},
-    }).then((res) => res.json());
+      headers: { ...getAuthorizationHeader() },
+    });   
+    // console.log(response.data); 
+    
+    return response.data;
+  } catch (error) {
+   console.log(error);
+    
   }
+};
 
-  const { trigger,data,error, isMutating } = useSWRMutation(url, fetcher);
-  return { trigger,data,error, isMutating };
+export const useSWRMutationHook = (
+  url,
+  method = "get",
+  options = {}
+) => {
+  const {trigger, data, error, isMutating } = useSWRMutation(
+    [url, method, options],
+    () => myFetcher(url, method, options)
+  );
+  return { trigger , data , error, isMutating };
 };
 
 export default useSWRMutationHook;
-
-// usage : 
-// const {trigger ,data ,isMutating } = useSWRMutationHook(API_SERVICES_URLS.WITHDRAW.WITHDRAW_DETAILS(idTransaction) , {method: "GET",headers:{}})
+ 

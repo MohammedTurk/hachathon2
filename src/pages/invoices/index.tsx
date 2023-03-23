@@ -1,8 +1,12 @@
 import { BalanceCard, Card,NoSsr } from "components";
 import { GeneralLayout } from "layouts";
+import { useRouter } from "next/router";
 import type { NextPageWithLayout } from "types";
 
 const InvoicesPage: NextPageWithLayout = () => {
+  const router = useRouter()
+  console.log(router.query);
+  
   return (
     <NoSsr>
       <GeneralLayout rightSide={<BalanceCard />}>

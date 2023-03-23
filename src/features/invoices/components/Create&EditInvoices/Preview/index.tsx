@@ -10,28 +10,27 @@ const Preview = ({
   getValues: UseFormWatch<CreateInvoiceFormInputsTypes>;
 }) => {
   const { client, fixed } = getValues();
- const val = getValues()
-  
- 
+  const val = getValues();
 
-  const clientFullName =
-    client?.firstName || client?.lastName
-      ? getFullName(client.firstName, client.lastName)
-      : "";
+  const totalPrice = fixed.reduce(
+    (accumulator, currentValue) => +accumulator + +currentValue.price,
+    0
+  );
+
+ 
   const generateDate = new Date().toDateString();
   return (
     // <div></div>
-    <Card className="py-8 mb-4 border shadow-sm px-11 w-[450px] ">
+    <Card className="py-8 mb-4 border shadow-sm px-11 max-w-[600px] h-[500px]  overflow-auto scrollbar-track-gray-200 scrollbar-thumb-gray-300 scrollbar-thin scrollbar-thumb-rounded-lg">
       <div className="flex items-center justify-between">
         <h4 className="text-xl font-bold flex flex-col gap-1">
           Invoice
-        <span className="text-xs font-semibold">#INV-003</span>
-
+          <span className="text-xs font-semibold">#INV-003</span>
         </h4>
 
         <Logo className="cursor-pointer" />
       </div>
-      <div className="flex justify-between gap-10 box-border">
+      <div className="flex justify-between gap-16 box-border">
         <div className="w-2/3 box-border">
           <h5 className="mt-5 mb-4 text-gray-dark">From</h5>
           <h6>Talents Valley LLC</h6>
@@ -45,7 +44,7 @@ const Preview = ({
         <div className="w-1/3">
           <h5 className="mt-5 mb-4 text-gray-dark">Bill To</h5>
           <p className="truncate  ">
-            {clientFullName !== "" ? clientFullName : <Skeleton width={150} />}
+            {client?.fullName  ? client?.fullName  : <Skeleton width={150} />}
           </p>
           <span className="text-sm text-gray-dark truncate block">
             {client?.email ? (
@@ -60,27 +59,37 @@ const Preview = ({
       </div>
       <div className="flex items-start justify-between mt-14">
         <p className="mb-2 text-gray-dark">Service</p>
-        <p className="mb-2 text-gray-dark">Amount</p>
+        <p className="mb-2 text-gray-dark ">Amount</p>
       </div>
 
       {fixed ? (
         fixed.map((item, index) => (
-          <Fragment  key={index}>
+          <Fragment key={index}>
             <div className="flex items-start justify-between ">
               {item.itemName ? (
-                <span  className="font-normal text-xl w-[60%] truncate">{item.itemName}</span>
+                <span className="font-normal text-xl w-[60%] truncate">
+                  {item.itemName}
+                </span>
               ) : (
                 <Skeleton width={60} />
               )}
-              {item.price ? <span className="w-[20%] break-words">{item.price}</span> : <Skeleton width={60} />}
+              {item.price ? (
+                <span className="w-[20%] break-words text-right">
+                  ${item.price}
+                </span>
+              ) : (
+                <Skeleton width={60} />
+              )}
             </div>
-            <span >
+            <span>
               {item.description ? (
-                <span className="text-gray-dark text-sm break-words">{item.description}</span>
+                <span className="text-gray-dark text-sm break-words">
+                  {item.description}
+                </span>
               ) : (
                 <Skeleton width={180} className="mt-1" />
               )}
-            <Divider/>
+              <Divider />
             </span>
           </Fragment>
         ))
@@ -94,14 +103,34 @@ const Preview = ({
           </span>
         </div>
       )}
-       
+
       <div className="ml-auto max-w-max min-w-[160px] text-gray-dark text-sm">
-        <p className="flex">
+        <span className="flex">
+          Sub Total
+          {totalPrice ? (
+            <span className="ml-auto">${totalPrice}</span>
+          ) : (
+            <span className="ml-auto">
+              <Skeleton width={60} />
+            </span>
+          )}
+        </span>
+        <span className="flex mt-1">
+          Fees
+          <span className="ml-auto">$0</span>
+        </span>
+        <Divider />
+
+        <span className="flex">
           Total
-          <span className="ml-auto">
-            <Skeleton width={60} />
-          </span>
-        </p>
+          {totalPrice ? (
+            <span className="ml-auto">${totalPrice}</span>
+          ) : (
+            <span className="ml-auto">
+              <Skeleton width={60} />
+            </span>
+          )}
+        </span>
       </div>
     </Card>
   );

@@ -7,6 +7,7 @@ export const MainLayout: MainLayoutType = ({
   title,
   pageDescription = "Talents Valley platform",
   withoutNavbar = false,
+  withoutFooter=false,
   contentClassName = "",
 }) => {
   return (
@@ -26,7 +27,8 @@ export const MainLayout: MainLayoutType = ({
       >
         {children}
       </main>
-      <Footer />
+      {!withoutFooter && (
+      <Footer />)}
     </div>
   );
 };
