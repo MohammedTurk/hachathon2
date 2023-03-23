@@ -56,6 +56,7 @@ export const Drawer = ({
             <div className="flex flex-col justify-between gap-5">
               {/* {هنا راح يكون الكود تاعك يا صفدي} */}
               <Status status={data?.status} date={data?.createdAt} />
+              {/* <Status status={"disapproved"} date={data?.createdAt} /> */}
               <div>
                 <JobTitle jobs={data?.fixed} currency={data?.currency} />
                 <Total

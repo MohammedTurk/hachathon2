@@ -5,6 +5,7 @@ import {
   Active,
   SendIcon,
 } from "components/svg";
+import { ErrorMessage } from "./ErrorMessage";
 import React from "react";
 
 function getSettings(status) {
@@ -28,6 +29,7 @@ function getSettings(status) {
         label: "Disapproved",
         statusColor: "text-[#000]",
         icon: <Disapproved />,
+        hasError: true,
       };
     case "sent":
       return {
@@ -48,6 +50,7 @@ export const Status = ({ status, date }) => {
   const StatusOptions = getSettings(status);
   return (
     <>
+      {StatusOptions?.hasError && <ErrorMessage />}
       <div className="flex justify-between ">
         <div className="flex items-center gap-3">
           {StatusOptions.icon}
