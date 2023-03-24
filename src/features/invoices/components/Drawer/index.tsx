@@ -13,20 +13,14 @@ import {
 import { useRouter } from "next/router";
 import { isInvoice } from "features/invoices/utils";
 export const Drawer = ({ isOpen, data, closeModal, isMutating }: any) => {
-  const {
-    isOpen: isOpenRequestModal,
-    closeModal: closeModalRequestModal,
-    openModal: openModalRequestModal,
-  } = useToggle();
-
   const router = useRouter();
   function handleMove() {
     const pathname = isInvoice(data)
-      ? "/invoices/edit-invoice"
-      : "/invoices/edit-link";
+      ? `/invoices/edit-invoice/${data?._id}`
+      : `/invoices/edit-link/${data?._id}`;
+
     router.push({
       pathname,
-      query: { id: data?._id },
     });
   }
 
@@ -76,18 +70,21 @@ export const Drawer = ({ isOpen, data, closeModal, isMutating }: any) => {
                 <>
                   <PrivewLink status={data?.status} id={data?._id} />
                   <LinkTotal data={data} />
+                  <TimeLine data={data?.history} />
                 </>
               )}
-              <TimeLine data={data?.history} />
 
-              {isInvoiceDisplay && <PreviewWrapper getValues={() => data} />}
+              {isInvoiceDisplay && (
+                <>
+                  <TimeLine data={data?.history} />
+
+                  <PreviewWrapper getValues={() => data} />
+                </>
+              )}
             </div>
 
             <ButtonsWrapper
               data={data}
-              isOpen={isOpenRequestModal}
-              closeModal={closeModalRequestModal}
-              openModal={openModalRequestModal}
               closeDrawer={closeModal}
               onMoveToEdit={handleMove}
               isInvoice={isInvoiceDisplay}

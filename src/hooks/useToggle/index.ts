@@ -10,7 +10,10 @@ export const useToggle = () => {
   function openModal() {
     setIsOpen(true);
   }
+  function toggleModal() {
+    setIsOpen((prev)=>!prev)
+  }
 
-  return { isOpen, closeModal, openModal };
+  return { isOpen, closeModal, openModal,toggleModal };
 };
 export default useToggle;

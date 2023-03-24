@@ -5,14 +5,11 @@ import {
   getOptionsButton,
   isInvoice,
 } from "features/invoices/utils";
-import { useSWRMutationHook } from "hooks";
+import { useSWRMutationHook, useToggle } from "hooks";
 import React, { useEffect } from "react";
 import { RequestMessage } from "../../components";
 
 export const ButtonsWrapper = ({
-  isOpen,
-  closeModal,
-  openModal,
   data,
   closeDrawer,
   onMoveToEdit,
@@ -20,19 +17,15 @@ export const ButtonsWrapper = ({
 }) => {
   const options = data && getOptionsButton(data?.status);
 
-  const {
-    trigger,
-    data: response,
-    isMutating,
-  } = useSWRMutationHook(changeInvoiceLinkURL(data?._id, isInvoice), "POST", {
-    data: options?.requestData,
-  });
+  const { isOpen, closeModal, openModal } = useToggle();
 
-  useEffect(() => {
-    if (response) {
-      console.log("response ===> :", response);
+  const { trigger, data: response } = useSWRMutationHook(
+    changeInvoiceLinkURL(data?._id, isInvoice),
+    "POST",
+    {
+      data: options?.requestData,
     }
-  }, [isMutating]);
+  );
 
   function handleRequest() {
     //  هنا راح يكون ال
@@ -43,15 +36,20 @@ export const ButtonsWrapper = ({
     trigger(options?.requestData);
     closeModal();
 
-    closeDrawer();
+    // closeDrawer();
   }
+
+  useEffect(() => {
+    if (response) {
+      console.log("response ===> request change:", response);
+    }
+  }, [response]);
 
   return (
     <>
       {!options?.withoutButtons && (
         <div className="py-2 flex gap-2 	">
           <Button
-            disabled={options?.isDisabled?.CancelDelete}
             onClick={openModal}
             className="  text-black !text-base  bg-white shadow-md font-semibold whitespace-nowrap text-center	w-full hover:!bg-gray-50 hover:disabled:cursor-not-allowed "
           >
@@ -59,7 +57,6 @@ export const ButtonsWrapper = ({
           </Button>
 
           <Button
-            disabled={options?.isDisabled?.Edit}
             onClick={onMoveToEdit}
             className=" text-blue-500 !text-base  bg-white shadow-md font-semibold whitespace-nowrap text-center	w-full hover:!bg-gray-50 hover:disabled:cursor-not-allowed "
           >

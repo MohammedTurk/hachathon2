@@ -1,11 +1,10 @@
 import { Input, Button } from "components";
 import { getPrivewLinkSettings } from "features/invoices/utils";
-import React from "react";
 
 export const PrivewLink = ({ status, id }) => {
   const options = getPrivewLinkSettings(status, id);
   function handleCopyAction() {
-    console.log(options?.text);
+    navigator.clipboard.writeText(options.text);
   }
   return (
     <div className="flex gap-2 text-sm">

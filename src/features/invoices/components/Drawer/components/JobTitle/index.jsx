@@ -5,9 +5,9 @@ export const JobTitle = ({ jobs = [], currency }) => {
   // console.log("currency ", currency);
   return (
     <div className="flex flex-col gap-2 ">
-      {jobs.map((job) => {
+      {jobs.map((job, index) => {
         return (
-          <div className="flex justify-between ">
+          <div className="flex justify-between " key={index}>
             <div>
               <p className="text-sm font-semibold capitalize">{job.itemName}</p>
               <p className="text-xs text-[#656565]">{job.description}</p>

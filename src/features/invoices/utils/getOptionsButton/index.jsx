@@ -9,10 +9,6 @@ export function getOptionsButton(status) {
         requestData: {
           status: "cancelled",
         },
-        isDisabled: {
-          Cancel: false,
-          Edit: false,
-        },
       };
 
     case "sent":
@@ -24,10 +20,7 @@ export function getOptionsButton(status) {
         requestData: {
           status: "cancelled",
         },
-        isDisabled: {
-          Cancel: false,
-          Edit: false,
-        },
+
         hasSendReminderButton: true,
       };
     // return { ...getOptions("unpaid"), hasThridButton: true };
@@ -40,10 +33,6 @@ export function getOptionsButton(status) {
         message: "delete your invoice?",
         requestData: {
           status: "archived",
-        },
-        isDisabled: {
-          CancelDelete: false,
-          Edit: false,
         },
       };
 
@@ -64,10 +53,6 @@ export function getOptionsButton(status) {
         requestData: {
           status: "inactive",
         },
-        isDisabled: {
-          Cancel: false,
-          Edit: false,
-        },
       };
     case "inactive":
       return {
@@ -76,10 +61,6 @@ export function getOptionsButton(status) {
         message: "activate your invoice?",
         requestData: {
           status: "active",
-        },
-        isDisabled: {
-          Cancel: false,
-          Edit: false,
         },
       };
   }

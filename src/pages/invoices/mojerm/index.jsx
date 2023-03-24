@@ -35,7 +35,7 @@ export function Index() {
 
   // Turk give me the id
   useEffect(() => {
-    if (router?.query) {
+    if (router?.query?.lastInvoiceId) {
       handleClickOnTabel(router?.query?.lastInvoiceId);
     }
   }, [router?.query]);
@@ -58,7 +58,7 @@ export function Index() {
       <Button onClick={() => handleClickOnTabel("641c43c686abbe326e82bc92")}>
         paid
       </Button>
-      <Button onClick={() => handleClickOnTabel("641db1e473ac594b84ec3c78")}>
+      <Button onClick={() => handleClickOnTabel("641de32a73ac594b84ec5cbb")}>
         pending_approval
       </Button>
       <Button onClick={() => handleClickOnTabel("641c9cebe524b0786800e4f1")}>

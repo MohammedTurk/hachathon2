@@ -7,12 +7,10 @@ import { getFullName } from "utils";
 export const Preview = ({
   getValues,
   className = "",
-  spanClass = "",
   ...rest
 }: {
   getValues: UseFormWatch<CreateInvoiceFormInputsTypes>;
   className: string;
-  spanClass: string;
 }) => {
   const { client, fixed } = getValues();
   const val = getValues();
@@ -42,10 +40,10 @@ export const Preview = ({
           <h5 className="mt-5 mb-4 text-gray-dark">From</h5>
           <h6>Talents Valley LLC</h6>
           <p className="flex flex-col text-sm text-gray-dark">
-            <span className={spanClass}>30 North Gould St.</span>
-            <span className={spanClass}>Sheridan, Wyoming 82801</span>
-            <span className={spanClass}>United States</span>
-            <span className={spanClass}>+1 307-217-6666</span>
+            <span>30 North Gould St.</span>
+            <span>Sheridan, Wyoming 82801</span>
+            <span>United States</span>
+            <span>+1 307-217-6666</span>
           </p>
         </div>
         <div className="w-1/3">

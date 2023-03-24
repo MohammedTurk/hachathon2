@@ -2,21 +2,31 @@ import { ArrowDownTrayIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Card, IconButton, Modal, Button } from "components";
 import Preview from "features/invoices/components/Create&EditInvoices/Preview";
 import { useToggle } from "hooks";
-import React, { useState } from "react";
 
 export const PreviewWrapper = ({ getValues }) => {
-  const [isShow, setIshow] = useState(true);
-  function handleShowInvoice() {
-    setIshow((prev) => !prev);
-  }
   const {
     isOpen: isOpenInvoices,
     closeModal: closeModalInvoices,
     openModal: openModalInvoices,
   } = useToggle();
+  const { isOpen: isShow, toggleModal: toggleIshow } = useToggle();
 
   return (
     <div>
+      {getValues() && isShow && (
+        <Preview
+          className="transition-all overflow-hidden  !text-xs !h-fit !p-4 mb-0 select-none hover:cursor-zoom-in "
+          getValues={getValues}
+          onClick={openModalInvoices}
+        />
+      )}
+      <Button
+        className="bg-transparent text-blue-500 w-fit hover:!bg-transparent !p-2"
+        onClick={toggleIshow}
+      >
+        {isShow ? "Hide Invoice" : "Show Invoices"}
+      </Button>
+
       <Modal
         className="rounded-sm"
         isOpen={isOpenInvoices}
@@ -41,20 +51,6 @@ export const PreviewWrapper = ({ getValues }) => {
           />
         </Card>
       </Modal>
-      {getValues() && isShow && (
-        <Preview
-          className="transition-all overflow-hidden  !text-xs !h-fit !p-4 mb-0 select-none hover:cursor-zoom-in "
-          spanClass="truncate  text-[80%]"
-          getValues={getValues}
-          onClick={openModalInvoices}
-        />
-      )}
-      <Button
-        className="bg-transparent text-blue-500 w-fit hover:!bg-transparent !p-2"
-        onClick={handleShowInvoice}
-      >
-        {isShow ? "Hide Invoice" : "Show Invoices"}
-      </Button>
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import getInvoiceLinkURL from "../getInvoiceLinkURL";
 //  archived = edit false
 export function getPrivewLinkSettings(status, id) {
+  const SERVICES_URL = `Test/${id}`;
+
   switch (status) {
     case "pending_verification":
     case "pending_approval":
@@ -13,14 +14,14 @@ export function getPrivewLinkSettings(status, id) {
 
     case "inactive":
       return {
-        text: getInvoiceLinkURL(id, false),
+        text: SERVICES_URL,
         isDisabled: {
           copy: true,
         },
       };
     case "active":
       return {
-        text: getInvoiceLinkURL(id, false),
+        text: SERVICES_URL,
         isDisabled: {
           copy: false,
         },
