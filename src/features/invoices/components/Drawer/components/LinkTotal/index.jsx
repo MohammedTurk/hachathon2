@@ -25,7 +25,7 @@ export const LinkTotal = ({ data }) => {
       <div className="flex flex-col gap-2">
         <span className="font-semibold text-gray-400 text-sm">Total</span>
         <span className=" text-sm font-semibold">
-          {`${data?.currency} ${data?.subTotal - fees}`}
+          {`${data?.currency} ${data?.balance}`}
         </span>
       </div>
     </Card>

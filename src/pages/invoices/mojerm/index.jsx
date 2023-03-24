@@ -24,12 +24,6 @@ export function Index() {
     }
   }, [urlRequest]);
 
-  useEffect(() => {
-    // console.log("request", data?.data?.invoice.status);
-    // console.log("request", data?.data?.invoice);
-    console.log("request", data?.data);
-  }, [data]);
-
   const router = useRouter();
 
   // Turk give me the id
@@ -76,6 +70,11 @@ export function Index() {
         onClick={() => handleClickOnTabel("641c418f86abbe326e82bc04", false)}
       >
         Link pending_approval
+      </Button>
+      <Button
+        onClick={() => handleClickOnTabel("641de9af73ac594b84ec5f73", false)}
+      >
+        active line
       </Button>
       <Button
         onClick={() => handleClickOnTabel("641e056873ac594b84ec79c8", false)}

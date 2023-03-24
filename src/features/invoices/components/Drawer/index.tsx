@@ -13,6 +13,8 @@ import {
 } from "./components";
 import { useRouter } from "next/router";
 import { isInvoice } from "features/invoices/utils";
+import getStatus from "features/invoices/utils/getStatus";
+
 export const Drawer = ({
   isOpen,
   response,
@@ -21,6 +23,7 @@ export const Drawer = ({
   onChange,
 }: any) => {
   const data = response?.data?.invoice || response?.data?.service;
+  const status = getStatus(data?.status, data?._id);
 
   const router = useRouter();
   function handleMove() {
@@ -35,7 +38,6 @@ export const Drawer = ({
 
   const isInvoiceDisplay = data && isInvoice(data);
 
-  console.log("isInvoiceDisplay", isInvoiceDisplay);
   return (
     <>
       <Card
@@ -70,9 +72,11 @@ export const Drawer = ({
         ) : (
           <div className="flex flex-col justify-between flex-grow">
             <div className="flex flex-col justify-between gap-5">
-              {/* {هنا راح يكون الكود تاعك يا صفدي} */}
-
-              <StatusWrapper data={data} onEdit={handleMove} />
+              <StatusWrapper
+                data={data}
+                onEdit={handleMove}
+                StatusOptions={status.statusOptions}
+              />
 
               {isInvoiceDisplay ? (
                 <>
@@ -81,7 +85,7 @@ export const Drawer = ({
                 </>
               ) : (
                 <>
-                  <ServiceLink status={data?.status} id={data?._id} />
+                  <ServiceLink privewLinkoptions={status.privewLinkoptions} />
                   <LinkTotal data={data} />
                   <PrivewLink invoices={response?.data?.invoices.data} />
 
@@ -92,7 +96,7 @@ export const Drawer = ({
 
             <ButtonsWrapper
               data={data}
-              closeDrawer={closeModal}
+              optionsButtons={status.optionsButtons}
               onMoveToEdit={handleMove}
               isInvoice={isInvoiceDisplay}
               onChange={onChange}
@@ -104,10 +108,3 @@ export const Drawer = ({
   );
 };
 export default Drawer;
-
-/**
- * messageTitle = 'cancel the vicers'
- * messageButtons
- * mainButtons
- * function request
- */

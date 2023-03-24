@@ -20,7 +20,10 @@ export const PrivewLink = ({ invoices = [] }) => {
           {invoices.map((invoice, index) => {
             if (index < count) {
               return (
-                <Card className="border shadow-sm p-2 flex justify-between  items-center ">
+                <Card
+                  className="border shadow-sm p-2 flex justify-between  items-center "
+                  key={index}
+                >
                   <p className="capitalize font-semibold text-lg">
                     {invoice.client.fullName}
                   </p>

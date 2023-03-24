@@ -9,7 +9,7 @@ export const PreviewWrapper = ({ getValues }) => {
     closeModal: closeModalInvoices,
     openModal: openModalInvoices,
   } = useToggle();
-  const { isOpen: isShow, toggleModal: toggleIshow } = useToggle();
+  const { isOpen: isShow, toggleModal: toggleIshow } = useToggle(true);
 
   return (
     <div>

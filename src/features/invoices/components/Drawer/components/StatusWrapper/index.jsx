@@ -1,11 +1,8 @@
 import React from "react";
 import { Card } from "components";
 import { ErrorMessage, JobTitle, Status } from "../../components";
-import getStatus from "features/invoices/utils/getStatus";
 
-export const StatusWrapper = ({ data, onEdit }) => {
-  const StatusOptions = getStatus(data?.status);
-
+export const StatusWrapper = ({ data, onEdit, StatusOptions }) => {
   return (
     <>
       {StatusOptions?.hasError && <ErrorMessage onEdit={onEdit} />}

@@ -1,8 +1,6 @@
 import React from "react";
 
 export const JobTitle = ({ jobs = [], currency }) => {
-  console.log("jobs ", jobs);
-  // console.log("currency ", currency);
   return (
     <div className="flex flex-col gap-2 ">
       {jobs.map((job, index) => {
