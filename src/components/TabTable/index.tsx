@@ -1,208 +1,190 @@
-import { useState } from 'react'
-import { Tab } from '@headlessui/react'
+import { useState } from "react";
+import { Tab } from "@headlessui/react";
+import { ChevronUpIcon, ChevronDownIcon } from "lib/@heroicons";
+import { NavTable, PaginationTable } from "components";
 
- function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
 }
 
-export const TabTable = () =>{
-  let [categories] = useState({
-    All: [
-      {
-        id: 1,
-        title: 'Does drinking coffee make you smarter?',
-        date: '5h ago',
-        commentCount: 5,
-        shareCount: 2,
-      },
-      {
-        id: 2,
-        title: "So you've bought coffee... now what?",
-        date: '2h ago',
-        commentCount: 3,
-        shareCount: 2,
-      },
-    ],
-    Invoices: [
-      {
-        id: 1,
-        title: 'Is tech making coffee better or worse?',
-        date: 'Jan 7',
-        commentCount: 29,
-        shareCount: 16,
-      },
-      {
-        id: 2,
-        title: 'The most innovative things happening in coffee',
-        date: 'Mar 19',
-        commentCount: 24,
-        shareCount: 12,
-      },
-    ],
-    Links : [
-      {
-        id: 1,
-        title: 'Ask Me Anything: 10 answers to your questions about coffee',
-        date: '2d ago',
-        commentCount: 9,
-        shareCount: 5,
-      },
-      {
-        id: 2,
-        title: "The worst advice we've ever heard about coffee",
-        date: '4d ago',
-        commentCount: 1,
-        shareCount: 2,
-      },
-    ],
-  })
+export const TabTable = ({
+  types = ["all", "invoices", "links"],
+  updatedata,
+  transactions,
+}) => {
+  const statusColor = (status) => {
+    if (status === "pending") {
+      return "text-[#DAA545]";
+    } else if (status === "ready") {
+      return "text-[#4BAE4F]";
+    } else if (status === "sent") {
+      return "text-blue-light";
+    } else if (status === "paid") {
+      return "text-[#4BAE4F]";
+    } else {
+      return "text-gray-dark";
+    }
+  };
+  // console.log(
+  //   "maha " + transactions?.transactions[1].invoice?.fixed[0].itemName
+  // );
+  const data = transactions?.transactions;
+  const timestamp = transactions?.transactions[0]?.updatedAt;
+  const date = new Date(timestamp);
+  const formattedTime = date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    hour12: true,
+  });
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const yesterday = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() - 1
+  );
+
+  let dateText = "";
+  if (date >= today) {
+    dateText = "today";
+  } else if (date >= yesterday) {
+    dateText = "yesterday";
+  } else {
+    dateText = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  }
 
   return (
-    <div className="w-full sm:px-0 bg-[#FFFF]">
+    <div className="w-full sm:px-0 bg-[#FFFF] shadow-md sm:rounded-lg">
       <Tab.Group>
         <Tab.List className="flex ">
-          {Object.keys(categories).map((category) => (
-            <Tab
-              key={category}
-              className={({ selected }) =>
-                classNames(
-                  'p-2 pl-7 text-sm text-gray-500',
-                  selected
-                    ? 'text-blue-500 border-b-4 border-indigo-500 '
-                    : 'text-gray-500'
-                )
-              }
-            >
-              {category}
-            </Tab>
-          ))}
+          {types.map((type) => {
+            return (
+              <Tab
+                key={type}
+                className={({ selected }) =>
+                  classNames(
+                    "p-2 pl-7 text-sm font-medium text-gray-400",
+                    selected
+                      ? "text-blue-500 border-b-4 border-blue-500 "
+                      : "text-gray-500"
+                  )
+                }
+                onClick={() => updatedata(type)}
+              >
+                {type}
+              </Tab>
+            );
+          })}
         </Tab.List>
-        {/* <Tab.Panels className="mt-2">
-          {Object.values(categories).map((posts, idx) => (
-            <Tab.Panel
-              key={idx}
-              className={classNames(
-                'rounded-xl bg-white p-3',
-                'ring-white ring-opacity-60 ring-offset-2 text-gray-500 focus:outline-none focus:ring-2'
-              )}
-            >
-              <ul>
-                {posts.map((post) => (
-                  <li
-                    key={post.id}
-                    className="relative rounded-md p-3 hover:bg-gray-100"
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left  ">
+            <thead className="text-xs  uppercase bg-[#FFFF] ">
+              <tr>
+                <th className="text-sm px-6 pb-3 pt-4 font-medium text-gray-400 capitalize flex gap-4">
+                  <div className="flex items-center gap-2">
+                    Name
+                    <div className="flex flex-col  gap-1">
+                      <a href="#" className="text-[#9E9E9E]">
+                        <ChevronUpIcon className="h-3 w-3" />
+                      </a>
+                      <a href="#" className="text-[#9E9E9E]">
+                        <ChevronDownIcon className="h-3 w-3" />
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    Date
+                    <div className="flex flex-col  gap-1">
+                      <a href="#" className="text-[#9E9E9E]">
+                        <ChevronUpIcon className="h-3 w-3" />
+                      </a>
+                      <a href="#" className="text-[#9E9E9E]">
+                        <ChevronDownIcon className="h-3 w-3" />
+                      </a>
+                    </div>
+                  </div>
+                </th>
+                <th className="px-6 py-3 text-sm pb-3 pt-4 font-medium text-gray-400 capitalize">
+                  <div className="flex items-center">
+                    Amount{" "}
+                    <div className="flex flex-col pl-1">
+                      <a href="#">
+                        <ChevronUpIcon className="h-3 w-3 font-bold" />
+                      </a>
+                      <a href="#">
+                        <ChevronDownIcon className="h-3 w-3 font-bold" />
+                      </a>
+                    </div>
+                  </div>
+                </th>
+                <th className="px-6 py-3 text-sm pb-3 pt-4 font-medium text-gray-400 capitalize">
+                  <div className="flex items-center">
+                    Client{" "}
+                    <div className="flex flex-col pl-1">
+                      <a href="#">
+                        <ChevronUpIcon className="h-3 w-3 font-bold" />
+                      </a>
+                      <a href="#">
+                        <ChevronDownIcon className="h-3 w-3 font-bold" />
+                      </a>
+                    </div>
+                  </div>
+                </th>
+                <th className="px-6 py-3 text-sm pb-3 pt-4 font-medium text-gray-400 capitalize">
+                  <div className="flex items-center">
+                    Status{" "}
+                    <div className="flex flex-col pl-1">
+                      <a href="#">
+                        <ChevronUpIcon className="h-3 w-3 font-bold" />
+                      </a>
+                      <a href="#">
+                        <ChevronDownIcon className="h-3 w-3 font-bold" />
+                      </a>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactions?.transactions.map((items) => (
+                <tr
+                  key={items._id}
+                  className="bg-white border-b hover:bg-gray-light"
+                >
+                  <span className="pl-6">
+                    {" "}
+                    {items?.invoice?.fixed[0].itemName}
+                  </span>
+
+                  <th className="px-6 whitespace-nowrap flex flex-col">
+                    <span className="text-gray-400 font-normal text-xs pt-1">
+                      {dateText}
+                    </span>
+                  </th>
+
+                  <td className="px-6 py-4 text-gray-dark font-medium text-md">
+                    {items?.invoice?.fixed[0].price}
+                  </td>
+
+                  <td className="px-6 py-4 text-black font-medium text-md">
+                    {items?.invoice?.client.fullName || "_"}
+                  </td>
+                  <td
+                    className={`px-6 py-4 font-medium ${statusColor(
+                      items.status
+                    )}`}
                   >
-                    <h3 className="text-sm font-medium leading-5">
-                      {post.title}
-                    </h3>
+                    {items.invoice?.status}
+                  </td>
+                </tr>
+              ))}{" "}
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
 
-                    <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
-                      <li>{post.date}</li>
-                      <li>&middot;</li>
-                      <li>{post.commentCount} comments</li>
-                      <li>&middot;</li>
-                      <li>{post.shareCount} shares</li>
-                    </ul>
-
-                    <a
-                      href="#"
-                      className={classNames(
-                        'absolute inset-0 rounded-md',
-                        'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
-                      )}
-                    />
-                  </li>
-                ))}
-              </ul>
-            </Tab.Panel>
-          ))}
-        </Tab.Panels> */}
-      </Tab.Group>
-    </div>
-  )
-}
-// import { useState } from 'react'
-// import { Tab } from '@headlessui/react'
-
-// function classNames(...classes) {
-//   return classes.filter(Boolean).join(' ')
-// }
-
-// export const TabTable =()=>{
-//   let [categories] = useState({
-//     Recent: [
-//       {
-//         id: 1,
-//         title: 'Does drinking coffee make you smarter?',
-//         date: '5h ago',
-//         commentCount: 5,
-//         shareCount: 2,
-//       },
-//       {
-//         id: 2,
-//         title: "So you've bought coffee... now what?",
-//         date: '2h ago',
-//         commentCount: 3,
-//         shareCount: 2,
-//       },
-//     ],
-//     Popular: [
-//       {
-//         id: 1,
-//         title: 'Is tech making coffee better or worse?',
-//         date: 'Jan 7',
-//         commentCount: 29,
-//         shareCount: 16,
-//       },
-//       {
-//         id: 2,
-//         title: 'The most innovative things happening in coffee',
-//         date: 'Mar 19',
-//         commentCount: 24,
-//         shareCount: 12,
-//       },
-//     ],
-//     Trending: [
-//       {
-//         id: 1,
-//         title: 'Ask Me Anything: 10 answers to your questions about coffee',
-//         date: '2d ago',
-//         commentCount: 9,
-//         shareCount: 5,
-//       },
-//       {
-//         id: 2,
-//         title: "The worst advice we've ever heard about coffee",
-//         date: '4d ago',
-//         commentCount: 1,
-//         shareCount: 2,
-//       },
-//     ],
-//   })
-
-//   return (
-//     <div className="w-full max-w-md px-2 py-16 sm:px-0">
-//       <Tab.Group>
-//         <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
-//           {Object.keys(categories).map((category) => (
-//             <Tab
-//               key={category}
-//               className={({ selected }) =>
-//                 classNames(
-//                   ' py-2.5 text-sm font-medium leading-5 ',
-//                   'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-//                   selected
-//                     ? 'text-blue border-b-4 border-indigo-500'
-//                     : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
-//                 )
-//               }
-//             >
-//               {category}
-//             </Tab>
-//           ))}
-//         </Tab.List>
         {/* <Tab.Panels className="mt-2">
-          {Object.values(categories).map((posts, idx) => (
+          {Object.values(types).map((posts, idx) => (
             <Tab.Panel
               key={idx}
               className={classNames(
@@ -239,9 +221,9 @@ export const TabTable = () =>{
                 ))}
               </ul>
             </Tab.Panel>
-          ))}
-        </Tab.Panels> */}
-//       </Tab.Group>
-//     </div>
-//   )
-// }
+          ))} 
+                      </Tab.Panels>*/}
+      </Tab.Group>
+    </div>
+  );
+};
