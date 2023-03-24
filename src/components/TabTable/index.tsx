@@ -9,24 +9,21 @@ function classNames(...classes) {
 
 export const TabTable = ({
   types = ["all", "invoices", "links"],
-  handleTabClick,
   transactions,
+  handleTabClick,
 }) => {
   const statusColor = (status) => {
     if (status === "pending") {
-      return "text-[#DAA545]";
-    } else if (status === "ready") {
-      return "text-[#4BAE4F]";
-    } else if (status === "sent") {
-      return "text-blue-light";
-    } else if (status === "paid") {
-      return "text-[#4BAE4F]";
+      return "text-[#CDA434]";
+    } else if (status === "cancelled") {
+      return "text-[#BEC2C6]";
+    } else if (status === "Inactive") {
+      return "text-[#707070]";
     } else {
-      return "text-gray-dark";
+      return "text-black";
     }
   };
-
-  const data = transactions?.transactions;
+ const datatype= transactions?.transactions[0].type
   const timestamp = transactions?.transactions[0].updatedAt;
   const date = new Date(timestamp);
   const formattedTime = date.toLocaleTimeString("en-US", {
@@ -51,6 +48,9 @@ export const TabTable = ({
     dateText = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
 
+  // function handleTabClick(type) {
+  //   setSelectedTab(type);
+  // }
   return (
     <div className="w-full sm:px-0 bg-[#FFFF] shadow-md sm:rounded-lg">
       <Tab.Group>
@@ -70,7 +70,6 @@ export const TabTable = ({
                 onClick={() => handleTabClick(type)}
               >
                 {type}
-               { console.log("type " + handleTabClick)}
               </Tab>
             );
           })}
@@ -153,24 +152,33 @@ export const TabTable = ({
                   <div className="flex flex-row ">
                     {items?.invoice?.fixed.slice(0, 2).map((fixed, index) => (
                       <span className="pl-6" key={fixed._id}>
-                      {fixed?.itemName.length > 12 ? (
-                        fixed.itemName.substring(0, 12) + "..."
-                      ) : (
-                        fixed.itemName
-                      )}
-                      {index === 1 && items?.invoice.fixed.length > 2 ? (
-                        <span className="pl-2">
-                          + other
+                        {fixed?.itemName.length > 12
+                          ? fixed.itemName.substring(0, 12) + "..."
+                          : fixed.itemName}
+                        {index === 1 && items?.invoice.fixed.length > 2 ? (
+                          <span className="pl-2">+ other</span>
+                        ) : null}
+
+                      </span>
+                    )) ||
+                      items?.service?.fixed.slice(0, 2).map((fixed, index) => (
+                        <span className="pl-6" key={fixed._id}>
+                          {fixed?.itemName.length > 12
+                            ? fixed.itemName.substring(0, 12) + "..."
+                            : fixed.itemName}
+                          {index === 1 && items?.service.fixed.length > 2 ? (
+                            <span className="pl-2">+ other</span>
+                          ) : null}
+
                         </span>
-                      ) : null}
-                    </span>
-                    ))}
+                      ))}
+                      
                   </div>
                   <th className="px-6 whitespace-nowrap flex flex-col">
                     <span className="text-gray-400 font-normal text-xs pt-1">
                       {dateText}
                       <span className="pl-2 text-gray-500">
-                        {items?.invoice?.currency}
+                        {items?.invoice?.currency || items?.service?.currency}
                       </span>
                     </span>
                   </th>
@@ -180,7 +188,98 @@ export const TabTable = ({
                     {items?.invoice?.fixed.reduce(
                       (total, fixed) => total + fixed.price,
                       0
-                    )}
+                    ) ||
+                      items?.service?.fixed.reduce(
+                        (total, fixed) => total + fixed.price,
+                        0
+                      )}
+                  </td>
+                  <td className="px-6 py-4 text-black font-medium text-md">
+                    {items?.invoice?.client.fullName || "_"}
+                  </td>
+
+                  {datatype === "invoice" ? (  <td
+                    className={`px-6 py-4 font-medium ${statusColor(
+                    items.invoice?.status 
+                    )}`}
+                  >
+                    {items.invoice?.status}
+                  </td>): <td
+                    className={`px-6 py-4 font-medium ${statusColor(
+                      items.service?.status 
+                    )}`}
+                  >
+                    {items.service?.status}
+                  </td>}
+                
+                </tr>
+              ))}{" "}
+              <tr></tr>
+            </tbody>
+
+            <PaginationTable />
+          </table>
+        </div>
+
+        {/* <Tab.Panels className="mt-2">
+          {types.map((items, idx) => (
+            <Tab.Panel
+              key={idx}
+              className={classNames(
+                'rounded-xl bg-white p-3',
+                'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+              )}
+            >
+   <tbody>
+              {transactions?.transactions.map((items) => (
+                <tr
+                  key={items._id}
+                  className="bg-white border-b hover:bg-gray-light "
+                >
+                  <div className="flex flex-row ">
+                    {items?.invoice?.fixed.slice(0, 2).map((fixed, index) => (
+                      <span className="pl-6" key={fixed._id}>
+                        {fixed?.itemName.length > 12
+                          ? fixed.itemName.substring(0, 12) + "..."
+                          : fixed.itemName}
+                        {index === 1 && items?.invoice.fixed.length > 2 ? (
+                          <span className="pl-2">+ other</span>
+                        ) : null}
+
+                      </span>
+                    )) ||
+                      items?.service?.fixed.slice(0, 2).map((fixed, index) => (
+                        <span className="pl-6" key={fixed._id}>
+                          {fixed?.itemName.length > 12
+                            ? fixed.itemName.substring(0, 12) + "..."
+                            : fixed.itemName}
+                          {index === 1 && items?.service.fixed.length > 2 ? (
+                            <span className="pl-2">+ other</span>
+                          ) : null}
+
+                        </span>
+                      ))}
+                      
+                  </div>
+                  <th className="px-6 whitespace-nowrap flex flex-col">
+                    <span className="text-gray-400 font-normal text-xs pt-1">
+                      {dateText}
+                      <span className="pl-2 text-gray-500">
+                        {items?.invoice?.currency || items?.service?.currency}
+                      </span>
+                    </span>
+                  </th>
+
+                  <td className="px-6 py-4 text-gray-dark font-medium text-md">
+                    $
+                    {items?.invoice?.fixed.reduce(
+                      (total, fixed) => total + fixed.price,
+                      0
+                    ) ||
+                      items?.service?.fixed.reduce(
+                        (total, fixed) => total + fixed.price,
+                        0
+                      )}
                   </td>
                   <td className="px-6 py-4 text-black font-medium text-md">
                     {items?.invoice?.client.fullName || "_"}
@@ -190,16 +289,15 @@ export const TabTable = ({
                       items.status
                     )}`}
                   >
-                    {items.invoice?.status}
+                    {items.invoice?.status || items.service?.status}
                   </td>
                 </tr>
               ))}{" "}
               <tr></tr>
             </tbody>
-
-            <PaginationTable />
-          </table>
-        </div>
+            </Tab.Panel>
+          ))}
+        </Tab.Panels> */}
 
         {/* <Tab.Panels className="mt-2">
           {Object.values(types).map((posts, idx) => (
@@ -242,7 +340,6 @@ export const TabTable = ({
           ))} 
                       </Tab.Panels>*/}
       </Tab.Group>
-      
     </div>
   );
 };

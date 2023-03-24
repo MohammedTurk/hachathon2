@@ -36,8 +36,10 @@ export const PaginationTable = ({
             )}
 
             <li className="px-3">
-              Page {currentPage} - {paginateCount()}
+              Page  {currentPage} - {paginateCount()}
             </li>
+{            console.log("currentPage " + paginateCount())
+}            
             {currentPage < paginateCount() && (
               <li onClick={handleNextPaginate}>
                 <a

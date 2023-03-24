@@ -10,7 +10,6 @@ import { API_SERVICES_URLS } from "data";
 import { useSWRMutationHook } from "hooks";
 import { InvoicesTable } from "./InvoicesTable";
 export const TransactionsWrapper = () => {
-  console.log("TransactionsWrapper");
 
   const [transactions, setTransactions] = useState();
   const [currentPage, setCurrentPage] = useState(0);
@@ -33,14 +32,12 @@ export const TransactionsWrapper = () => {
   );
   useEffect(() => {
     getTransactionData();
-  }, []);
+  }, [type]);
 
   useEffect(() => {
     if (TransactionData) {
       setTransactions(TransactionData?.data);
-      console.log("data is from inside", TransactionData?.data);
     }
-    console.log("data is from outside", TransactionData?.data);
   }, [isMutating]);
   const handleNextPaginate = () => {
     setCurrentPage((prev) => prev + 1);
@@ -62,8 +59,8 @@ export const TransactionsWrapper = () => {
       getTransactionData();
     }, 1000);
   };
-  const handleTabClick = (type) => {
-    setType(type);
+  const handleTabClick = (value) => {
+    setType(value);
   };
   return (
     <div className="">
