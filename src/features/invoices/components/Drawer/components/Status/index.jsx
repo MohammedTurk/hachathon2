@@ -1,3 +1,4 @@
+import { Format } from "features/invoices/utils";
 import React from "react";
 
 export const Status = ({ StatusOptions, date }) => {
@@ -17,13 +18,7 @@ export const Status = ({ StatusOptions, date }) => {
             </span>
           </div>
         </div>
-        <span className="text-[#8C8C8C] text-xs">
-          {new Date(date).toLocaleDateString("us-en", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          })}
-        </span>
+        <span className="text-[#8C8C8C] text-xs">{Format.date(date)}</span>
       </div>
     </>
   );

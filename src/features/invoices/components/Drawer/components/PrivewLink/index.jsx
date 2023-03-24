@@ -1,28 +1,60 @@
-import { Input, Button } from "components";
-import { getPrivewLinkSettings } from "features/invoices/utils";
+import { Button, Card } from "components";
+import { Paypal } from "components/svg";
+import { Format } from "features/invoices/utils";
+import React, { useState } from "react";
 
-export const PrivewLink = ({ status, id }) => {
-  const options = getPrivewLinkSettings(status, id);
-  function handleCopyAction() {
-    navigator.clipboard.writeText(options.text);
+export const PrivewLink = ({ invoices = [] }) => {
+  const [count, setCount] = useState(3);
+
+  function handleShow() {
+    count == 3 ? setCount(invoices.length) : setCount(3);
+  }
+
+  function getIcon() {
+    return <Paypal className="text-black" />;
   }
   return (
-    <div className="flex gap-2 text-sm">
-      <Button
-        className=" flex-1 text-gray-600 !text-sm  rounded overflow-hidden text-ellipsis whitespace-nowrap !bg-white border shadow-sm "
-        disabled={options?.isDisabled?.copy}
-        onClick={handleCopyAction}
-      >
-        {options?.text}
-      </Button>
-      <Button
-        className=" bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded disabled:!bg-gray-500"
-        onClick={handleCopyAction}
-        disabled={options?.isDisabled?.copy}
-      >
-        Copy
-      </Button>
-    </div>
+    <Card className="border shadow-sm  rounded-sm flex flex-col gap-2">
+      {invoices.length !== 0 ? (
+        <>
+          {invoices.map((invoice, index) => {
+            if (index < count) {
+              return (
+                <Card className="border shadow-sm p-2 flex justify-between  items-center ">
+                  <p className="capitalize font-semibold text-lg">
+                    {invoice.client.fullName}
+                  </p>
+                  <p className="flex items-center gap-1 text-gray-600">
+                    By {getIcon()} {invoice.paymentMethod.name}{" "}
+                  </p>
+                  <p className="flex flex-col ">
+                    <span>
+                      {`${invoice?.curreny} ${invoice?.price}` !== " " &&
+                        "$3424"}
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      {Format.date(invoice.createdAt)}
+                    </span>
+                  </p>
+                </Card>
+              );
+            }
+          })}
+          {invoices.length > 3 && (
+            <Button
+              className="bg-transparent text-blue-500 w-fit hover:!bg-transparent !p-2"
+              onClick={handleShow}
+            >
+              {count == 3 ? "View more" : "View less"}
+            </Button>
+          )}
+        </>
+      ) : (
+        <p className="text-blue-500 capitalize font-semibold">
+          you don't have any Inovices in this link
+        </p>
+      )}
+    </Card>
   );
 };
 

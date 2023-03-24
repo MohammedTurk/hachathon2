@@ -7,5 +7,6 @@ export * from "./ErrorMessage";
 export * from "./ButtonsWrapper";
 export * from "./RequestMessage";
 export * from "./PreviewWrapper";
-export * from "./PrivewLink";
+export * from "./ServiceLink";
 export * from "./LinkTotal";
+export * from "./PrivewLink";

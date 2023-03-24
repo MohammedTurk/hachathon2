@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "components";
-import { daysFormat } from "features/invoices/utils";
+import { Format } from "features/invoices/utils";
 
 function getItems(data) {
   return data.map((item, index) => {
@@ -18,13 +18,8 @@ function getItems(data) {
           <time
             className={`  text-sm font-normal  text-gray-400 w-[80px] pb-2 `}
           >
-            <p className={pStyle}>
-              {new Date(item.createdAt).toLocaleTimeString("en-us", {
-                hour: "numeric",
-                minute: "2-digit",
-              })}
-            </p>
-            <p className="text-xs">{daysFormat(item.createdAt)}</p>
+            <p className={pStyle}>{Format.time(item.createdAt)}</p>
+            <p className="text-xs">{Format.daysFormat(item.createdAt)}</p>
           </time>
 
           <div className="relative w-[20px] ">

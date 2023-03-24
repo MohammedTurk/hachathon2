@@ -14,7 +14,6 @@ export function Index() {
   // when i click on the Table
   function handleClickOnTabel(id, isInvoice) {
     openModal();
-    console.log("link -->", getInvoiceLinkURL(id, isInvoice));
     setUrlRequest(getInvoiceLinkURL(id, isInvoice));
   }
 
@@ -40,15 +39,12 @@ export function Index() {
     }
   }, [router?.query]);
 
-  const testData = data?.data?.invoice || data?.data?.service;
-
   return (
     <div>
-      Index
       <Drawer
         isOpen={isOpen}
         closeModal={closeModal}
-        data={testData}
+        response={data}
         isMutating={isMutating}
         onChange={trigger}
       />
@@ -59,7 +55,7 @@ export function Index() {
       <Button onClick={() => handleClickOnTabel("641c43c686abbe326e82bc92")}>
         paid
       </Button>
-      <Button onClick={() => handleClickOnTabel("641db0dd73ac594b84ec3b6d")}>
+      <Button onClick={() => handleClickOnTabel("641db1ab73ac594b84ec3c1c")}>
         pending_approval
       </Button>
       <Button onClick={() => handleClickOnTabel("641defa03943f49510614021")}>
@@ -80,6 +76,11 @@ export function Index() {
         onClick={() => handleClickOnTabel("641c418f86abbe326e82bc04", false)}
       >
         Link pending_approval
+      </Button>
+      <Button
+        onClick={() => handleClickOnTabel("641e056873ac594b84ec79c8", false)}
+      >
+        acrive line
       </Button>
       <Button
         onClick={() => handleClickOnTabel("641c418f86abbe326e82bc04", false)}

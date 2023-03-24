@@ -7,18 +7,21 @@ import {
   ButtonsWrapper,
   StatusWrapper,
   PreviewWrapper,
-  PrivewLink,
   LinkTotal,
+  ServiceLink,
+  PrivewLink,
 } from "./components";
 import { useRouter } from "next/router";
 import { isInvoice } from "features/invoices/utils";
 export const Drawer = ({
   isOpen,
-  data,
+  response,
   closeModal,
   isMutating,
   onChange,
 }: any) => {
+  const data = response?.data?.invoice || response?.data?.service;
+
   const router = useRouter();
   function handleMove() {
     const pathname = isInvoice(data)
@@ -32,7 +35,6 @@ export const Drawer = ({
 
   const isInvoiceDisplay = data && isInvoice(data);
 
-  console.log(data);
   console.log("isInvoiceDisplay", isInvoiceDisplay);
   return (
     <>
@@ -72,19 +74,18 @@ export const Drawer = ({
 
               <StatusWrapper data={data} onEdit={handleMove} />
 
-              {!isInvoiceDisplay && (
-                <>
-                  <PrivewLink status={data?.status} id={data?._id} />
-                  <LinkTotal data={data} />
-                  <TimeLine data={data?.history} />
-                </>
-              )}
-
-              {isInvoiceDisplay && (
+              {isInvoiceDisplay ? (
                 <>
                   <TimeLine data={data?.history} />
-
                   <PreviewWrapper getValues={() => data} />
+                </>
+              ) : (
+                <>
+                  <ServiceLink status={data?.status} id={data?._id} />
+                  <LinkTotal data={data} />
+                  <PrivewLink invoices={response?.data?.invoices.data} />
+
+                  <TimeLine data={data?.history} />
                 </>
               )}
             </div>

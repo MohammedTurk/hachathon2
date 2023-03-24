@@ -1,40 +1,18 @@
-  const "invoice": {
-                    "_id": "641c405986abbe326e82bb29",
-                    "fixed": [
-                      {
-                          "itemName": "Course 1",
-                          "description": "test invoice",
-                          "price": 1000,
-                          "_id": "641c405986abbe326e82bb2a"
-                      },
-                      {
-                          "itemName": "Job interview 2",
-                          "description": "test invoice",
-                          "price": 500,
-                          "_id": "641c405986abbe326e82bb2b"
-                      }
-                  ],
-                    "client": {
-                        "_id": "63e104aa8bba2cb3f754d7db",
-                        "email": "hebaskhail@gmail.com",
-                        "address": {
-                            "country": "Palestine"
-                        },
-                        "fullName": ""
-                    },
-                    "currency": "USD",
-                    "subTotal": 1500,
-                    "status": "cancelled"
-                    
-                    "freelancer": {
-                        "_id": "63e104aa8bba2cb3f754d7db",
-                        "firstName": "Heba",
-                        "lastName": "SKHAIL"
-                    },
-                    
-                    "invoiceNo": "INV1",
-                    
-                },
-                "type": "invoice",
-                "updatedAt": "2023-03-23T12:34:40.655Z"
-            },
+"client": {
+    "address": {
+        "country": "Palestine"
+    },
+    "fullName": "taymaa",
+    "email": "test@gmail.com",
+    "_id": "63b5d6d66003306b9cde9048"
+},
+"_id": "641c43c686abbe326e82bc92",
+"invoiceNo": "INV-3",
+"paymentMethod": {
+    "_id": "63359b01bf6ef6878c96f87d",
+    "name": "Paypal",
+    "fees": 5.5
+},
+"status": "paid",
+"createdAt": "2022-10-06T05:00:00.000Z"
+}
