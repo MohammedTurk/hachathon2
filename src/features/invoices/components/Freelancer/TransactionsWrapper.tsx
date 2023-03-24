@@ -1,41 +1,46 @@
 import { useEffect, useState } from "react";
-import { Button, Input, TableSkeleton ,TabTable} from "components";
+import {
+  Button,
+  Input,
+  TableSkeleton,
+  TabTable,
+  PaginationTable,
+} from "components";
 import { API_SERVICES_URLS } from "data";
 import { useSWRMutationHook } from "hooks";
 import { InvoicesTable } from "./InvoicesTable";
 export const TransactionsWrapper = () => {
-console.log('TransactionsWrapper');
+  console.log("TransactionsWrapper");
 
- 
   const [transactions, setTransactions] = useState();
   const [currentPage, setCurrentPage] = useState(0);
   const [sortValue, setSortValue] = useState("");
   const [filteredValue, setFilteredValue] = useState();
   const [searchValue, setSearchValue] = useState("");
-  const[type,setType]= useState("all");
+  const [type, setType] = useState("all");
 
-  const { trigger: getTransactionData ,data:TransactionData,isMutating  } = useSWRMutationHook(`${
-    API_SERVICES_URLS.CLIENT.INVOICE_LIST
-  }?limit=5&sort=${sortValue}&offset=${currentPage}&type=${type}${
-    filteredValue ? `&filter=${filteredValue}` : ""
-  }${searchValue ? `&search=${searchValue}` : ""}`,
-    "GET",
-  
+  const {
+    trigger: getTransactionData,
+    data: TransactionData,
+    isMutating,
+  } = useSWRMutationHook(
+    `${
+      API_SERVICES_URLS.CLIENT.INVOICE_LIST
+    }?limit=5&sort=${sortValue}&offset=${currentPage}&type=${type}${
+      filteredValue ? `&filter=${filteredValue}` : ""
+    }${searchValue ? `&search=${searchValue}` : ""}`,
+    "GET"
   );
   useEffect(() => {
     getTransactionData();
   }, []);
 
   useEffect(() => {
-    if(TransactionData){
+    if (TransactionData) {
       setTransactions(TransactionData?.data);
-      console.log('data is from inside',TransactionData?.data);
-      
+      console.log("data is from inside", TransactionData?.data);
     }
-    console.log('data is from outside',TransactionData?.data);
- 
-
-    
+    console.log("data is from outside", TransactionData?.data);
   }, [isMutating]);
   const handleNextPaginate = () => {
     setCurrentPage((prev) => prev + 1);
@@ -57,9 +62,9 @@ console.log('TransactionsWrapper');
       getTransactionData();
     }, 1000);
   };
-  const updatedata = (value) => {
-    setType(value);
-  }
+  const handleTabClick = (type) => {
+    setType(type);
+  };
   return (
     <div className="">
       {/* <span className="text-xl font-semibold text-gray-dark mb-4 block">
@@ -155,15 +160,15 @@ console.log('TransactionsWrapper');
             handleNextPaginate={handleNextPaginate}
             currentPage={currentPage}
           />
-           <TabTable
-            updatedata={updatedata}
+          <TabTable handleTabClick={handleTabClick} transactions={transactions} />
+          <PaginationTable
             transactions={transactions}
-
+            handlePrevPaginate={handlePrevPaginate}
+            handleNextPaginate={handleNextPaginate}
+            currentPage={currentPage}
           />
         </div>
       )}
     </div>
- 
   );
 };
-

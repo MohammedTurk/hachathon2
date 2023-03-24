@@ -9,7 +9,7 @@ function classNames(...classes) {
 
 export const TabTable = ({
   types = ["all", "invoices", "links"],
-  updatedata,
+  handleTabClick,
   transactions,
 }) => {
   const statusColor = (status) => {
@@ -25,9 +25,7 @@ export const TabTable = ({
       return "text-gray-dark";
     }
   };
-  console.log(
-    "maha " + transactions?.transactions[1].invoice.fixed[0].itemName
-  );
+
   const data = transactions?.transactions;
   const timestamp = transactions?.transactions[0].updatedAt;
   const date = new Date(timestamp);
@@ -69,9 +67,10 @@ export const TabTable = ({
                       : "text-gray-500"
                   )
                 }
-                onClick={() => updatedata(type)}
+                onClick={() => handleTabClick(type)}
               >
                 {type}
+               { console.log("type " + handleTabClick)}
               </Tab>
             );
           })}
@@ -149,37 +148,56 @@ export const TabTable = ({
               {transactions?.transactions.map((items) => (
                 <tr
                   key={items._id}
-                  className="bg-white border-b hover:bg-gray-light"
+                  className="bg-white border-b hover:bg-gray-light "
                 >
-                  <span className="pl-6">
-                    {" "}
-                    {items?.invoice.fixed[0].itemName}
-                  </span>
-
+                  <div className="flex flex-row ">
+                    {items?.invoice?.fixed.slice(0, 2).map((fixed, index) => (
+                      <span className="pl-6" key={fixed._id}>
+                      {fixed?.itemName.length > 12 ? (
+                        fixed.itemName.substring(0, 12) + "..."
+                      ) : (
+                        fixed.itemName
+                      )}
+                      {index === 1 && items?.invoice.fixed.length > 2 ? (
+                        <span className="pl-2">
+                          + other
+                        </span>
+                      ) : null}
+                    </span>
+                    ))}
+                  </div>
                   <th className="px-6 whitespace-nowrap flex flex-col">
                     <span className="text-gray-400 font-normal text-xs pt-1">
                       {dateText}
+                      <span className="pl-2 text-gray-500">
+                        {items?.invoice?.currency}
+                      </span>
                     </span>
                   </th>
 
                   <td className="px-6 py-4 text-gray-dark font-medium text-md">
-                    {items?.invoice.fixed[0].price}
+                    $
+                    {items?.invoice?.fixed.reduce(
+                      (total, fixed) => total + fixed.price,
+                      0
+                    )}
                   </td>
-
                   <td className="px-6 py-4 text-black font-medium text-md">
-                    {items?.invoice.client.fullName || "_"}
+                    {items?.invoice?.client.fullName || "_"}
                   </td>
                   <td
                     className={`px-6 py-4 font-medium ${statusColor(
                       items.status
                     )}`}
                   >
-                    {items.invoice.status}
+                    {items.invoice?.status}
                   </td>
                 </tr>
               ))}{" "}
               <tr></tr>
             </tbody>
+
+            <PaginationTable />
           </table>
         </div>
 
@@ -224,6 +242,7 @@ export const TabTable = ({
           ))} 
                       </Tab.Panels>*/}
       </Tab.Group>
+      
     </div>
   );
 };

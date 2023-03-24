@@ -3,17 +3,13 @@ export const PaginationTable = ({
   handlePrevPaginate,
   currentPage,
   transactions,
-
 }) => {
-    const paginateCount = () => Math.floor(transactions?.count / 5);
+  const paginateCount = () => Math.floor(transactions?.count / 5);
 
   return (
     <tr>
       <td>
-        <div
-          aria-label="Page navigation example"
-          className="w-full flex justify-center p-1   bg-white"
-        >
+        <div className="w-full flex justify-center p-1 bg-white">
           <ul className="inline-flex items-center   ">
             {currentPage > 0 && (
               <li onClick={handlePrevPaginate}>
