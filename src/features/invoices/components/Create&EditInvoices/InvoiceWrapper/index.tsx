@@ -12,14 +12,14 @@ export const CreateWrapper = ({
 }: {
   children: React.ReactElement;
 }) => {
-  const router = useRouter()
-  const {
+   const {
     register,
     handleSubmit,
     formState: { errors },
     clearErrorOnChange,
     getValues,
     control,
+    setValue
   } = useForm<CreateInvoiceFormInputsTypes>({
     defaultValues: {
       fixed: [
@@ -38,27 +38,23 @@ export const CreateWrapper = ({
   });
 
 
-
-  const onSubmit = handleSubmit((data,makeRequest) => {
-    makeRequest()
-  });
-
   const { isOpen, closeModal, openModal } = useToggle();
 
   return (
-    <div className="  ">
+    <div className="">
       <div className="lg:w-[40%] px-10  py-5 bg-white lg:h-screen lg:fixed left-0 mt-[53.6px] lg:mt-0 top-[61.64px] lg:overflow-auto  scrollbar-track-gray-200 scrollbar-thumb-gray-300 scrollbar-thin scrollbar-thumb-rounded-lg">
         {React.cloneElement(children, {
           ...{
             register,
-            onSubmit,
+            handleSubmit,
             errors,
             clearErrorOnChange,
             fields,
             append,
             remove,
             control,
-            getValues
+            getValues,
+            setValue
           },
         })}
       </div>

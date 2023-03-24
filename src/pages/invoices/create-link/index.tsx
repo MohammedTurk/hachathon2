@@ -1,10 +1,13 @@
 import { NoSsr } from "components";
-import React from "react";
+import { CreateLinkForm,InvoiceWrapper } from "features/invoices";
+ import React from "react";
 
 export const CreateLink = () => {
   return (
     <NoSsr>
-      <div>CreateLink</div>
+       <InvoiceWrapper>
+        <CreateLinkForm />
+    </InvoiceWrapper>
     </NoSsr>
   );
 };

@@ -1,16 +1,14 @@
-import { BalanceCard, NoSsr } from "components";
-import { CreateInvoiceForm } from "features/invoices";
-import CreateWrapper from "features/invoices/components/Create&EditInvoices/InvoiceWrapper";
-import { GeneralLayout } from "layouts";
+import {  NoSsr } from "components";
+import { CreateInvoiceForm ,InvoiceWrapper} from "features/invoices/components";
 import React from "react";
 
 export const CreateInvoice = () => {
   return (
     <NoSsr>
-         <CreateWrapper>
+         <InvoiceWrapper>
         
             <CreateInvoiceForm/>
-        </CreateWrapper>
+        </InvoiceWrapper>
     </NoSsr>
   );
 };

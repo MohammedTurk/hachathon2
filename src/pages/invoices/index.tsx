@@ -1,76 +1,32 @@
-import { BalanceCard, Card,NoSsr } from "components";
+import { BalanceCard, Button, Card, NoSsr } from "components";
 import { GeneralLayout } from "layouts";
 import { useRouter } from "next/router";
 import type { NextPageWithLayout } from "types";
 
 const InvoicesPage: NextPageWithLayout = () => {
-  const router = useRouter()
-  console.log(router.query);
+  const router = useRouter();
+  const { lastInvoiceId} = router.query;
+console.log('lastInvoiceId', lastInvoiceId);
+
+  const handleEditInvoice = () => {
+    router.push({
+      pathname: `/invoices/edit-invoice/${lastInvoiceId}`,
+    });
+  };
   
+  const handleEditLink = () => {
+    router.push({
+      pathname: `/invoices/edit-link/${lastInvoiceId}`,
+    });
+  };
+
   return (
     <NoSsr>
       <GeneralLayout rightSide={<BalanceCard />}>
         <Card>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt unde
-          iste cupiditate recusandae, non, delectus necessitatibus fuga est
-          dolorum error voluptatem ducimus corporis optio quidem odit adipisci
-          perferendis assumenda commodi! Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Sunt unde iste cupiditate recusandae, non, delectus
-          necessitatibus fuga est dolorum error voluptatem ducimus corporis
-          optio quidem odit adipisci perferendis assumenda commodi! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Sunt unde iste cupiditate
-          recusandae, non, delectus necessitatibus fuga est dolorum error
-          voluptatem ducimus corporis optio quidem odit adipisci perferendis
-          assumenda commodi! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Sunt unde iste cupiditate recusandae, non, delectus
-          necessitatibus fuga est dolorum error voluptatem ducimus corporis
-          optio quidem odit adipisci perferendis assumenda commodi! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Sunt unde iste cupiditate
-          recusandae, non, delectus necessitatibus fuga est dolorum error
-          voluptatem ducimus corporis optio quidem odit adipisci perferendis
-          assumenda commodi! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Sunt unde iste cupiditate recusandae, non, delectus
-          necessitatibus fuga est dolorum error voluptatem ducimus corporis
-          optio quidem odit adipisci perferendis assumenda commodi! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Sunt unde iste cupiditate
-          recusandae, non, delectus necessitatibus fuga est dolorum error
-          voluptatem ducimus corporis optio quidem odit adipisci perferendis
-          assumenda commodi! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Sunt unde iste cupiditate recusandae, non, delectus
-          necessitatibus fuga est dolorum error voluptatem ducimus corporis
-          optio quidem odit adipisci perferendis assumenda commodi! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Sunt unde iste cupiditate
-          recusandae, non, delectus necessitatibus fuga est dolorum error
-          voluptatem ducimus corporis optio quidem odit adipisci perferendis
-          assumenda commodi! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Sunt unde iste cupiditate recusandae, non, delectus
-          necessitatibus fuga est dolorum error voluptatem ducimus corporis
-          optio quidem odit adipisci perferendis assumenda commodi! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Sunt unde iste cupiditate
-          recusandae, non, delectus necessitatibus fuga est dolorum error
-          voluptatem ducimus corporis optio quidem odit adipisci perferendis
-          assumenda commodi! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Sunt unde iste cupiditate recusandae, non, delectus
-          necessitatibus fuga est dolorum error voluptatem ducimus corporis
-          optio quidem odit adipisci perferendis assumenda commodi! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Sunt unde iste cupiditate
-          recusandae, non, delectus necessitatibus fuga est dolorum error
-          voluptatem ducimus corporis optio quidem odit adipisci perferendis
-          assumenda commodi! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Sunt unde iste cupiditate recusandae, non, delectus
-          necessitatibus fuga est dolorum error voluptatem ducimus corporis
-          optio quidem odit adipisci perferendis assumenda commodi! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Sunt unde iste cupiditate
-          recusandae, non, delectus necessitatibus fuga est dolorum error
-          voluptatem ducimus corporis optio quidem odit adipisci perferendis
-          assumenda commodi! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Sunt unde iste cupiditate recusandae, non, delectus
-          necessitatibus fuga est dolorum error voluptatem ducimus corporis
-          optio quidem odit adipisci perferendis assumenda commodi! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Sunt unde iste cupiditate
-          recusandae, non, delectus necessitatibus fuga est dolorum error
-          voluptatem ducimus corporis optio quidem odit adipisci perferendis
-          assumenda commodi!
+          <Button onClick={handleEditInvoice} className="mb-5">Go To Edit Invoice</Button>
+          <Button onClick={handleEditLink}>Go To Edit Link</Button>
+
         </Card>
       </GeneralLayout>
     </NoSsr>

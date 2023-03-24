@@ -1,10 +1,13 @@
 import { NoSsr } from "components";
-import React from "react";
+import { EditInvoiceForm,InvoiceWrapper } from "features/invoices";
+ import React from "react";
 
 export const EditInvoice = () => {
-  return (
+   return (
     <NoSsr>
-      <div className="">EditInvoice</div>
+     <InvoiceWrapper>
+        <EditInvoiceForm  />
+    </InvoiceWrapper>
     </NoSsr>
   );
 };
@@ -12,7 +15,8 @@ export const EditInvoice = () => {
 EditInvoice.mainLayoutProps = {
   title: "Talents Valley Edit Invoice",
   pageDescription: "Edit Invoice page description",
-  contentClassName: "!block !p-2 !pr-4",
+  contentClassName: "!block  !p-0 ",
+  withoutFooter: true
 };
 
 export default EditInvoice;

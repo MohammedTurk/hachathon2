@@ -1,10 +1,13 @@
 import { NoSsr } from "components";
-import React from "react";
+import {EditLinkForm ,InvoiceWrapper} from "features/invoices/components";
+ import React from "react";
 
 export const EditLink = () => {
   return (
     <NoSsr>
-      <div>EditLink</div>
+      <InvoiceWrapper>
+        <EditLinkForm />
+      </InvoiceWrapper>
     </NoSsr>
   );
 };

@@ -1,4 +1,4 @@
-import { Button, Card, IconButton } from "components";
+import { Button, Card, IconButton, Link } from "components";
 import { ArrowDownTrayIconMini, PlusIconMini } from "lib/@heroicons";
 import { Send } from "components/svg";
 
@@ -30,11 +30,12 @@ export const BalanceCard = () => {
       <div className="flex flex-row gap-1 sm:gap-5 mt-5">
         <Button className={buttonClasses.button} buttonSize="small">
           <PlusIconMini className="h-4 w-4 sm:h-5 sm:w-5" />
-          <span className="text-xs  sm:text-sm">Create Link</span>
-        </Button>
+          <Link href='/invoices/create-link' className="text-xs  sm:text-sm" >Create Link</Link>
+         </Button>
         <Button className={buttonClasses.button} buttonSize="small">
           <Send className="h-3 w-3 sm:h-4 sm:w-4" />
-          <span className="text-xs sm:text-sm  ">Send Invoice</span>
+          <Link href='/invoices/create-invoice' className="text-xs sm:text-sm " >Send Invoice</Link>
+ 
         </Button>
       </div>
     </Card>

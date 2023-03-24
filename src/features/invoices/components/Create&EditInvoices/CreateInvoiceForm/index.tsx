@@ -1,55 +1,56 @@
-import {
-  Button,
-  Card,
-  HelperText,
-  IconButton,
-  Input,
-  Select,
-  TextArea,
-  Link,
-} from "components";
-
-import { countriesList, FORM_VALIDATION, currencyList, API_SERVICES_URLS } from "data";
-
-import { CreateFormType } from "features/invoices/types";
-import { useSWRMutationHook } from "hooks";
-import { PlusIconMini, XCircleIconOutline } from "lib/@heroicons";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
+import { Button, IconButton, Input, Select, TextArea } from "components";
+import {
+  countriesList,
+  FORM_VALIDATION,
+  currencyList,
+  API_SERVICES_URLS,
+} from "data";
+import { CreateFormType } from "features/invoices/types";
+import { useSWRMutationHook } from "hooks";
+import { PlusIconMini, XCircleIconOutline } from "lib/@heroicons";
 import { getFieldHelperText } from "utils";
 import InvoiceHeader from "../InvoiceHeader";
 
 export const CreateInvoiceForm = ({
   register,
-  onSubmit,
+  handleSubmit,
   errors,
   clearErrorOnChange,
   fields,
   append,
   remove,
-  getValues
+  getValues,
 }: CreateFormType) => {
   const router = useRouter();
 
-  const { trigger, data:responseRequest, isMutating } = useSWRMutationHook(
-    API_SERVICES_URLS.CLIENT.CREATE_INVOICE,
-    "POST",
-    { data: {...getValues()} }
-  );
- 
-  useEffect(()=>{
-    if(responseRequest)
-    router.push({
-      pathname: '/invoices',
-      query: { lastInvoiceId: responseRequest.data?._id },
-    })
-  },[isMutating])
+  const {
+    trigger: sendInvoice,
+    data: responseRequest,
+    isMutating,
+  } = useSWRMutationHook(API_SERVICES_URLS.CLIENT.CREATE_INVOICE, "POST", {
+    data: { ...getValues() },
+  });
+
+  const onSubmit = (data: {}) => {
+    console.log(data);
+    sendInvoice();
+  };
+
+  useEffect(() => {
+    if (responseRequest)
+      router.push({
+        pathname: "/invoices",
+        query: { lastInvoiceId: responseRequest.data?._id },
+      });
+  }, [isMutating]);
 
   return (
     <div className="px-8 pb-16">
       <InvoiceHeader currentPage="Create Invoice" />
-      <form onSubmit={()=>onSubmit(trigger)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mt-5 mb-2">
           <span className="font-semibold text-2xl">Invoice</span>
           <span className="font-normal text-sm text-gray-dark ml-3 ">
@@ -142,7 +143,6 @@ export const CreateInvoiceForm = ({
                       className="w-full lg:w-[70%]"
                       inputSize="small"
                       {...register(`fixed.${index}.itemName`, {
-                        
                         ...FORM_VALIDATION.itemName,
                         onChange: () =>
                           clearErrorOnChange(`fixed.${index}.itemName`),
@@ -198,7 +198,6 @@ export const CreateInvoiceForm = ({
           fullWidth
         >
           {isMutating ? "Loading..." : "Send Invoice"}
-  
         </Button>
         <Button
           className="font-medium bg-white text-black !border-gray border hover:bg-gray-light"

@@ -117,7 +117,7 @@ const Preview = ({
         </span>
         <span className="flex mt-1">
           Fees
-          <span className="ml-auto">$0</span>
+          <span className="ml-auto">$..</span>
         </span>
         <Divider />
 
