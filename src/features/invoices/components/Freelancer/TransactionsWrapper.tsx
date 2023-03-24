@@ -156,6 +156,7 @@ export const TransactionsWrapper = () => {
             handlePrevPaginate={handlePrevPaginate}
             handleNextPaginate={handleNextPaginate}
             currentPage={currentPage}
+            
           />
           <TabTable handleTabClick={handleTabClick} transactions={transactions} />
           <PaginationTable
