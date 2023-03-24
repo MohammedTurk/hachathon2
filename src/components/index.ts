@@ -17,7 +17,10 @@ export * from "./FileInput";
 export * from "./Stepper";
 export * from "./Divider";
 export * from "./Skeleton";
+export * from "./Skeletons";
 export * from "./ToggleButtons";
 export * from "./BalanceCard";
 export * from "./Modal";
-export * from "./TabTable"
+export * from "./TabTable";
+export * from "./PaginationTable";
+export * from "./NavTable"

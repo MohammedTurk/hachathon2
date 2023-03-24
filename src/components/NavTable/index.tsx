@@ -8,7 +8,7 @@ export const NavTable = () => {
   const buttonClasses = {
     button: "!bg-gray-50 !text-[#4375FF] flex items-center gap-1 sm:gap-2	 ",
     iconButton:
-      "!rounded-lg bg-[#F3F6FF] !text-[#4375FF] hover:!text-[#F3F6FF] hover:!bg-[#4375FF]",
+      "!rounded-lg bg-[#F3F6FF] !text-[#4375FF] hover:!text-[#F3F6FF] hover:!bg-[#4375FF] ",
     buttonText: "text-sm",
   };
   const [search, setSearch] = useState();
@@ -21,7 +21,7 @@ export const NavTable = () => {
             <Search className=" w-4 h-4 " />
           </div>
           <input
-            className="p-2 pl-8 block w-full border-gray focus:ring-0 focus:border-blue rounded-md "
+            className="p-3 pl-8 block w-full border-gray focus:ring-0 focus:border-blue rounded-md text-sm "
             placeholder="Search for invoice, title, client or description"
             value={search}
             onChange={(e) => setSearch(e.target.value)}

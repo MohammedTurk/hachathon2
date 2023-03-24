@@ -4,12 +4,13 @@ import { GeneralLayout } from "layouts";
 import type { NextPageWithLayout } from "types";
 import { BalanceCard } from "components";
 import { InvoicesTable } from "features/invoices";
+import { TransactionsWrapper } from "features/invoices/components/Freelancer/TransactionsWrapper";
 const InvoicesPage: NextPageWithLayout = () => {
   return (
     <NoSsr>
       <GeneralLayout rightSide={<BalanceCard />}>
-      <InvoicesTable />
-      </GeneralLayout>{" "}
+      <TransactionsWrapper />
+      </GeneralLayout> 
     </NoSsr>
   );
 };
