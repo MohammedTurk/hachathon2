@@ -12,7 +12,13 @@ import {
 } from "./components";
 import { useRouter } from "next/router";
 import { isInvoice } from "features/invoices/utils";
-export const Drawer = ({ isOpen, data, closeModal, isMutating }: any) => {
+export const Drawer = ({
+  isOpen,
+  data,
+  closeModal,
+  isMutating,
+  onChange,
+}: any) => {
   const router = useRouter();
   function handleMove() {
     const pathname = isInvoice(data)
@@ -88,6 +94,7 @@ export const Drawer = ({ isOpen, data, closeModal, isMutating }: any) => {
               closeDrawer={closeModal}
               onMoveToEdit={handleMove}
               isInvoice={isInvoiceDisplay}
+              onChange={onChange}
             />
           </div>
         )}

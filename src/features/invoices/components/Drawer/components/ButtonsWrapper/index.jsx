@@ -14,6 +14,7 @@ export const ButtonsWrapper = ({
   closeDrawer,
   onMoveToEdit,
   isInvoice = true,
+  onChange,
 }) => {
   const options = data && getOptionsButton(data?.status);
 
@@ -41,7 +42,7 @@ export const ButtonsWrapper = ({
 
   useEffect(() => {
     if (response) {
-      console.log("response ===> request change:", response);
+      onChange();
     }
   }, [response]);
 

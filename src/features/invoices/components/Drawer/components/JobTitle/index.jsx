@@ -12,7 +12,7 @@ export const JobTitle = ({ jobs = [], currency }) => {
               <p className="text-sm font-semibold capitalize">{job.itemName}</p>
               <p className="text-xs text-[#656565]">{job.description}</p>
             </div>
-            <h3 className="font-semibold">
+            <h3 className="font-semibold whitespace-nowrap">
               {`${currency} `}
               {job.price}
             </h3>

@@ -50,6 +50,7 @@ export function Index() {
         closeModal={closeModal}
         data={testData}
         isMutating={isMutating}
+        onChange={trigger}
       />
       <Button onClick={closeModal}>close</Button>
       <Button onClick={() => handleClickOnTabel("640f99bba3350410c1a42193")}>
@@ -58,8 +59,11 @@ export function Index() {
       <Button onClick={() => handleClickOnTabel("641c43c686abbe326e82bc92")}>
         paid
       </Button>
-      <Button onClick={() => handleClickOnTabel("641de32a73ac594b84ec5cbb")}>
+      <Button onClick={() => handleClickOnTabel("641db0dd73ac594b84ec3b6d")}>
         pending_approval
+      </Button>
+      <Button onClick={() => handleClickOnTabel("641defa03943f49510614021")}>
+        cancelled
       </Button>
       <Button onClick={() => handleClickOnTabel("641c9cebe524b0786800e4f1")}>
         cancelled
@@ -69,6 +73,11 @@ export function Index() {
       </Button>
       <Button
         onClick={() => handleClickOnTabel("641d939173ac594b84ec2397", false)}
+      >
+        Link pending_approval
+      </Button>
+      <Button
+        onClick={() => handleClickOnTabel("641c418f86abbe326e82bc04", false)}
       >
         Link pending_approval
       </Button>
