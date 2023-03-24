@@ -7,8 +7,6 @@ import { Card , Checkbox } from 'components';
 import Button from "components/Button";
 import { Send } from "components/svg";
 import { Filter } from 'components/svg';
-
-
 import { Search, PlusIconMini } from "lib/@heroicons";
 import { InvoicesTable } from "./InvoicesTable";
 export const TransactionsWrapper = () => {
@@ -27,20 +25,21 @@ const buttonClasses = {
   const [filteredValue, setFilteredValue] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const { register } = useForm();
-  const [search, setSearch] = useState();
   const [open, setOpen] = useState(false);
   const[type,setType]= useState("all");
 
-  const { trigger: getTransactionData ,data:TransactionData,isMutating  } = useSWRMutationHook(`${
-    API_SERVICES_URLS.CLIENT.INVOICE_LIST
-  }?limit=5&sort=${sortValue}${searchValue ?`&search=${searchValue}`: ""} 
-  ${filteredValue ?`&filter=${filteredValue.join()}&offset=${currentPage}&type=${type}`: ""
-  }`,
+  const { trigger: getTransactionData ,data:TransactionData,isMutating  } = useSWRMutationHook(
+  `${API_SERVICES_URLS.CLIENT.INVOICE_LIST}?limit=5${sortValue ? `&sort=${sortValue}` : ""}${searchValue ? `&search=${searchValue}` : ""}${filteredValue.length>0 ? `&filter=${filteredValue.join()}` : ""}&offset=${currentPage}&type=${type}`,
     "GET",
   );
   useEffect(() => {
     getTransactionData();
   }, []);
+
+  //    API_SERVICES_URLS.CLIENT.INVOICE_LIST
+  // }?limit=5&sort=${sortValue}${searchValue ?`&search=${searchValue}`: ""} 
+  // ${filteredValue ?`&filter=${filteredValue.join()}&offset=${currentPage}&type=${type}`: ""
+  // }`
 
   useEffect(() => {
     if(TransactionData){
@@ -67,7 +66,6 @@ const buttonClasses = {
   };
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
-
     setTimeout(() => {
       getTransactionData();
     }, 1000);
@@ -97,21 +95,18 @@ const buttonClasses = {
 
   
   return (
-      <div className="flex flex-row">
+    <div className="flex flex-row pb-4  ">
       <div className="flex justify-between pb-4  ">
-        <div className="relative ">
-          <div className="py-3 pl-2 absolute text-gray-500">
-            {" "}
-            <Search className=" w-4 h-4 " />
-          </div>
-          <input
-            className="p-3 pl-8 block w-full border-gray focus:ring-0 focus:border-blue rounded-md text-sm "
-            placeholder="Search for invoice, title, client or description"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          ></input>
-        </div>
-        <div className="flex flex-row sm:gap-1 ">
+      <div>
+            <Input
+              id="search"
+              inputClassName="pl-10"
+              inputSize="small"
+              placeholder="Search"
+              startIcon={<Search className="w-5 h-5" />}
+              onChange={(e) => handleSearch(e)}
+            />
+        <div className="flex justify-between sm:gap-1 ">
           <Button className={buttonClasses.button} buttonSize="small">
             <PlusIconMini className="h-4 w-4 sm:h-5 sm:w-5" />
             <span className="text-xs  sm:text-sm"> Link</span>
@@ -138,17 +133,15 @@ const buttonClasses = {
                   <Checkbox id="Refunded" label="Refunded" onChange={(e)=>handleCheck(e)} value="refunded" />
                 </Card>                      
               )}                     
-        </div>
+          </div>
+      </div>
       
    
-        {/* () => getTransactionData('${type}=paid') */}
-      
+      <div>
       {isMutating ? (
         <TableSkeleton />
       ) : (
         <div className="">
-          {/* <NavTable transactions={transactions}/> */}
-
           <InvoicesTable
             transactions={transactions}
             handleSortData={handleSortData}
@@ -163,6 +156,7 @@ const buttonClasses = {
           />
         </div>
       )}
+      </div>
     </div>
     </div>
  
@@ -170,6 +164,37 @@ const buttonClasses = {
 };
 
 
+
+
+{/* <Card className='z-10 absolute px-6 py-3 mt-10 ml-11'>
+  <Checkbox id="Paid" label="Paid" onChange={handleCheck} value="paid" />
+  <Checkbox id="Sent" label="Sent" onChange={(e)=>handleCheck(e)}  value="sent" />
+  <Checkbox id="Pending" label="Pending" onChange={(e)=>handleCheck(e)} value="pending" />
+  <Checkbox id="Canceled" label="Canceled" onChange={(e)=>handleCheck(e)} value="canceled"/>
+  <Checkbox id="Disapproved" label="Disapproved" onChange={(e)=>handleCheck(e)} value="disapproved"/>
+  <Checkbox id="Refunded" label="Refunded" onChange={(e)=>handleCheck(e)} value="refunded"/>
+</Card>  */}
+
+
+{/* <Card className='z-10 absolute px-6 py-3 mt-10 ml-11'>
+  <Checkbox id="Active" label="Active"  onChange={(e)=>handleCheck(e)} value="active" />
+  <Checkbox id="InActive" label="InActive"  onChange={(e)=>handleCheck(e)}  value="inactive" />
+  <Checkbox id="Disapproved" label="Disapproved" onChange={(e)=>handleCheck(e)} value="disapproved" />
+  <Checkbox id="Refunded" label="Refunded" onChange={(e)=>handleCheck(e)} value="refunded"  />
+</Card> */}
+
+
+
+{/* <div className="py-3 pl-2 absolute text-gray-500">
+            {" "}
+            <Search className=" w-4 h-4 " />
+          </div>
+          <input
+            className="p-3 pl-8 block w-full border-gray focus:ring-0 focus:border-blue rounded-md text-sm "
+            placeholder="Search for invoice, title, client or description"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          ></input> */}
 
 
 {/* <span className="text-xl font-semibold text-gray-dark mb-4 block">

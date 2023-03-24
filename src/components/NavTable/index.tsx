@@ -100,23 +100,23 @@ export const NavTable = () => {
 // {(() => {
 //   if (someCase) {
 //     return (
-//     // <Card className='z-10 absolute px-6 py-3 mt-10 ml-11'>
-//     //    <Checkbox id="Paid" label="Paid" onClick={() => fetcheStatus('?&type=paid')} {...register("Paid")} />
-//     //    <Checkbox id="Sent" label="Sent" onClick={() => fetcheStatus(`?&type=sent`)} {...register("sent")} />
-//     //    <Checkbox id="Pending" label="Pending" onClick={() => fetcheStatus('?&type=pending')}{...register("Pending")} />
-//     //    <Checkbox id="Canceled" label="Canceled" onClick={() => fetcheStatus('?&type=cancelled')} {...register("Canceled")} />
-//     //    <Checkbox id="Disapproved" label="Disapproved" onClick={() => fetcheStatus('?&type=disapproved')}{...register("Disapproved")} />
-//     //    <Checkbox id="Refunded" label="Refunded" onClick={() => fetcheStatus('?&type=refunded')} {...register("Refunded")} />
-//     // </Card>
+    // <Card className='z-10 absolute px-6 py-3 mt-10 ml-11'>
+    //    <Checkbox id="Paid" label="Paid" onClick={() => fetcheStatus('?&type=paid')} {...register("Paid")} />
+    //    <Checkbox id="Sent" label="Sent" onClick={() => fetcheStatus(`?&type=sent`)} {...register("sent")} />
+    //    <Checkbox id="Pending" label="Pending" onClick={() => fetcheStatus('?&type=pending')}{...register("Pending")} />
+    //    <Checkbox id="Canceled" label="Canceled" onClick={() => fetcheStatus('?&type=cancelled')} {...register("Canceled")} />
+    //    <Checkbox id="Disapproved" label="Disapproved" onClick={() => fetcheStatus('?&type=disapproved')}{...register("Disapproved")} />
+    //    <Checkbox id="Refunded" label="Refunded" onClick={() => fetcheStatus('?&type=refunded')} {...register("Refunded")} />
+    // </Card>
 //     )
 //   } else if (otherCase) {
 //     return (
-//     //   <Card className='z-10 absolute px-6 py-3 mt-10 ml-11'>
-//     //     <Checkbox id="Active" label="Active" onClick={() => fetcheStatus('?&type=active')} {...register("Active")} />
-//     //     <Checkbox id="InActive" label="InActive" onClick={() => fetcheStatus('?&type=inactive')} {...register("InActive")} />
-//     //     <Checkbox id="Disapproved" label="Disapproved" onClick={() => fetcheStatus('?&type=disapproved')}{...register("Disapproved")} />
-//     //     <Checkbox id="Refunded" label="Refunded" onClick={() => fetcheStatus('?&type=refunded')} {...register("Refunded")} />
-//     // </Card>
+    //   <Card className='z-10 absolute px-6 py-3 mt-10 ml-11'>
+    //     <Checkbox id="Active" label="Active" onClick={() => fetcheStatus('?&type=active')} {...register("Active")} />
+    //     <Checkbox id="InActive" label="InActive" onClick={() => fetcheStatus('?&type=inactive')} {...register("InActive")} />
+    //     <Checkbox id="Disapproved" label="Disapproved" onClick={() => fetcheStatus('?&type=disapproved')}{...register("Disapproved")} />
+    //     <Checkbox id="Refunded" label="Refunded" onClick={() => fetcheStatus('?&type=refunded')} {...register("Refunded")} />
+    // </Card>
 //     )
 //   } else {
 //     return (
