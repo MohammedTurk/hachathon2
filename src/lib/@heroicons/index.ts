@@ -12,12 +12,15 @@ import {
   CheckIcon as CheckIconMini,
   ArrowRightOnRectangleIcon as ArrowRightOnRectangleIconMini,
   Cog8ToothIcon as Cog8ToothIconMini,
-
+  ChevronDownIcon as ChevronDownIcon,
+  ChevronUpIcon as ChevronUpIcon,
 } from "@heroicons/react/20/solid";
 import {
   InformationCircleIcon as InformationCircleIconOutline,
   QuestionMarkCircleIcon as QuestionMarkCircleIconOutline,
   HomeIcon as HomeIconOutline,
+  MagnifyingGlassIcon as Search,
+
 } from "@heroicons/react/24/outline";
 
 export {
@@ -37,4 +40,7 @@ export {
   HomeIconOutline,
   Cog8ToothIconMini,
   ArrowRightOnRectangleIconMini,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  Search
 };

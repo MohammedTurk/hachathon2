@@ -4,3 +4,4 @@ export { default as Payment } from "./PayInvoice/Payment";
 export { default as Confirmation } from "./PayInvoice/Confirmation";
 export * from "./InvoicesCard";
 export * from "./freelancer";
+export { default as InvoicesTable } from "./PayInvoice/InvoicesTable";
