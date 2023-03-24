@@ -1,16 +1,14 @@
 import {
-  Cancelled,
-  Disapproved,
-  Pending,
   Active,
-  SendIcon,
+  Cancelled,
   CheckIcon,
+  Disapproved,
   Paypal,
+  Pending,
+  SendIcon,
 } from "components/svg";
-import { ErrorMessage } from "./ErrorMessage";
 import React from "react";
-
-function getSettings(status) {
+export function getStatus(status) {
   switch (status) {
     case "pending_verification":
     case "pending_approval":
@@ -31,8 +29,18 @@ function getSettings(status) {
         label: "Disapproved",
         statusColor: "text-[#000]",
         icon: <Disapproved />,
+        text: "You can edit your invoice.",
         hasError: true,
       };
+
+    case "archived":
+      return {
+        label: "Archived",
+        statusColor: "text-[#000]",
+        icon: <Disapproved />,
+        text: "You can't edit your invoice.",
+      };
+
     case "sent":
       return {
         label: "Sent",
@@ -67,33 +75,4 @@ function getSettings(status) {
   }
 }
 
-export const Status = ({ status, date }) => {
-  const StatusOptions = getSettings(status);
-  return (
-    <>
-      {StatusOptions?.hasError && <ErrorMessage />}
-      <div className="flex justify-between ">
-        <div className="flex items-center gap-3">
-          {StatusOptions.icon}
-          <div className="leading-5">
-            <p className={`${StatusOptions.statusColor} font-semibold text-sm`}>
-              {StatusOptions.label}
-            </p>
-            <span className="text-[#8C8C8C] text-xs flex gap-[4px]">
-              {StatusOptions.text || "Estimate: 24 hours."}
-            </span>
-          </div>
-        </div>
-        <span className="text-[#8C8C8C] text-xs">
-          {new Date(date).toLocaleDateString("us-en", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          })}
-        </span>
-      </div>
-    </>
-  );
-};
-
-export default Status;
+export default getStatus;

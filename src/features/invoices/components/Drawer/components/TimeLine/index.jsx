@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "components";
+import { daysFormat } from "features/invoices/utils";
 
 function getItems(data) {
   return data.map((item, index) => {
@@ -23,7 +24,7 @@ function getItems(data) {
                 minute: "2-digit",
               })}
             </p>
-            <p className="text-xs">{getDayFormat(item.createdAt)}</p>
+            <p className="text-xs">{daysFormat(item.createdAt)}</p>
           </time>
 
           <div className="relative w-[20px] ">
@@ -45,25 +46,11 @@ function getItems(data) {
   });
 }
 
-function getDayFormat(time) {
-  const mileSecond = new Date().getTime() - new Date(time).getTime();
-  const day = Math.floor(mileSecond / (1000 * 3600 * 24));
-
-  switch (day) {
-    case 0:
-      return "Today";
-    case 1:
-      return "Yesterday";
-    default:
-      return `${day} days ago`;
-  }
-}
-
-export const TimeLine = ({ date = [] }) => {
+export const TimeLine = ({ data = [] }) => {
   return (
     <Card className="shadow-sm rounded-sm">
       <h4 className="mb-2">Timeline</h4>
-      <ol className="  flex flex-col  ">{getItems(date)}</ol>
+      <ol className="  flex flex-col  ">{getItems(data)}</ol>
     </Card>
   );
 };

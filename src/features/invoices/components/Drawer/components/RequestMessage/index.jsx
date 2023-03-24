@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, IconButton, Modal, Card } from "components";
+import { IconButton, Modal, Card } from "components";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 
 export const RequestMessage = ({
