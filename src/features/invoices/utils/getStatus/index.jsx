@@ -7,6 +7,7 @@ import {
   Pending,
   SendIcon,
 } from "components/svg";
+import { ErrorIconMini } from "lib/@heroicons";
 import React from "react";
 export function getStatus(status) {
   switch (status) {
@@ -60,18 +61,39 @@ export function getStatus(status) {
           </>
         ),
       };
-    case "Inactive":
+    case "unpaid":
+      return {
+        label: "unPaid",
+        statusColor: "text-[#60AD5A]",
+        icon: <CheckIcon />,
+        text: (
+          <>
+            Paid by
+            <Paypal />
+            Paypal
+          </>
+        ),
+      };
+    case "inactive":
       return {
         label: "Inactive",
-        statusColor: "text-[#4375FF]",
-        icon: <Active className="fill-gray-300" fill="gray-300" />,
+        statusColor: "text-gray-700",
+        icon: <Active className="text-gray-400" />,
       };
-    default:
+    case "active": {
       return {
         label: "Active",
         statusColor: "text-[#4375FF]",
-        icon: <Active />,
+        icon: <Active className="text-[#4375FF]" />,
       };
+    }
+    default: {
+      return {
+        label: "Not Vaild Status",
+        statusColor: "text-red",
+        icon: <ErrorIconMini className="text-red w-8 h-8" />,
+      };
+    }
   }
 }
 

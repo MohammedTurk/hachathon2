@@ -57,7 +57,31 @@ export function getOptionsButton(status) {
         withoutButtons: true,
       };
     case "active":
-      return {};
+      return {
+        buttonText: "Deactivate",
+        optionsMessage: ["No", "Yes"],
+        message: "Deactivate your invoice?",
+        requestData: {
+          status: "inactive",
+        },
+        isDisabled: {
+          Cancel: false,
+          Edit: false,
+        },
+      };
+    case "inactive":
+      return {
+        buttonText: "activate",
+        optionsMessage: ["No", "Yes"],
+        message: "activate your invoice?",
+        requestData: {
+          status: "active",
+        },
+        isDisabled: {
+          Cancel: false,
+          Edit: false,
+        },
+      };
   }
 }
 

@@ -24,7 +24,9 @@ export const API_SERVICES_URLS = {
   },
   INVOICE: {
     INVOICE_DETAILS: (id: string) => `/invoice/${id}`,
-    CHANGESTATUS:(id:string)=> `/invoice/change-status/${id}`
+    INVOICE_CHANGESTATUS:(id:string)=> `/invoice/change-status/${id}`,
+    LINK_DETAILS:(id:string)=> `/service/details/${id}`,
+    LINK_CHANGESTATUS:(id:string)=> `/service/change-status/${id}`
   }
 } as const;
 

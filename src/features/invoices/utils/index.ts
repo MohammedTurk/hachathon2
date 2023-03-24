@@ -4,3 +4,6 @@ export * from "./isInvoice";
 export * from "./daysFormat";
 export * from "./getStatus";
 export * from "./getOptionsButton";
+export * from "./getPrivewLinkSettings";
+export * from "./getInvoiceLinkURL";
+export * from "./changeInvoiceLinkURL";

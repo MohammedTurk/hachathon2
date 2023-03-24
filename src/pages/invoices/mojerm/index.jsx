@@ -3,33 +3,32 @@ import React, { useEffect, useState } from "react";
 import { useSWRMutationHook, useToggle } from "../../../hooks";
 import { Drawer } from "../../../features/invoices/components";
 import { Button } from "components";
-import { API_SERVICES_URLS } from "../../../data/";
 import { useRouter } from "next/router";
+import getInvoiceLinkURL from "../../../features/invoices/utils/getInvoiceLinkURL";
 
 export function Index() {
-  const [idInvoice, setIdInvoice] = useState("");
+  const [urlRequest, setUrlRequest] = useState("");
   const { isOpen, closeModal, openModal } = useToggle();
-  const { trigger, data, isMutating } = useSWRMutationHook(
-    API_SERVICES_URLS.INVOICE.INVOICE_DETAILS(idInvoice),
-    "GET"
-  );
+  const { trigger, data, isMutating } = useSWRMutationHook(urlRequest, "GET");
 
   // when i click on the Table
-  function handleClickOnTabel(id) {
+  function handleClickOnTabel(id, isInvoice) {
     openModal();
-    setIdInvoice(id);
+    console.log("link -->", getInvoiceLinkURL(id, isInvoice));
+    setUrlRequest(getInvoiceLinkURL(id, isInvoice));
   }
 
   // request happen i id change
   useEffect(() => {
-    if (idInvoice !== "") {
+    if (urlRequest !== "") {
       trigger();
     }
-  }, [idInvoice]);
+  }, [urlRequest]);
 
   useEffect(() => {
-    console.log("request", data?.data?.invoice.status);
-    console.log("request", data?.data?.invoice);
+    // console.log("request", data?.data?.invoice.status);
+    // console.log("request", data?.data?.invoice);
+    console.log("request", data?.data);
   }, [data]);
 
   const router = useRouter();
@@ -41,13 +40,15 @@ export function Index() {
     }
   }, [router?.query]);
 
+  const testData = data?.data?.invoice || data?.data?.service;
+
   return (
     <div>
       Index
       <Drawer
         isOpen={isOpen}
         closeModal={closeModal}
-        data={data?.data?.invoice}
+        data={testData}
         isMutating={isMutating}
       />
       <Button onClick={closeModal}>close</Button>
@@ -57,7 +58,7 @@ export function Index() {
       <Button onClick={() => handleClickOnTabel("641c43c686abbe326e82bc92")}>
         paid
       </Button>
-      <Button onClick={() => handleClickOnTabel("641cc0174a984c6dd37300ec")}>
+      <Button onClick={() => handleClickOnTabel("641db1e473ac594b84ec3c78")}>
         pending_approval
       </Button>
       <Button onClick={() => handleClickOnTabel("641c9cebe524b0786800e4f1")}>
@@ -65,6 +66,16 @@ export function Index() {
       </Button>
       <Button onClick={() => handleClickOnTabel("641d51eeeb7c4bb8330e19c3")}>
         sent
+      </Button>
+      <Button
+        onClick={() => handleClickOnTabel("641d939173ac594b84ec2397", false)}
+      >
+        Link pending_approval
+      </Button>
+      <Button
+        onClick={() => handleClickOnTabel("641c418f86abbe326e82bc04", false)}
+      >
+        Link active
       </Button>
       <Button onClick={openModal}>open</Button>
     </div>

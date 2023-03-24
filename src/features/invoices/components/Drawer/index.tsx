@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Card, IconButton, Modal, Skeleton } from "components";
+import { Button, Card, IconButton, Input, Modal, Skeleton } from "components";
 import { ChevronLeftIconOutline } from "lib/@heroicons";
 import { useToggle } from "hooks";
 import {
@@ -7,16 +7,12 @@ import {
   ButtonsWrapper,
   StatusWrapper,
   PreviewWrapper,
+  PrivewLink,
+  LinkTotal,
 } from "./components";
 import { useRouter } from "next/router";
 import { isInvoice } from "features/invoices/utils";
-export const Drawer = ({
-  isOpen,
-  data,
-  closeModal,
-  isMutating,
-  title = "Invoice",
-}: any) => {
+export const Drawer = ({ isOpen, data, closeModal, isMutating }: any) => {
   const {
     isOpen: isOpenRequestModal,
     closeModal: closeModalRequestModal,
@@ -37,7 +33,7 @@ export const Drawer = ({
   const isInvoiceDisplay = data && isInvoice(data);
 
   console.log(data);
-  console.log(isInvoiceDisplay);
+  console.log("isInvoiceDisplay", isInvoiceDisplay);
   return (
     <>
       <Card
@@ -53,7 +49,9 @@ export const Drawer = ({
             <ChevronLeftIconOutline />
           </span>
 
-          <span className="text-center font-bold  text-lg">{title}</span>
+          <span className="text-center font-semibold  text-lg capitalize">
+            {isInvoiceDisplay ? "invoice" : "link"}
+          </span>
         </div>
 
         {isMutating ? (
@@ -74,9 +72,15 @@ export const Drawer = ({
 
               <StatusWrapper data={data} onEdit={handleMove} />
 
+              {!isInvoiceDisplay && (
+                <>
+                  <PrivewLink status={data?.status} id={data?._id} />
+                  <LinkTotal data={data} />
+                </>
+              )}
               <TimeLine data={data?.history} />
 
-              <PreviewWrapper getValues={() => data} />
+              {isInvoiceDisplay && <PreviewWrapper getValues={() => data} />}
             </div>
 
             <ButtonsWrapper
@@ -86,6 +90,7 @@ export const Drawer = ({
               openModal={openModalRequestModal}
               closeDrawer={closeModal}
               onMoveToEdit={handleMove}
+              isInvoice={isInvoiceDisplay}
             />
           </div>
         )}

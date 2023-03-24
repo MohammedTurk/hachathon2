@@ -1,6 +1,10 @@
 import { Button } from "components";
 import { API_SERVICES_URLS } from "data";
-import { getOptionsButton } from "features/invoices/utils";
+import {
+  changeInvoiceLinkURL,
+  getOptionsButton,
+  isInvoice,
+} from "features/invoices/utils";
 import { useSWRMutationHook } from "hooks";
 import React, { useEffect } from "react";
 import { RequestMessage } from "../../components";
@@ -12,6 +16,7 @@ export const ButtonsWrapper = ({
   data,
   closeDrawer,
   onMoveToEdit,
+  isInvoice = true,
 }) => {
   const options = data && getOptionsButton(data?.status);
 
@@ -19,13 +24,9 @@ export const ButtonsWrapper = ({
     trigger,
     data: response,
     isMutating,
-  } = useSWRMutationHook(
-    API_SERVICES_URLS.INVOICE.CHANGESTATUS(data?._id),
-    "POST",
-    {
-      data: options?.requestData,
-    }
-  );
+  } = useSWRMutationHook(changeInvoiceLinkURL(data?._id, isInvoice), "POST", {
+    data: options?.requestData,
+  });
 
   useEffect(() => {
     if (response) {
@@ -37,19 +38,20 @@ export const ButtonsWrapper = ({
     //  هنا راح يكون ال
     // check message
     console.log("Truk Pop here.");
-    console.log(options?.requestData);
+    console.log("isLink ", changeInvoiceLinkURL(data?._id, isInvoice));
+    console.log("requestData", options?.requestData);
     trigger(options?.requestData);
     closeModal();
 
-    // closeDrawer();
+    closeDrawer();
   }
 
   return (
     <>
       {!options?.withoutButtons && (
-        <div className="p-2 flex gap-2 	">
+        <div className="py-2 flex gap-2 	">
           <Button
-            disabled={options?.isDisabled.CancelDelete}
+            disabled={options?.isDisabled?.CancelDelete}
             onClick={openModal}
             className="  text-black !text-base  bg-white shadow-md font-semibold whitespace-nowrap text-center	w-full hover:!bg-gray-50 hover:disabled:cursor-not-allowed "
           >
@@ -57,7 +59,7 @@ export const ButtonsWrapper = ({
           </Button>
 
           <Button
-            disabled={options?.isDisabled.Edit}
+            disabled={options?.isDisabled?.Edit}
             onClick={onMoveToEdit}
             className=" text-blue-500 !text-base  bg-white shadow-md font-semibold whitespace-nowrap text-center	w-full hover:!bg-gray-50 hover:disabled:cursor-not-allowed "
           >
