@@ -99,10 +99,10 @@ export const PDFPreview = ({ getValues }) => {
     },
     itemName: {
       fontWeight: "400",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
-      width: "60%",
+      // overflow: "hidden",
+      // textOverflow: "ellipsis",
+      // whiteSpace: "nowrap",
+      // width: "60%",
     },
     itemSpan: {
       textAlign: "right",
@@ -235,13 +235,18 @@ export const PDFPreview = ({ getValues }) => {
                       )}
                     </View>
                     {item.description ? (
-                      <Text style={getStyle(styles.span, styles.span_gray)}>
+                      <Text
+                        style={getStyle(styles.span, styles.span_gray, {
+                          marginBottom: "10px",
+                        })}
+                      >
                         {item.description}
                       </Text>
                     ) : (
                       <Text
                         style={getStyle(styles.Skeleton, {
                           width: "180px",
+                          marginBottom: "10px",
                         })}
                       />
                     )}
