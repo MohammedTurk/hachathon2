@@ -8,29 +8,32 @@ function classNames(...classes:any) {
 }
 
 export const TabTable = ({
-  types = ["all", "invoices", "links"],
-  updateType,
+  types = ["all", "invoices", "service"],
   transactions,
-  handleSortData,
-}:any) => {
-  const statusColor = (status:any) => {
+  handleTabClick,
+  type,
+}) => {
+  const statusColor = (status) => {
     if (status === "pending") {
-      return "text-[#DAA545]";
-    } else if (status === "ready") {
-      return "text-[#4BAE4F]";
-    } else if (status === "sent") {
-      return "text-blue-light";
-    } else if (status === "paid") {
-      return "text-[#4BAE4F]";
+      return "text-[#CDA434]";
+    } else if (status === "cancelled") {
+      return "text-[#BEC2C6]";
+    } else if (status === "Inactive") {
+      return "text-[#707070]";
     } else {
-      return "text-gray-dark";
+      return "text-black";
     }
   };
-  // console.log(
-  //   "maha " + transactions?.transactions[1].invoice?.fixed[0].itemName
-  // );
-  const data = transactions?.transactions;
-  const timestamp = transactions?.transactions[0]?.updatedAt;
+
+  const filteredTransactions =
+    type === "all"
+      ? transactions?.transactions
+      : transactions?.transactions.filter(
+          (item) => item.invoice?.type === type || item.service?.type === type
+        );
+
+  const datatype = transactions?.transactions[0].type;
+  const timestamp = transactions?.transactions[0].updatedAt;
   const date = new Date(timestamp);
   const formattedTime = date.toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -54,14 +57,17 @@ export const TabTable = ({
     dateText = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
 
+  // function handleTabClick(type) {
+  //   setSelectedTab(type);
+  // }
   return (
     <div className="w-full sm:px-0 bg-[#FFFF] shadow-md sm:rounded-lg">
       <Tab.Group>
         <Tab.List className="flex ">
-          {types.map((type:any) => {
+          {types.map((items) => {
             return (
               <Tab
-                key={type}
+                key={items}
                 className={({ selected }) =>
                   classNames(
                     "p-2 pl-7 text-sm font-medium text-gray-400",
@@ -70,13 +76,14 @@ export const TabTable = ({
                       : "text-gray-500"
                   )
                 }
-                onClick={() => updateType(type)}
+                onClick={() => handleTabClick(items)}
               >
-                {type}
+                {items}
               </Tab>
             );
           })}
         </Tab.List>
+
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left  ">
             <thead className="text-xs  uppercase bg-[#FFFF] ">
@@ -146,44 +153,87 @@ export const TabTable = ({
                 </th>
               </tr>
             </thead>
-            <tbody>
-              {transactions?.transactions.map((items:any) => (
-                <tr
-                  key={items._id}
-                  className="bg-white border-b hover:bg-gray-light"
+
+            <Tab.Panels>
+              {types.map((items, idx) => (
+                <Tab.Panel
+                  key={idx}
+                  className={classNames(
+                    "rounded-xl bg-white p-3",
+                    "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
+                  )}
                 >
-                  <span className="pl-6">
-                    {" "}
-                    {items?.invoice?.fixed[0].itemName}
-                  </span>
+                  {filteredTransactions?.map((items) => (
+                    <tr
+                      key={items._id}
+                      className="bg-white border-b hover:bg-gray-light "
+                    >
+                      <div className="flex flex-row ">
+                        {items?.invoice?.fixed
+                          .slice(0, 2)
+                          .map((fixed, index) => (
+                            <span className="pl-6" key={fixed._id}>
+                              {fixed?.itemName.length > 12
+                                ? fixed.itemName.substring(0, 12) + "..."
+                                : fixed.itemName}
+                              {index === 1 &&
+                              items?.invoice.fixed.length > 2 ? (
+                                <span className="pl-2">+ other</span>
+                              ) : null}
+                            </span>
+                          )) ||
+                          items?.service?.fixed
+                            .slice(0, 2)
+                            .map((fixed, index) => (
+                              <span className="pl-6" key={fixed._id}>
+                                {fixed?.itemName.length > 12
+                                  ? fixed.itemName.substring(0, 12) + "..."
+                                  : fixed.itemName}
+                                {index === 1 &&
+                                items?.service.fixed.length > 2 ? (
+                                  <span className="pl-2">+ other</span>
+                                ) : null}
+                              </span>
+                            ))}
+                      </div>
+                      <th className="px-6 whitespace-nowrap flex flex-col">
+                        <span className="text-gray-400 font-normal text-xs pt-1">
+                          {dateText}
+                          <span className="pl-2 text-gray-500">
+                            {items?.invoice?.currency ||
+                              items?.service?.currency}
+                          </span>
+                        </span>
+                      </th>
 
-                  <th className="px-6 whitespace-nowrap flex flex-col">
-                    <span className="text-gray-400 font-normal text-xs pt-1">
-                      {dateText}
-                    </span>
-                  </th>
-
-                  <td className="px-6 py-4 text-gray-dark font-medium text-md">
-                    {items?.invoice?.fixed[0].price}
-                  </td>
-
-                  <td className="px-6 py-4 text-black font-medium text-md">
-                    {items?.invoice?.client.fullName || "_"}
-                  </td>
-                  <td
-                    className={`px-6 py-4 font-medium ${statusColor(
-                      items.status
-                    )}`}
-                  >
-                    {items.invoice?.status}
-                  </td>
-                </tr>
-              ))}{" "}
-              <tr></tr>
-            </tbody>
+                      <td className="px-6 py-4 text-gray-dark font-medium text-md">
+                        $
+                        {items?.invoice?.fixed.reduce(
+                          (total, fixed) => total + fixed.price,
+                          0
+                        ) ||
+                          items?.service?.fixed.reduce(
+                            (total, fixed) => total + fixed.price,
+                            0
+                          )}
+                      </td>
+                      <td className="px-6 py-4 text-black font-medium text-md">
+                        {items?.invoice?.client.fullName || "_"}
+                      </td>
+                      <td
+                        className={`px-6 py-4 font-medium ${statusColor(
+                          items.status
+                        )}`}
+                      >
+                        {items.invoice?.status || items.service?.status}
+                      </td>
+                    </tr>
+                  ))}{" "}
+                </Tab.Panel>
+              ))}
+            </Tab.Panels>
           </table>
         </div>
- 
       </Tab.Group>
     </div>
   );

@@ -36,7 +36,6 @@ export const InvoicesTable = ({
   //   InvoicesFetcher
     
   // );
-  console.log("Invoices"+transactions)
   // const dataapp=data?.data.transactions
   // console.log('app '+dataapp.invoice?.client.fullName)
   // transaction.invoice.freelancer.firstName;
