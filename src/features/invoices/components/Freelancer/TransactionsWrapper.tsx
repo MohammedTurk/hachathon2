@@ -173,7 +173,7 @@ export const TransactionsWrapper = () => {
       setCheckboxes({...boxes})
       setTimeout(() => {
         getTransactionData();
-      }, 3000);
+      }, 2000);
     } else {
       const values = filteredValue.filter(
         (value: any) => value !== event.target.value
@@ -202,8 +202,8 @@ export const TransactionsWrapper = () => {
   };
 
   return (
-    <div className="pb-4  ">
-      <div className="flex justify-between pb-4  ">
+    <>
+      <div className="flex justify-between  ">
         <Input
           id="search"
           inputClassName="pl-10"
@@ -211,6 +211,7 @@ export const TransactionsWrapper = () => {
           placeholder="Search"
           startIcon={<MagnifyingGlassIconOutline className="w-5 h-5" />}
           onChange={(e) => handleSearch(e)}
+          withoutHelperText
         />
         <div className="flex justify-between sm:gap-1 ">
           <Button className={buttonClasses.button} buttonSize="small">
@@ -263,26 +264,7 @@ export const TransactionsWrapper = () => {
         />
        
       </div>
-    </div>
+    </>
   );
 };
-
-{
-  /* <Card className='z-10 absolute px-6 py-3 mt-10 ml-11'>
-  <Checkbox id="Paid" label="Paid" onChange={handleCheck} value="paid" />
-  <Checkbox id="Sent" label="Sent" onChange={(e)=>handleCheck(e)}  value="sent" />
-  <Checkbox id="Pending" label="Pending" onChange={(e)=>handleCheck(e)} value="pending" />
-  <Checkbox id="Canceled" label="Canceled" onChange={(e)=>handleCheck(e)} value="canceled"/>
-  <Checkbox id="Disapproved" label="Disapproved" onChange={(e)=>handleCheck(e)} value="disapproved"/>
-  <Checkbox id="Refunded" label="Refunded" onChange={(e)=>handleCheck(e)} value="refunded"/>
-</Card>  */
-}
-
-{
-  /* <Card className='z-10 absolute px-6 py-3 mt-10 ml-11'>
-  <Checkbox id="Active" label="Active"  onChange={(e)=>handleCheck(e)} value="active" />
-  <Checkbox id="InActive" label="InActive"  onChange={(e)=>handleCheck(e)}  value="inactive" />
-  <Checkbox id="Disapproved" label="Disapproved" onChange={(e)=>handleCheck(e)} value="disapproved" />
-  <Checkbox id="Refunded" label="Refunded" onChange={(e)=>handleCheck(e)} value="refunded"  />
-</Card> */
-}
+ 
