@@ -114,7 +114,6 @@ export const PDFPreview = ({ getValues }) => {
       fontSize: "14px",
     },
   });
-  console.log(styles.section);
   function getStyle(...rest) {
     return rest.reduce((a, b) => ({ ...a, ...b }), {});
   }
