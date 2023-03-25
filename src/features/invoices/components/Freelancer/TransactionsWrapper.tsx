@@ -166,13 +166,13 @@ export const TransactionsWrapper = () => {
         ) : (
           <div className="">
  
-            {/* <InvoicesTable
+            <InvoicesTable
               transactions={transactions}
               handleSortData={handleSortData}
               handlePrevPaginate={handlePrevPaginate}
               handleNextPaginate={handleNextPaginate}
               currentPage={currentPage}
-            /> */}
+            />
             <TabTable updateType={updateType} transactions={transactions} />
           </div>
         )}

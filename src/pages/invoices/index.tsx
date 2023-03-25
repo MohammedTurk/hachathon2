@@ -35,10 +35,10 @@ useEffect(()=>{
   return (
     <NoSsr>
       <GeneralLayout rightSide={<BalanceCard />}>
-        <Card>
+        {/* <Card>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet ipsam alias optio, ducimus illo corporis error in perspiciatis id deserunt, est, delectus pariatur voluptatum adipisci qui cupiditate sapiente ab quidem.
-        </Card>
-        {/* <TransactionsWrapper /> */}
+        </Card> */}
+        <TransactionsWrapper />
         <Toast ToastDescription={`Your ${type} has been created successfully.`} isOpen={inOpenToast} />
     
       </GeneralLayout>
