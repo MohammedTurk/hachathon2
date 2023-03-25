@@ -32,6 +32,13 @@ export interface InputProps
   labelClassName?: string;
   focusableLabel?: boolean;
 }
+export interface CheckboxProps
+  extends React.InputHTMLAttributes<HTMLInputElement>,
+  CommonFormElementsType,
+  IconsVariantsType {
+  inputClassName?: string;
+  labelClassName?: string;
+}
 
 export interface LogoProps extends Omit<NextImageProps, "src" | "alt"> {
   src?: string;
@@ -201,3 +208,10 @@ export type ToggleButtonsContextType = {
   value: string | undefined;
   onChange: (value: string) => void;
 };
+
+export type TextAreaProps = CommonFormElementsType & {
+  placeholder?:string;
+  id:string | number;
+  rows?:number;
+  labelClassName?: string;
+ }

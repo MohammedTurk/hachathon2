@@ -1,0 +1,41 @@
+[{
+    "symbol": "₪",
+    "name": "Israeli New Sheqel",
+    "symbol_native": "₪",
+    "decimal_digits": 2,
+    "rounding": 0,
+    "value": "ILS",
+    "label": "ILS",
+    "name_plural": "Israeli new sheqels"
+},
+{
+    "symbol": "$",
+    "name": "US Dollar",
+    "symbol_native": "$",
+    "decimal_digits": 2,
+    "rounding": 0,
+    "value": "USD",
+    "label": "USD",
+    "name_plural": "US dollars"
+},
+{
+    "symbol": "CA$",
+    "name": "Canadian Dollar",
+    "symbol_native": "$",
+    "decimal_digits": 2,
+    "rounding": 0,
+    "label": "CAD",
+    "value": "CAD",
+    "name_plural": "Canadian dollars"
+},
+{
+    "symbol": "€",
+    "name": "Euro",
+    "symbol_native": "€",
+    "decimal_digits": 2,
+    "rounding": 0,
+    "label": "EUR",
+    "value": "EUR",
+    "name_plural": "euros"
+}
+]

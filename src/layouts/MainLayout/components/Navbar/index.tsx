@@ -1,6 +1,6 @@
 import { Logo, Link } from "components";
 import { URL_PATHS } from "data";
-import NavLinks from "../NavLinks";
+ 
 
 export const Navbar = () => {
   return (
@@ -13,7 +13,6 @@ export const Navbar = () => {
           </span>
         </div>
       </Link>
-      <NavLinks />
-    </nav>
+     </nav>
   );
 };
