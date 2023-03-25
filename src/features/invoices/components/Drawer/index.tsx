@@ -1,145 +1,110 @@
-import React from "react";
-import { Button, Modal } from "components";
+import React, { useState } from "react";
+import { Button, Card, IconButton, Input, Modal, Skeleton } from "components";
 import { ChevronLeftIconOutline } from "lib/@heroicons";
-import { Card } from "components";
-import { BankIcon } from "components/svg";
 import { useToggle } from "hooks";
+import {
+  TimeLine,
+  ButtonsWrapper,
+  StatusWrapper,
+  PreviewWrapper,
+  LinkTotal,
+  ServiceLink,
+  PrivewLink,
+} from "./components";
+import { useRouter } from "next/router";
+import { isInvoice } from "features/invoices/utils";
+import getStatus from "features/invoices/utils/getStatus";
 
-export const Drawer = ({ isOpen, closeDrawal, data, isMutating }:any) => {
-  const {
-    isOpen: isOpenRequestModal,
-    closeModal: closeModalRequestModal,
-    openModal: openModalRequestModal,
-  } = useToggle();
+export const Drawer = ({
+  isOpen,
+  response,
+  closeModal,
+  isMutating,
+  onChange,
+}: any) => {
+  const data = response?.data?.invoice || response?.data?.service;
+  const status = getStatus(data?.status, data?._id);
 
-  // let ButtonTitle ="";
-  // let requestPath =""
-  // let confirmDescription =""
+  const router = useRouter();
+  function handleMove() {
+    const pathname = isInvoice(data)
+      ? `/invoices/edit-invoice/${data?._id}`
+      : `/invoices/edit-link/${data?._id}`;
 
-  // if(data?.withdraw?.status === "pending"){
-  //   ButtonTitle="Cancel Request"
-  //   // requestPath = API_SERVICES_URLS.WITHDRAW.CANCEL_WITHDRAW(data?.withdraw?._id)
-  //   confirmDescription ="Are you sure you want to cancel withdrawal request ?"
-  // }else if(data?.withdraw?.status === "ready" || data?.withdraw?.status === "sent"){
-  //   ButtonTitle="Confirm Receipt"
-  //   // requestPath = API_SERVICES_URLS.WITHDRAW.CONFIRM_WITHDRAW(data?.withdraw?._id)
-  //   confirmDescription ="Are you sure you want to Confirm withdrawal request ?"
+    router.push({
+      pathname,
+    });
+  }
 
-  // }else if(data?.withdraw?.status === "completed"){
-  //   ButtonTitle= "Report a problem"
-  // }
+  const isInvoiceDisplay = data && isInvoice(data);
 
   return (
     <>
       <Card
-        className={`bg-[#F2F4F7] h-screen fixed right-0 top-0 w-[400px]    px-5 border-solid border z-50  overflow-auto transition-transform   ${
-          isOpen ? "-translate-x-0" : "-translate-x-[-600px]"
+        className={`bg-[#F2F4F7] h-screen fixed right-0 top-0 w-[400px]    px-5  border rounded-none z-50  overflow-auto transition-transform duration-[500ms] flex flex-col  scrollbar-track-gray-200 scrollbar-thumb-gray-300 scrollbar-thin scrollbar-thumb-rounded-lg   ${
+          isOpen ? "-translate-x-0" : "translate-x-full"
         } `}
       >
-        <div className="flex justify-center items-center py-9  ">
+        <div className="flex justify-center items-center pt-4 pb-4  ">
           <span
-            className="w-5 h-5  absolute left-5 top-15 	font-bold cursor-pointer"
-            onClick={closeDrawal}
+            className="w-6 h-6  absolute left-5 top-15 	font-bold cursor-pointer hover:bg-gray-200 rounded-full p-1"
+            onClick={closeModal}
           >
             <ChevronLeftIconOutline />
           </span>
 
-          <span className="text-center font-bold  text-lg  	">Withdrawal</span>
+          <span className="text-center font-semibold  text-lg capitalize">
+            {isInvoiceDisplay ? "invoice" : "link"}
+          </span>
         </div>
-        {isMutating ? (
-          <>{/* مجرم حط هان ال skeletone */}</>
-        ) : (
-          <>
-            <Card className="mb-5 p-5">
-              <div className="flex justify-between items-center">
-                <p className="text-base font-bold text-[17px]">
-                  ${data?.withdraw?.amount}
-                </p>
-                <p className="bg-[#FFF9F0] text-[#DAA545] text-[13px] font-[600] text-center	pl-[7px] pr-[7px] rounded-[17px] border-[1px] border-solid border-[#DAA545]">
-                  {data?.withdraw?.status}
-                </p>
-              </div>
-              <hr className="text-[#707070] mt-3 mb-3" />
-              <div className="flex justify-between items-center">
-                <span className="text-lg font-semibold flex flex-col gap-1">
-                  <span className="text-sm font-medium text-gray-dark">
-                    By:
-                  </span>
-                  {data?.withdraw?.bank?.accountName ||
-                    data?.withdraw?.office?.name}{" "}
-                </span>
-                <BankIcon className="h-6 w-6" />
-              </div>
-            </Card>
-            <Card className="mb-5 p-5">
-              <p className="pb-4 text-base font-bold">Timeline</p>
-              <div className="flex flex-start items-center">
-                <p className="text-[#656565] text-xs">7:30am</p>
-                <li className="text-[#4375FF] text-[17px]  ml-[27px] mr-[-24px]"></li>
-                <p className="pl-10">Requested</p>
-              </div>
-              <span className="text-[#8C8C8C] text-[10px]">Today</span>
-            </Card>
-            <Card className="mb-5 p-5">
-              <h3 className="mb-4 text-base font-bold">Details</h3>
-              <div className="flex justify-between items-center mb-4 text-[15px]">
-                <span className="text-base text-[#8C8C8C]">
-                  {data?.withdraw?.bank
-                    ? "Bank Account Name"
-                    : "Recipient Name"}
-                </span>
-                <span className="">
-                  {" "}
-                  {data?.withdraw?.bank
-                    ? data?.withdraw?.bank?.accountName
-                    : data?.withdraw?.office?.name}{" "}
-                </span>
-              </div>
-              <div className="flex justify-between items-center text-[15px]">
-                <span className="text-base text-[#8C8C8C]">Expected Date</span>
 
-                <span>Within 24 Hours (Avg: 2hrs)</span>
-              </div>
-            </Card>
-            <Card className="mb-5 ">
-              <p className="mb-4 text-base font-bold">Instructions</p>
-              <ul className="list-disc pl-6">
-                {data?.withdraw?.bank ? (
-                  <li className="mb-[6px]">
-                    open your bank app to ensure payment deleviery
-                  </li>
-                ) : (
-                  <>
-                    <li className="mb-[6px]">
-                      Address: {data?.withdraw?.office?.Address}
-                    </li>
-                    <li className="mb-[6px]">
-                      Working hours from 9:00 am to 7:00 pm
-                    </li>
-                    <li className="mb-[6px]">
-                      Bring your ID for identification
-                    </li>
-                    <li className="mb-[6px]">Confirm receiving your payment</li>
-                    <li className="mb-[6px]">{data?.withdraw?.office?.fees}</li>
-                  </>
-                )}
-              </ul>
-            </Card>
-            <Card className="p-[4px] flex justify-center ease-linear	">
-              <Button
-                onClick={openModalRequestModal}
-                className=" bg-transparent text-black text-xl hover:bg-transparent hover:text-blue-light font-[500] text-[17px] text-center	"
-              >
-                {/* {ButtonTitle} */}
-              </Button>
-            </Card>
-          </>
+        {isMutating ? (
+          <div className="flex flex-col justify-between flex-1 ">
+            <div className="flex flex-col gap-4">
+              <Skeleton height={80} />
+              <Skeleton height={80} />
+              <Skeleton height={80} />
+            </div>
+            <div>
+              <Skeleton height={50} />
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col justify-between flex-grow">
+            <div className="flex flex-col justify-between gap-5">
+              <StatusWrapper
+                data={data}
+                onEdit={handleMove}
+                StatusOptions={status.statusOptions}
+              />
+
+              {isInvoiceDisplay ? (
+                <>
+                  <TimeLine data={data?.history} />
+                  <PreviewWrapper getValues={() => data} />
+                </>
+              ) : (
+                <>
+                  <ServiceLink privewLinkoptions={status.privewLinkoptions} />
+                  <LinkTotal data={data} />
+                  <PrivewLink invoices={response?.data?.invoices.data} />
+
+                  <TimeLine data={data?.history} />
+                </>
+              )}
+            </div>
+
+            <ButtonsWrapper
+              data={data}
+              optionsButtons={status.optionsButtons}
+              onMoveToEdit={handleMove}
+              isInvoice={isInvoiceDisplay}
+              onChange={onChange}
+            />
+          </div>
         )}
       </Card>
-      <Modal isOpen={isOpenRequestModal} closeModal={closeModalRequestModal}>
-        {/* <Delete processDescription={confirmDescription} closeModal={closeModalRequestModal} handleDelete ={handleRequest} titleButton="yes"/> */}
-      </Modal>
     </>
   );
 };
-export default Drawer
+export default Drawer;

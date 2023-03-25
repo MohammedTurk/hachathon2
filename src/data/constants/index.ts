@@ -25,8 +25,11 @@ export const API_SERVICES_URLS = {
     GET_LINK :(id: string) => `/service/details/${id}` ,
     CREATE_INVOICE:"/invoice/create",
     CREATE_LINK:"/service/create",
-    INVOICE_LIST :`/transactions/invoice-service-listing`
-
+    INVOICE_LIST :`/transactions/invoice-service-listing`,
+    INVOICE_DETAILS: (id: string) => `/invoice/${id}`,
+    INVOICE_CHANGESTATUS:(id:string)=> `/invoice/change-status/${id}`,
+    LINK_DETAILS:(id:string)=> `/service/details/${id}`,
+    LINK_CHANGESTATUS:(id:string)=> `/service/change-status/${id}`
   },
   PAYMENT: {
     STRIPE_SESSION: "/invoice/payment/stripe/create-checkout-session",
@@ -35,6 +38,8 @@ export const API_SERVICES_URLS = {
     CREATE_INVOICE: "/invoice/create",
 
   },
+  
+  
 } as const;
 
 export const COOKIES_KEYS = {

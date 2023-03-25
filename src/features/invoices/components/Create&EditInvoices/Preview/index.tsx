@@ -4,10 +4,13 @@ import { Fragment } from "react";
 import { UseFormWatch } from "react-hook-form";
 import { getFullName } from "utils";
 
-const Preview = ({
+export const Preview = ({
   getValues,
+  className = "",
+  ...rest
 }: {
   getValues: UseFormWatch<CreateInvoiceFormInputsTypes>;
+  className: string;
 }) => {
   const { client, fixed } = getValues();
   const val = getValues();
@@ -17,11 +20,13 @@ const Preview = ({
     0
   );
 
- 
   const generateDate = new Date().toDateString();
   return (
     // <div></div>
-    <Card className="py-8 mb-4 border shadow-sm px-11 max-w-[600px] h-[500px]  overflow-auto scrollbar-track-gray-200 scrollbar-thumb-gray-300 scrollbar-thin scrollbar-thumb-rounded-lg">
+    <Card
+      className={`py-8  border shadow-sm px-11 max-w-[600px] h-[500px]  overflow-auto scrollbar-track-gray-200 scrollbar-thumb-gray-300 scrollbar-thin scrollbar-thumb-rounded-lg ${className}`}
+      {...rest}
+    >
       <div className="flex items-center justify-between">
         <h4 className="text-xl font-bold flex flex-col gap-1">
           Invoice
@@ -44,7 +49,7 @@ const Preview = ({
         <div className="w-1/3">
           <h5 className="mt-5 mb-4 text-gray-dark">Bill To</h5>
           <p className="truncate  ">
-            {client?.fullName  ? client?.fullName  : <Skeleton width={150} />}
+            {client?.fullName ? client?.fullName : <Skeleton width={150} />}
           </p>
           <span className="text-sm text-gray-dark truncate block">
             {client?.email ? (
