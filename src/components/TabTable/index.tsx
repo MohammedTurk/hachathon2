@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import { ChevronUpIconMini, ChevronDownIconMini } from "lib/@heroicons";
 import { NavTable, PaginationTable, TableSkeleton } from "components";
+import { useSWRMutationHook, useToggle } from "hooks";
+import { getInvoiceLinkURL } from "features/invoices/utils";
+import { Drawer } from "features/invoices";
+import { useRouter } from "next/router";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -17,7 +21,45 @@ export const TabTable = ({
   handlePrevPaginate,
   handleNextPaginate,
   currentPage,
+  getTransactionData
 }: any) => {
+  const [urlRequest, setUrlRequest] = useState("");
+  const { isOpen, closeModal, openModal } = useToggle();
+  const {
+    trigger,
+    data,
+    isMutating: isMutatingDrawer,
+  } = useSWRMutationHook(urlRequest, "GET");
+
+  // when i click on the Table
+  function handleClickOnTabel(id:any, isInvoice:any) {
+    console.log("lastInvoiceId",id);
+    console.log("invoiceType",isInvoice);
+    
+    openModal();
+    setUrlRequest(getInvoiceLinkURL(id, isInvoice));
+  }
+
+  // request happen i id change
+  useEffect(() => {
+    if (urlRequest !== "") {
+      trigger();
+    }
+  }, [urlRequest]);
+
+  const router = useRouter();
+  const { lastInvoiceId,type:invoiceType } = router.query;
+
+  // Turk give me the id
+  useEffect(() => {
+    if (lastInvoiceId) {
+      handleClickOnTabel(lastInvoiceId,invoiceType == 'invoice');
+      console.log("lastInvoiceId",lastInvoiceId);
+      console.log("invoiceType",invoiceType);
+      
+    }
+  }, [lastInvoiceId]);
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   console.log(selectedIndex);
 
@@ -32,42 +74,7 @@ export const TabTable = ({
       return "text-black";
     }
   };
-
-  // const filteredTransactions =
-  //   type === "all"
-  //     ? transactions?.transactions
-  //     : transactions?.transactions.filter(
-  //         (item:any) => item.invoice?.type === type || item.service?.type === type
-  //       );
-
-  // const datatype = transactions?.transactions[0].type;
-  // const timestamp = transactions?.transactions[0].updatedAt;
-  // const date = new Date(timestamp);
-  // // const formattedTime = date.toLocaleTimeString("en-US", {
-  // //   hour: "numeric",
-  // //   hour12: true,
-  // // });
-
-  // const now = new Date();
-  // const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  // const yesterday = new Date(
-  //   now.getFullYear(),
-  //   now.getMonth(),
-  //   now.getDate() - 1
-  // );
-
-  // let dateText = "";
-  // if (date >= today) {
-  //   dateText = "today";
-  // } else if (date >= yesterday) {
-  //   dateText = "yesterday";
-  // } else {
-  //   dateText = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-  // }
-
-  // function handleTabClick(type) {
-  //   setSelectedTab(type);
-  // }
+ 
   return (
     <div className="w-full sm:px-0 bg-[#FFFF] shadow-md sm:rounded-lg">
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
@@ -178,12 +185,10 @@ export const TabTable = ({
               </tr>
             </thead>
             <tbody>
- 
               {isMutating ? (
                 <tr>
                   <td colSpan={4}>
-                <TableSkeleton />
-
+                    <TableSkeleton />
                   </td>
                 </tr>
               ) : (
@@ -191,6 +196,13 @@ export const TabTable = ({
                   <tr
                     key={items._id}
                     className="bg-white border-b hover:bg-gray-light "
+                    onClick={() => 
+   
+                      
+                      handleClickOnTabel(lastInvoiceId || items._id, items.type == "invoice" )
+
+                  
+                    }
                   >
                     <th
                       scope="row"
@@ -232,15 +244,14 @@ export const TabTable = ({
                     </th>
 
                     <td className="px-6 py-4  text-black  font-medium text-md">
-                      {/* {withdraw.recipient?.name || withdraw.bank?.accountName} */}
-                      ${items?.invoice?.subTotal || items?.service?.subTotal}
+                       ${items?.invoice?.subTotal || items?.service?.subTotal}
                     </td>
                     <td className="px-6 py-4 text-gray-dark font-medium text-md">
                       {items?.invoice?.client.fullName || "_"}
                     </td>
                     <td
                       className={`px-6 py-4 font-medium ${statusColor(
-                        "pending"
+                       items.invoice?.status || items.service?.status
                       )}`}
                     >
                       {items.invoice?.status || items.service?.status}
@@ -258,71 +269,15 @@ export const TabTable = ({
           </table>
         </div>
       </Tab.Group>
+      <Drawer
+        isOpen={isOpen}
+        closeModal={closeModal}
+        response={data}
+        isMutating={isMutatingDrawer}
+        onChange={trigger}
+        getTransactionData={getTransactionData}
+      />
     </div>
   );
 };
-
-// <tr
-//   key={items._id}
-//   className="bg-white border-b hover:bg-gray-light "
-// >
-//   <div className="flex flex-row ">
-//     {items?.invoice?.fixed
-//       .slice(0, 2)
-//       .map((fixed: any, index: any) => (
-//         <span className="pl-6" key={fixed._id}>
-//           {fixed?.itemName.length > 12
-//             ? fixed.itemName.substring(0, 12) + "..."
-//             : fixed.itemName}
-//           {index === 1 &&
-//           items?.invoice.fixed.length > 2 ? (
-//             <span className="pl-2">+ other</span>
-//           ) : null}
-//         </span>
-//       )) ||
-//       items?.service?.fixed
-//         .slice(0, 2)
-//         .map((fixed: any, index: any) => (
-//           <span className="pl-6" key={fixed._id}>
-//             {fixed?.itemName.length > 12
-//               ? fixed.itemName.substring(0, 12) + "..."
-//               : fixed.itemName}
-//             {index === 1 &&
-//             items?.service.fixed.length > 2 ? (
-//               <span className="pl-2">+ other</span>
-//             ) : null}
-//           </span>
-//         ))}
-//   </div>
-//   <th className="px-6 whitespace-nowrap flex flex-col">
-//     <span className="text-gray-400 font-normal text-xs pt-1">
-//       {dateText}
-//       <span className="pl-2 text-gray-500">
-//         {items?.invoice?.currency ||
-//           items?.service?.currency}
-//       </span>
-//     </span>
-//   </th>
-
-//   <td className="px-6 py-4 text-gray-dark font-medium text-md">
-//     $
-//     {items?.invoice?.fixed.reduce(
-//       (total: any, fixed: any) => total + fixed.price,
-//       0
-//     ) ||
-//       items?.service?.fixed.reduce(
-//         (total: any, fixed: any) => total + fixed.price,
-//         0
-//       )}
-//   </td>
-//   <td className="px-6 py-4 text-black font-medium text-md">
-//     {items?.invoice?.client.fullName || "_"}
-//   </td>
-//   <td
-//     className={`px-6 py-4 font-medium ${statusColor(
-//       items.status
-//     )}`}
-//   >
-//     {items.invoice?.status || items.service?.status}
-//   </td>
-// </tr>
+ 

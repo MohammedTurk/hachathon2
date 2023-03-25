@@ -10,6 +10,7 @@ import {
   LinkTotal,
   ServiceLink,
   PrivewLink,
+ 
 } from "./components";
 import { useRouter } from "next/router";
 import { isInvoice } from "features/invoices/utils";
@@ -21,6 +22,7 @@ export const Drawer = ({
   closeModal,
   isMutating,
   onChange,
+  getTransactionData
 }: any) => {
   const data = response?.data?.invoice || response?.data?.service;
   const status = getStatus(data?.status, data?._id);
@@ -100,6 +102,7 @@ export const Drawer = ({
               onMoveToEdit={handleMove}
               isInvoice={isInvoiceDisplay}
               onChange={onChange}
+              getTransactionData={getTransactionData}
             />
           </div>
         )}

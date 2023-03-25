@@ -128,10 +128,10 @@
     "@react-pdf/png-js" "^2.2.0"
     "cross-fetch" "^3.1.5"
 
-"@react-pdf/layout@^3.5.1":
-  "integrity" "sha512-htBnbSNrftYo/iAIi1WjdrCiYVOwT0NVmiQDmGKwugE0qFPpbYm1gdjkb7CKXJdOEVncPipG5LDuTrQLvUkHFw=="
-  "resolved" "https://registry.npmjs.org/@react-pdf/layout/-/layout-3.5.1.tgz"
-  "version" "3.5.1"
+"@react-pdf/layout@^3.6.0":
+  "integrity" "sha512-xrcVWxtXpobW0iqTd8OmMCVMmeGUM46PYq7B1MGR1fI1QG/EKe4HzFdhSdd0werZYj+t1TRC8+tVSX5POs5SYA=="
+  "resolved" "https://registry.npmjs.org/@react-pdf/layout/-/layout-3.6.0.tgz"
+  "version" "3.6.0"
   dependencies:
     "@babel/runtime" "^7.20.13"
     "@react-pdf/fns" "2.0.1"
@@ -143,7 +143,7 @@
     "@react-pdf/types" "^2.3.1"
     "@react-pdf/yoga" "^4.1.2"
     "cross-fetch" "^3.1.5"
-    "emoji-regex" "^8.0.0"
+    "emoji-regex" "^10.2.1"
     "queue" "^6.0.1"
 
 "@react-pdf/pdfkit@^3.0.2":
@@ -186,14 +186,14 @@
     "parse-svg-path" "^0.1.2"
     "svg-arc-to-cubic-bezier" "^3.2.0"
 
-"@react-pdf/renderer@^3.1.8":
-  "integrity" "sha512-/oxjZLd/rcqkhXzWLwOUrjG/Ol2ZVmDCneuKG1Qmruyko3g++QIlp/141BGHN4JXGvcK9JbO8cBYRhAdwKLIWw=="
-  "resolved" "https://registry.npmjs.org/@react-pdf/renderer/-/renderer-3.1.8.tgz"
-  "version" "3.1.8"
+"@react-pdf/renderer@^3.1.9":
+  "integrity" "sha512-kfEH7O+Jy7aihbUqrT9Ej1gx8/twRWvFMfHlACr29QsN+s+w0XzWpHCvbjkinVFABYcvsenluiirik6mf4qwRQ=="
+  "resolved" "https://registry.npmjs.org/@react-pdf/renderer/-/renderer-3.1.9.tgz"
+  "version" "3.1.9"
   dependencies:
     "@babel/runtime" "^7.20.13"
     "@react-pdf/font" "^2.3.4"
-    "@react-pdf/layout" "^3.5.1"
+    "@react-pdf/layout" "^3.6.0"
     "@react-pdf/pdfkit" "^3.0.2"
     "@react-pdf/primitives" "^3.0.0"
     "@react-pdf/render" "^3.2.4"
@@ -784,10 +784,10 @@
   "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.284.tgz"
   "version" "1.4.284"
 
-"emoji-regex@^8.0.0":
-  "integrity" "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A=="
-  "resolved" "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz"
-  "version" "8.0.0"
+"emoji-regex@^10.2.1":
+  "integrity" "sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA=="
+  "resolved" "https://registry.npmjs.org/emoji-regex/-/emoji-regex-10.2.1.tgz"
+  "version" "10.2.1"
 
 "emoji-regex@^9.2.2":
   "integrity" "sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg=="

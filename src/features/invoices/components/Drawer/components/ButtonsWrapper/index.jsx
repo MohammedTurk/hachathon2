@@ -10,6 +10,7 @@ export const ButtonsWrapper = ({
   isInvoice = true,
   onChange,
   optionsButtons,
+  getTransactionData,
 }) => {
   const { isOpen, closeModal, openModal } = useToggle();
 
@@ -22,10 +23,8 @@ export const ButtonsWrapper = ({
   );
 
   function handleRequest() {
-    //  هنا راح يكون ال
-    // check message
-    console.log("Truk Pop here.");
     trigger(optionsButtons?.requestData);
+    getTransactionData();
     closeModal();
   }
 

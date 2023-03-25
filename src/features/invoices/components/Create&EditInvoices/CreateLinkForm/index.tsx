@@ -40,7 +40,7 @@ export const CreateLinkForm = ({
     if (responseRequest)
       router.push({
         pathname: "/invoices",
-        query: { lastInvoiceId: responseRequest.data?._id, type: "Link" },
+        query: { lastInvoiceId: responseRequest.data?._id, type: "link" },
       });
   }, [isMutating]);
 

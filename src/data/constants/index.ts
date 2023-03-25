@@ -26,7 +26,6 @@ export const API_SERVICES_URLS = {
     CREATE_INVOICE:"/invoice/create",
     CREATE_LINK:"/service/create",
     INVOICE_LIST :`/transactions/invoice-service-listing`,
-    INVOICE_DETAILS: (id: string) => `/invoice/${id}`,
     INVOICE_CHANGESTATUS:(id:string)=> `/invoice/change-status/${id}`,
     LINK_DETAILS:(id:string)=> `/service/details/${id}`,
     LINK_CHANGESTATUS:(id:string)=> `/service/change-status/${id}`

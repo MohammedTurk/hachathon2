@@ -63,7 +63,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           {...rest}
         >
           {placeholder && (
-            <option className={classNames.placeholder} value="">
+            <option className={classNames.placeholder} value={placeholder}>
               {placeholder}
             </option>
           )}

@@ -1,25 +1,14 @@
 import { useEffect, useState } from "react";
-import {
-  Button,
-  Input,
-  TableSkeleton,
-  TabTable,
-  PaginationTable,
-  Card,
-  Checkbox,
-} from "components";
+import { Button, Input, TabTable, Card, Checkbox, Link } from "components";
 import { API_SERVICES_URLS } from "data";
-
 import { useSWRMutationHook } from "hooks";
-
-import { Send, Filter } from "components/svg";
-
+import { Filter } from "components/svg";
 import { MagnifyingGlassIconOutline, PlusIconMini } from "lib/@heroicons";
 
-import { InvoicesTable } from "./InvoicesTable";
 export const TransactionsWrapper = () => {
   const buttonClasses = {
-    button: "!bg-gray-50 !text-[#4375FF] flex items-center gap-1 sm:gap-2	h-9 ",
+    buttonLink:
+      "bg-gray-50 text-[#4375FF] flex items-center gap-1 sm:gap-2	h-9 block p-3 rounded-md hover:bg-blue-light hover:text-white transition-colors",
     iconButton:
       "!rounded-lg bg-[#F3F6FF] !text-[#4375FF] hover:!text-[#F3F6FF] hover:!bg-[#4375FF] ",
     buttonText: "text-sm",
@@ -33,7 +22,7 @@ export const TransactionsWrapper = () => {
   const [open, setOpen] = useState(false);
   const [type, setType] = useState("all");
   const [checkboxes, setCheckboxes] = useState({
-    invoice : [
+    invoice: [
       {
         id: 1,
         value: "paid",
@@ -99,8 +88,6 @@ export const TransactionsWrapper = () => {
     ],
   });
 
- 
-
   const {
     trigger: getTransactionData,
     data: TransactionData,
@@ -153,24 +140,22 @@ export const TransactionsWrapper = () => {
     }, 1000);
   };
 
-  const handleCheck = (event: any,id:any) => {
+  const handleCheck = (event: any, id: any) => {
     if (event.target.checked) {
- 
-      
       setFilteredValue([...filteredValue, event.target.value]);
-      const boxes = {...checkboxes}
-      let targetCheckboxFromInvoice = boxes.invoice.find(item=>item.id === id )
-      let targetCheckboxFromLink = boxes.link.find(item=>item.id === id)
-      if(targetCheckboxFromInvoice){
-
+      const boxes = { ...checkboxes };
+      let targetCheckboxFromInvoice = boxes.invoice.find(
+        (item) => item.id === id
+      );
+      let targetCheckboxFromLink = boxes.link.find((item) => item.id === id);
+      if (targetCheckboxFromInvoice) {
         targetCheckboxFromInvoice.checked = true;
       }
-      if(targetCheckboxFromLink){
-
+      if (targetCheckboxFromLink) {
         targetCheckboxFromLink.checked = true;
       }
-      
-      setCheckboxes({...boxes})
+
+      setCheckboxes({ ...boxes });
       setTimeout(() => {
         getTransactionData();
       }, 2000);
@@ -179,18 +164,19 @@ export const TransactionsWrapper = () => {
         (value: any) => value !== event.target.value
       );
       setFilteredValue(values);
-      const boxes = {...checkboxes}
-      let targetCheckboxFromInvoice = boxes.invoice.find(item=>item.id === id )
-      let targetCheckboxFromLink = boxes.link.find(item=>item.id === id)
-      if(targetCheckboxFromInvoice){
-
+      const boxes = { ...checkboxes };
+      let targetCheckboxFromInvoice = boxes.invoice.find(
+        (item) => item.id === id
+      );
+      let targetCheckboxFromLink = boxes.link.find((item) => item.id === id);
+      if (targetCheckboxFromInvoice) {
         targetCheckboxFromInvoice.checked = false;
       }
-      if(targetCheckboxFromLink){
+      if (targetCheckboxFromLink) {
         targetCheckboxFromLink.checked = false;
       }
-      
-      setCheckboxes({...boxes})
+
+      setCheckboxes({ ...boxes });
       setTimeout(() => {
         getTransactionData();
       }, 1000);
@@ -214,14 +200,18 @@ export const TransactionsWrapper = () => {
           withoutHelperText
         />
         <div className="flex justify-between sm:gap-1 ">
-          <Button className={buttonClasses.button} buttonSize="small">
+          <Link href="/invoices/create-link" className={buttonClasses.buttonLink}>
             <PlusIconMini className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span className="text-xs  sm:text-sm"> Link</span>
-          </Button>
-          <Button className={buttonClasses.button} buttonSize="small">
-            <Send className=" sm:w-4" />
-            <span className="text-xs sm:text-sm  "> Invoice</span>
-          </Button>
+            <span className="text-xs  sm:text-sm">Link</span>
+          </Link>
+          <Link
+            href="/invoices/create-invoice"
+            className={buttonClasses.buttonLink}
+          >
+            <PlusIconMini className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="text-xs  sm:text-sm">Invoice</span>
+          </Link>
+
           <Button
             className="!bg-white p-9 h-fit !text-gray-dark flex items-center gap-2"
             buttonSize="small"
@@ -233,18 +223,16 @@ export const TransactionsWrapper = () => {
 
           {open && (
             <Card className="z-10 absolute px-6 py-3 mt-10 ml-11">
-              {checkboxes.invoice.map(({id,value,checked}) => (
+              {checkboxes.invoice.map(({ id, value, checked }) => (
                 <Checkbox
                   key={id}
                   id={value}
                   label={value.toUpperCase()}
                   checked={checked}
                   value={value}
-                  onClick={(e)=>handleCheck(e,id)}
+                  onClick={(e) => handleCheck(e, id)}
                 />
               ))}
-
-            
             </Card>
           )}
         </div>
@@ -260,11 +248,9 @@ export const TransactionsWrapper = () => {
           handlePrevPaginate={handlePrevPaginate}
           handleNextPaginate={handleNextPaginate}
           currentPage={currentPage}
-
+          getTransactionData={getTransactionData}
         />
-       
       </div>
     </>
   );
 };
- 

@@ -6,7 +6,6 @@ export const CreateInvoice = () => {
   return (
     <NoSsr>
          <InvoiceWrapper>
-        
             <CreateInvoiceForm/>
         </InvoiceWrapper>
     </NoSsr>

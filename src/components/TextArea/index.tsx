@@ -20,6 +20,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       label: `block mb-1 ${labelClassName ?? ""}`,
       textArea: `block p-2.5 w-full text-sm text-gray-dark border border-gray-300 focus:ring-blue-500   border-gray focus:ring-0 focus:border-blue rounded-md`,
       helperText: "inline-flex min-h-[20px] text-xs mt-1",
+      error:"!border-red focus:!border-red"
     };
  
 
@@ -34,7 +35,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         <textarea
           id={`area-${id}`}
           rows={rows}
-          className={classNames.textArea}
+          className={`${classNames.textArea} ${error ? classNames.error:''}`}
           placeholder={placeholder}
           ref={ref}
           {...rest}
