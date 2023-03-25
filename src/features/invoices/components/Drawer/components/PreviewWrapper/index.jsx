@@ -40,19 +40,16 @@ export const PreviewWrapper = ({ getValues }) => {
           <Card className="flex flex-col gap-2">
             <div className="flex justify-end items-center gap-4">
               <div className="flex justify-end items-center gap-4">
-                <Button
-                  className="!p-2  bg-white text-blue shadow border hover:!bg-gray-100 transition-all"
-                  onClick={() => console.log("request Download")}
-                >
+                <Button className="!p-0  bg-white text-blue shadow border hover:!bg-gray-100 transition-all">
                   <PDFDownloadLink document={file} fileName="invoice.pdf">
                     {({ blob, url, loading, error }) =>
                       loading ? (
-                        "Loading document..."
+                        <span className="p-2 block">Loading document...</span>
                       ) : (
-                        <p className="flex justify-center gap-1">
+                        <span className="flex justify-center gap-1 p-2 block">
                           <ArrowDownTrayIcon className="h-5 w-5" />
                           Download
-                        </p>
+                        </span>
                       )
                     }
                   </PDFDownloadLink>

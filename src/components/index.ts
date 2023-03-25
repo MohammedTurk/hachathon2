@@ -24,7 +24,6 @@ export * from "./JobDetails";
 export * from "./Checkbox";
 export * from "./Modal";
 export * from "./TextArea";
-export * from "./TabTable";
 export * from "./PaginationTable";
 export * from "./NavTable"
 export * from "./Toast"

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, Input, TabTable, Card, Checkbox, Link } from "components";
+import { Button, Input,  Card, Checkbox, Link } from "components";
 import { API_SERVICES_URLS } from "data";
 import { useSWRMutationHook } from "hooks";
-import { Filter } from "components/svg";
+ import InvoicesTable from './InvoicesTable'
+import { Send, Filter, Invoices } from "components/svg";
+
 import { MagnifyingGlassIconOutline, PlusIconMini } from "lib/@heroicons";
 
 export const TransactionsWrapper = () => {
@@ -83,6 +85,38 @@ export const TransactionsWrapper = () => {
       {
         id: 7,
         value: "disapproved",
+        checked: false,
+      },
+    ],
+    Invoicesall: [
+      {
+        id: 1,
+        value: "paid",
+        checked: false,
+      },
+      {
+        id: 2,
+        value: "sent",
+        checked: false,
+      },
+      {
+        id: 3,
+        value: "Pending",
+        checked: false,
+      },
+      {
+        id: 4,
+        value: "Canceled",
+        checked: false,
+      },
+      {
+        id: 7,
+        value: "disapproved",
+        checked: false,
+      },
+      {
+        id: 8,
+        value: "refunded",
         checked: false,
       },
     ],
@@ -186,6 +220,7 @@ export const TransactionsWrapper = () => {
   const handleTabClick = (value: any) => {
     setType(value);
   };
+  console.log(type);
 
   return (
     <>
@@ -220,8 +255,9 @@ export const TransactionsWrapper = () => {
             <Filter />
             Filter
           </Button>
-
-          {open && (
+  
+          {type==="all" && (
+          open && (
             <Card className="z-10 absolute px-6 py-3 mt-10 ml-11">
               {checkboxes.invoice.map(({ id, value, checked }) => (
                 <Checkbox
@@ -234,11 +270,42 @@ export const TransactionsWrapper = () => {
                 />
               ))}
             </Card>
-          )}
+          ) )}
+        {type==="invoice" && (
+          open && (
+          <Card className="z-10 absolute px-6 py-3 mt-10 ml-11">
+            {checkboxes.Invoicesall.map(({id,value,checked}) => (
+            <Checkbox
+              key={id}
+              id={value}
+              label={value.toUpperCase()}
+              checked={checked}
+              value={value}
+              onClick={(e)=>handleCheck(e,id)}
+            />
+          ))}
+        </Card>
+        ))}  
+        {type==="service" && (
+          open && (
+          <Card className="z-10 absolute px-6 py-3 mt-10 ml-11">
+            {checkboxes.link.map(({id,value,checked}) => (
+            <Checkbox
+              key={id}
+              id={value}
+              label={value.toUpperCase()}
+              checked={checked}
+              value={value}
+              onClick={(e)=>handleCheck(e,id)}
+            />
+          ))}
+        </Card>
+        ))} 
+
         </div>
       </div>
       <div>
-        <TabTable
+        <InvoicesTable
           types={["all", "invoice", "service"]}
           handleTabClick={handleTabClick}
           transactions={transactions}
