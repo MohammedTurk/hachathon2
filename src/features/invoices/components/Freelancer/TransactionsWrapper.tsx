@@ -140,15 +140,15 @@ const buttonClasses = {
         <div className="">
           <InvoicesTable
             transactions={transactions}
-            handleSortData={handleSortData}
             handlePrevPaginate={handlePrevPaginate}
             handleNextPaginate={handleNextPaginate}
+            handleSortData={handleSortData}
             currentPage={currentPage}
           />
            <TabTable
             updatedata={updatedata}
             transactions={transactions}
-
+            handleSortData={handleSortData}
           />
         </div>
       )}

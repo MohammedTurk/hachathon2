@@ -11,6 +11,7 @@ export const TabTable = ({
   types = ["all", "invoices", "links"],
   updatedata,
   transactions,
+  handleSortData,
 }) => {
   const statusColor = (status) => {
     if (status === "pending") {
@@ -84,10 +85,10 @@ export const TabTable = ({
                   <div className="flex items-center gap-2">
                     Name
                     <div className="flex flex-col  gap-1">
-                      <a href="#" className="text-[#9E9E9E]">
+                      <a href="#" className="text-[#9E9E9E]" onClick={() => handleSortData("name")}>
                         <ChevronUpIcon className="h-3 w-3" />
                       </a>
-                      <a href="#" className="text-[#9E9E9E]">
+                      <a href="#" className="text-[#9E9E9E]"  onClick={() => handleSortData("-name")}>
                         <ChevronDownIcon className="h-3 w-3" />
                       </a>
                     </div>
@@ -95,10 +96,10 @@ export const TabTable = ({
                   <div className="flex items-center gap-2">
                     Date
                     <div className="flex flex-col  gap-1">
-                      <a href="#" className="text-[#9E9E9E]">
+                      <a href="#" className="text-[#9E9E9E]"  onClick={() => handleSortData("date")}>
                         <ChevronUpIcon className="h-3 w-3" />
                       </a>
-                      <a href="#" className="text-[#9E9E9E]">
+                      <a href="#" className="text-[#9E9E9E]"  onClick={() => handleSortData("-date")}>
                         <ChevronDownIcon className="h-3 w-3" />
                       </a>
                     </div>
@@ -108,10 +109,10 @@ export const TabTable = ({
                   <div className="flex items-center">
                     Amount{" "}
                     <div className="flex flex-col pl-1">
-                      <a href="#">
+                      <a href="#"  onClick={() => handleSortData("amount")} >
                         <ChevronUpIcon className="h-3 w-3 font-bold" />
                       </a>
-                      <a href="#">
+                      <a href="#" onClick={() => handleSortData("-amount")}>
                         <ChevronDownIcon className="h-3 w-3 font-bold" />
                       </a>
                     </div>
@@ -121,10 +122,10 @@ export const TabTable = ({
                   <div className="flex items-center">
                     Client{" "}
                     <div className="flex flex-col pl-1">
-                      <a href="#">
+                      <a href="#" onClick={() => handleSortData("client")}>
                         <ChevronUpIcon className="h-3 w-3 font-bold" />
                       </a>
-                      <a href="#">
+                      <a href="#" onClick={() => handleSortData("-client")}>
                         <ChevronDownIcon className="h-3 w-3 font-bold" />
                       </a>
                     </div>
@@ -134,10 +135,10 @@ export const TabTable = ({
                   <div className="flex items-center">
                     Status{" "}
                     <div className="flex flex-col pl-1">
-                      <a href="#">
+                      <a href="#"  onClick={() => handleSortData("status")}>
                         <ChevronUpIcon className="h-3 w-3 font-bold" />
                       </a>
-                      <a href="#">
+                      <a href="#"  onClick={() => handleSortData("-status")}>
                         <ChevronDownIcon className="h-3 w-3 font-bold" />
                       </a>
                     </div>
