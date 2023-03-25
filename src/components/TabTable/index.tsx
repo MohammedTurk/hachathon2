@@ -3,7 +3,7 @@ import { Tab } from "@headlessui/react";
 import { ChevronUpIconMini, ChevronDownIconMini } from "lib/@heroicons";
 import { NavTable, PaginationTable } from "components";
 
-function classNames(...classes) {
+function classNames(...classes:any) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -11,8 +11,9 @@ export const TabTable = ({
   types = ["all", "invoices", "links"],
   updateType,
   transactions,
-}) => {
-  const statusColor = (status) => {
+  handleSortData,
+}:any) => {
+  const statusColor = (status:any) => {
     if (status === "pending") {
       return "text-[#DAA545]";
     } else if (status === "ready") {
@@ -57,7 +58,7 @@ export const TabTable = ({
     <div className="w-full sm:px-0 bg-[#FFFF] shadow-md sm:rounded-lg">
       <Tab.Group>
         <Tab.List className="flex ">
-          {types.map((type) => {
+          {types.map((type:any) => {
             return (
               <Tab
                 key={type}
@@ -84,10 +85,10 @@ export const TabTable = ({
                   <div className="flex items-center gap-2">
                     Name
                     <div className="flex flex-col  gap-1">
-                      <a href="#" className="text-[#9E9E9E]">
+                      <a href="#" className="text-[#9E9E9E]" onClick={() => handleSortData("name")}>
                         <ChevronUpIconMini className="h-3 w-3" />
                       </a>
-                      <a href="#" className="text-[#9E9E9E]">
+                      <a href="#" className="text-[#9E9E9E]"  onClick={() => handleSortData("-name")}>
                         <ChevronDownIconMini className="h-3 w-3" />
                       </a>
                     </div>
@@ -95,10 +96,10 @@ export const TabTable = ({
                   <div className="flex items-center gap-2">
                     Date
                     <div className="flex flex-col  gap-1">
-                      <a href="#" className="text-[#9E9E9E]">
+                      <a href="#" className="text-[#9E9E9E]"  onClick={() => handleSortData("date")}>
                         <ChevronUpIconMini className="h-3 w-3" />
                       </a>
-                      <a href="#" className="text-[#9E9E9E]">
+                      <a href="#" className="text-[#9E9E9E]"  onClick={() => handleSortData("-date")}>
                         <ChevronDownIconMini className="h-3 w-3" />
                       </a>
                     </div>
@@ -108,10 +109,10 @@ export const TabTable = ({
                   <div className="flex items-center">
                     Amount{" "}
                     <div className="flex flex-col pl-1">
-                      <a href="#">
+                      <a href="#"  onClick={() => handleSortData("amount")} >
                         <ChevronUpIconMini className="h-3 w-3 font-bold" />
                       </a>
-                      <a href="#">
+                      <a href="#" onClick={() => handleSortData("-amount")}>
                         <ChevronDownIconMini className="h-3 w-3 font-bold" />
                       </a>
                     </div>
@@ -121,10 +122,10 @@ export const TabTable = ({
                   <div className="flex items-center">
                     Client{" "}
                     <div className="flex flex-col pl-1">
-                      <a href="#">
+                      <a href="#" onClick={() => handleSortData("client")}>
                         <ChevronUpIconMini className="h-3 w-3 font-bold" />
                       </a>
-                      <a href="#">
+                      <a href="#" onClick={() => handleSortData("-client")}>
                         <ChevronDownIconMini className="h-3 w-3 font-bold" />
                       </a>
                     </div>
@@ -134,10 +135,10 @@ export const TabTable = ({
                   <div className="flex items-center">
                     Status{" "}
                     <div className="flex flex-col pl-1">
-                      <a href="#">
+                      <a href="#"  onClick={() => handleSortData("status")}>
                         <ChevronUpIconMini className="h-3 w-3 font-bold" />
                       </a>
-                      <a href="#">
+                      <a href="#"  onClick={() => handleSortData("-status")}>
                         <ChevronDownIconMini className="h-3 w-3 font-bold" />
                       </a>
                     </div>
@@ -146,7 +147,7 @@ export const TabTable = ({
               </tr>
             </thead>
             <tbody>
-              {transactions?.transactions.map((items) => (
+              {transactions?.transactions.map((items:any) => (
                 <tr
                   key={items._id}
                   className="bg-white border-b hover:bg-gray-light"
