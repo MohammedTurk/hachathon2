@@ -15,7 +15,6 @@ const myFetcher = async (url, method, options) => {
     return response.data;
   } catch (error) {
    console.log(error);
-    
   }
 };
 
@@ -32,4 +31,5 @@ export const useSWRMutationHook = (
 };
 
 export default useSWRMutationHook;
+ 
  

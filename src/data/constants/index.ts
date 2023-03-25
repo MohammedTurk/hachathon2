@@ -1,3 +1,5 @@
+ 
+
 export const API_SERVICES_URLS = {
   SIGN_UP: "/user/signup",
   SIGN_IN: "/user/login",
@@ -22,10 +24,16 @@ export const API_SERVICES_URLS = {
     GET_INVOICE :(id: string) => `/invoice/${id}` ,
     GET_LINK :(id: string) => `/service/details/${id}` ,
     CREATE_INVOICE:"/invoice/create",
-    CREATE_LINK:"/service/create"
+    CREATE_LINK:"/service/create",
+    INVOICE_LIST :`/transactions/invoice-service-listing`
+
   },
   PAYMENT: {
     STRIPE_SESSION: "/invoice/payment/stripe/create-checkout-session",
+  },
+  INVOICE: {
+    CREATE_INVOICE: "/invoice/create",
+
   },
 } as const;
 

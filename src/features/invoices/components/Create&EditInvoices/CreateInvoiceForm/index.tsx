@@ -43,7 +43,7 @@ export const CreateInvoiceForm = ({
     if (responseRequest)
       router.push({
         pathname: "/invoices",
-        query: { lastInvoiceId: responseRequest.data?._id },
+        query: { lastInvoiceId: responseRequest.data?._id, type: "Invoice" },
       });
   }, [isMutating]);
 
