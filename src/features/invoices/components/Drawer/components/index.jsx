@@ -10,3 +10,4 @@ export * from "./PreviewWrapper";
 export * from "./ServiceLink";
 export * from "./LinkTotal";
 export * from "./PrivewLink";
+export * from "./PDFPreview";
