@@ -72,7 +72,7 @@ export const Preview = ({
           <Fragment key={index}>
             <div className="flex items-start justify-between ">
               {item.itemName ? (
-                <span className="font-normal text-[125%] w-[60%] truncate">
+                <span className="font-normal text-xl w-[60%] truncate">
                   {item.itemName}
                 </span>
               ) : (
