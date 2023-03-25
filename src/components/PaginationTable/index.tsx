@@ -3,12 +3,13 @@ export const PaginationTable = ({
   handlePrevPaginate,
   currentPage,
   transactions,
-}) => {
+}:any) => {
+  
   const paginateCount = () => Math.floor(transactions?.count / 5);
 
   return (
     <tr>
-      <td>
+      <td  colSpan="4">
         <div className="w-full flex justify-center p-1 bg-white">
           <ul className="inline-flex items-center   ">
             {currentPage > 0 && (
@@ -38,8 +39,7 @@ export const PaginationTable = ({
             <li className="px-3">
               Page  {currentPage} - {paginateCount()}
             </li>
-{            console.log("currentPage " + paginateCount())
-}            
+        
             {currentPage < paginateCount() && (
               <li onClick={handleNextPaginate}>
                 <a
