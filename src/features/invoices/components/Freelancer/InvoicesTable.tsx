@@ -296,7 +296,7 @@ export const InvoicesTable = ({
                     onClick={() => {
                       handleActive(items._id);
                       handleClickOnTabel(
-                        lastInvoiceId || items[items.type]._id,
+                       items[items.type]._id,
                         items.type == "invoice"
                       );
                     }}
