@@ -7,11 +7,7 @@ import {
   Skeleton,
 } from "components";
 
-import {
-  FORM_VALIDATION,
-  currencyList,
-  API_SERVICES_URLS,
-} from "data";
+import { FORM_VALIDATION, currencyList, API_SERVICES_URLS } from "data";
 
 import { CreateFormType } from "features/invoices/types";
 import { setValuesForEditLink } from "features/invoices/utils";
@@ -36,40 +32,32 @@ export const EditLinkForm = ({
 }: CreateFormType) => {
   const router = useRouter();
   const { InvoiceId } = router.query;
- 
+
   const {
     trigger: GetInvoiceDetails,
     data: LinkDetails,
     isMutating: isMutatingLinkDetails,
-  } = useSWRMutationHook(
-    API_SERVICES_URLS.CLIENT.GET_LINK(InvoiceId || "641da47073ac594b84ec2e75"),
-    "GET"
-  );
+  } = useSWRMutationHook(API_SERVICES_URLS.CLIENT.GET_LINK(InvoiceId), "GET");
 
   const {
     trigger: editLink,
     data: responseRequest,
     isMutating,
-  } = useSWRMutationHook(
-    API_SERVICES_URLS.CLIENT.EDIT_LINK(InvoiceId || "641da47073ac594b84ec2e75"),
-    "PUT",
-    {
-      data: { ...getValues() },
-    }
-  );
+  } = useSWRMutationHook(API_SERVICES_URLS.CLIENT.EDIT_LINK(InvoiceId), "PUT", {
+    data: { ...getValues() },
+  });
 
   useEffect(() => {
     GetInvoiceDetails();
-  }, []);
+  }, [InvoiceId]);
 
   useEffect(() => {
     if (LinkDetails) {
-      setValuesForEditLink(setValue,LinkDetails.data,append)
+      setValuesForEditLink(setValue, LinkDetails.data, append);
     }
   }, [isMutatingLinkDetails]);
 
   const onSubmit = (data: {}) => {
-     
     editLink();
   };
 
