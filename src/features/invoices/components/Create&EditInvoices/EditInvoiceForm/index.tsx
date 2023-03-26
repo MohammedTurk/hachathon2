@@ -37,15 +37,13 @@ export const EditInvoiceForm = ({
 }: CreateFormType) => {
   const router = useRouter();
   const { InvoiceId } = router.query;
- 
+
   const {
     trigger: GetInvoiceDetails,
     data: InvoiceDetails,
     isMutating: isMutatingInvoiceDetails,
   } = useSWRMutationHook(
-    API_SERVICES_URLS.CLIENT.GET_INVOICE(
-      InvoiceId || "641cc1674a984c6dd37301b8"
-    ),
+    API_SERVICES_URLS.CLIENT.GET_INVOICE(InvoiceId),
     "GET"
   );
 
@@ -54,9 +52,7 @@ export const EditInvoiceForm = ({
     data: responseRequest,
     isMutating,
   } = useSWRMutationHook(
-    API_SERVICES_URLS.CLIENT.EDIT_INVOICE(
-      InvoiceId || "641cc1674a984c6dd37301b8"
-    ),
+    API_SERVICES_URLS.CLIENT.EDIT_INVOICE(InvoiceId),
     "PUT",
     {
       data: { ...getValues() },
@@ -65,12 +61,13 @@ export const EditInvoiceForm = ({
 
   useEffect(() => {
     GetInvoiceDetails();
-  }, []);
-
+ 
+    
+  }, [InvoiceId]);
 
   useEffect(() => {
     if (InvoiceDetails) {
-    setValuesForEditInvoice(setValue,InvoiceDetails.data,append)
+      setValuesForEditInvoice(setValue, InvoiceDetails.data, append);
     }
   }, [isMutatingInvoiceDetails]);
 
