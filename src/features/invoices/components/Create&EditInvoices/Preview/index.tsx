@@ -10,7 +10,7 @@ export const Preview = ({
   ...rest
 }: {
   getValues: UseFormWatch<CreateInvoiceFormInputsTypes>;
-  className: string;
+  className?: string;
 }) => {
   const { client, fixed } = getValues();
   const val = getValues();

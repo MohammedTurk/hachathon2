@@ -8,6 +8,7 @@ import {
   Svg,
   Line,
 } from "@react-pdf/renderer";
+import { Skeleton } from "components";
 import { Fragment } from "react";
 
 export const PDFPreview = ({ getValues }) => {

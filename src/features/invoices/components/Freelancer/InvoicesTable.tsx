@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import { ChevronUpIconMini, ChevronDownIconMini } from "lib/@heroicons";
-import { NavTable, PaginationTable, TableSkeleton } from "components";
+import { PaginationTable, TableSkeleton } from "components";
 import { useSWRMutationHook, useToggle } from "hooks";
 import { getInvoiceLinkURL } from "features/invoices/utils";
 import { Drawer } from "features/invoices";
 import { useRouter } from "next/router";
+import { SortDownIcon, SortUpIcon } from "components/svg";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -21,26 +22,32 @@ export const InvoicesTable = ({
   handlePrevPaginate,
   handleNextPaginate,
   currentPage,
-  getTransactionData
+  getTransactionData,
 }: any) => {
   const [urlRequest, setUrlRequest] = useState("");
   const { isOpen, closeModal, openModal } = useToggle();
+  const [active, setActive] = useState("");
+  const [activeSortIcon, setActiveSortIcon] = useState("");
   const {
     trigger,
     data,
     isMutating: isMutatingDrawer,
   } = useSWRMutationHook(urlRequest, "GET");
 
-  // when i click on the Table
-  function handleClickOnTabel(id:any, isInvoice:any) {
-    console.log("lastInvoiceId",id);
-    console.log("invoiceType",isInvoice);
+  const handleActive = (id: string) => {
+    setActive(id);
+  };
+  const handleActiveSortIcon = (value: string) => {
+    setActiveSortIcon(value);
+    console.log(value);
     
+  };
+
+  function handleClickOnTabel(id: any, isInvoice: any) {
     openModal();
     setUrlRequest(getInvoiceLinkURL(id, isInvoice));
   }
 
-  // request happen i id change
   useEffect(() => {
     if (urlRequest !== "") {
       trigger();
@@ -48,20 +55,15 @@ export const InvoicesTable = ({
   }, [urlRequest]);
 
   const router = useRouter();
-  const { lastInvoiceId,type:invoiceType } = router.query;
+  const { lastInvoiceId, type: invoiceType } = router.query;
 
-  // Turk give me the id
   useEffect(() => {
     if (lastInvoiceId) {
-      handleClickOnTabel(lastInvoiceId,invoiceType == 'invoice');
-      console.log("lastInvoiceId",lastInvoiceId);
-      console.log("invoiceType",invoiceType);
-      
+      handleClickOnTabel(lastInvoiceId, invoiceType == "invoice");
     }
   }, [lastInvoiceId]);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
-  console.log(selectedIndex);
 
   const statusColor = (status: any) => {
     if (status === "pending") {
@@ -74,7 +76,7 @@ export const InvoicesTable = ({
       return "text-black";
     }
   };
- 
+
   return (
     <div className="w-full sm:px-0 bg-[#FFFF] shadow-md sm:rounded-lg">
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
@@ -106,39 +108,70 @@ export const InvoicesTable = ({
                 <th className="text-sm px-6 pb-3 pt-4 font-medium text-gray-400 capitalize flex gap-4">
                   <div className="flex items-center gap-2">
                     Name
-                    <div className="flex flex-col  gap-1">
+                    <div className="flex flex-col ">
                       <a
                         href="#"
                         className="text-[#9E9E9E]"
-                        onClick={() => handleSortData("name")}
+                        onClick={() => {
+                          handleActiveSortIcon("nameUp");
+                          handleSortData("name");
+                        }}
                       >
-                        <ChevronUpIconMini className="h-3 w-3" />
+                        <SortUpIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "nameUp" && "!text-black"
+                          }`}
+                        />
                       </a>
                       <a
                         href="#"
                         className="text-[#9E9E9E]"
-                        onClick={() => handleSortData("-name")}
+                        onClick={() => {
+                          handleActiveSortIcon("nameDown");
+
+                          handleSortData("-name");
+                        }}
                       >
-                        <ChevronDownIconMini className="h-3 w-3" />
+                        <SortDownIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "nameDown" && "!text-black"
+                          }`}
+                        />
                       </a>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     Date
-                    <div className="flex flex-col  gap-1">
+                    <div className="flex flex-col ">
                       <a
                         href="#"
                         className="text-[#9E9E9E]"
-                        onClick={() => handleSortData("date")}
+                        onClick={() => {
+                          handleActiveSortIcon("dateUp");
+
+                          handleSortData("date");
+                        }}
                       >
-                        <ChevronUpIconMini className="h-3 w-3" />
+                        <SortUpIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "dateUp" && "!text-black"
+                          }`}
+                        />
                       </a>
                       <a
                         href="#"
                         className="text-[#9E9E9E]"
-                        onClick={() => handleSortData("-date")}
+                        onClick={() => {
+                          handleActiveSortIcon("dateDown");
+
+                          handleSortData("-date");
+                        }}
                       >
-                        <ChevronDownIconMini className="h-3 w-3" />
+                        <SortDownIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "dateDown" && "!text-black"
+                          }`}
+                        />
                       </a>
                     </div>
                   </div>
@@ -147,11 +180,33 @@ export const InvoicesTable = ({
                   <div className="flex items-center">
                     Amount{" "}
                     <div className="flex flex-col pl-1">
-                      <a href="#" onClick={() => handleSortData("amount")}>
-                        <ChevronUpIconMini className="h-3 w-3 font-bold" />
+                      <a
+                        href="#"
+                        onClick={() => {
+                          handleActiveSortIcon("amountUp");
+
+                          handleSortData("amount");
+                        }}
+                      >
+                        <SortUpIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "amountUp" && "!text-black"
+                          }`}
+                        />
                       </a>
-                      <a href="#" onClick={() => handleSortData("-amount")}>
-                        <ChevronDownIconMini className="h-3 w-3 font-bold" />
+                      <a
+                        href="#"
+                        onClick={() => {
+                          handleActiveSortIcon("amountDown");
+
+                          handleSortData("-amount");
+                        }}
+                      >
+                        <SortDownIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "amountDown" && "!text-black"
+                          }`}
+                        />
                       </a>
                     </div>
                   </div>
@@ -160,11 +215,33 @@ export const InvoicesTable = ({
                   <div className="flex items-center">
                     Client{" "}
                     <div className="flex flex-col pl-1">
-                      <a href="#" onClick={() => handleSortData("client")}>
-                        <ChevronUpIconMini className="h-3 w-3 font-bold" />
+                      <a
+                        href="#"
+                        onClick={() => {
+                          handleActiveSortIcon("clientUp");
+
+                          handleSortData("client");
+                        }}
+                      >
+                        <SortUpIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "clientUp" && "!text-black"
+                          }`}
+                        />
                       </a>
-                      <a href="#" onClick={() => handleSortData("-client")}>
-                        <ChevronDownIconMini className="h-3 w-3 font-bold" />
+                      <a
+                        href="#"
+                        onClick={() => {
+                          handleActiveSortIcon("clientDown");
+
+                          handleSortData("-client");
+                        }}
+                      >
+                        <SortDownIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "clientDown" && "!text-black"
+                          }`}
+                        />
                       </a>
                     </div>
                   </div>
@@ -173,11 +250,29 @@ export const InvoicesTable = ({
                   <div className="flex items-center">
                     Status{" "}
                     <div className="flex flex-col pl-1">
-                      <a href="#" onClick={() => handleSortData("status")}>
-                        <ChevronUpIconMini className="h-3 w-3 font-bold" />
+                      <a href="#" onClick={() => {
+                          handleActiveSortIcon("statusUp");
+                        
+                        handleSortData("statusUp")}}>
+                        <SortUpIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "statusUp" && "!text-black"
+                          }`}
+                        />
                       </a>
-                      <a href="#" onClick={() => handleSortData("-status")}>
-                        <ChevronDownIconMini className="h-3 w-3 font-bold" />
+                      <a
+                        href="#"
+                        onClick={() => {
+                          handleActiveSortIcon("statusDown");
+
+                          handleSortData("-status");
+                        }}
+                      >
+                        <SortDownIcon
+                          className={`h-2 w-2 text-gray ${
+                            activeSortIcon === "statusDown" && "!text-black"
+                          }`}
+                        />
                       </a>
                     </div>
                   </div>
@@ -195,14 +290,16 @@ export const InvoicesTable = ({
                 transactions?.transactions.map((items: any) => (
                   <tr
                     key={items._id}
-                    className="bg-white border-b hover:bg-gray-light "
-                    onClick={() => 
-   
-  
-                      handleClickOnTabel(lastInvoiceId || items._id, items.type == "invoice" )
-
-                  
-                    }
+                    className={`bg-white border-b hover:bg-gray-light ${
+                      active === items._id && "bg-gray-light"
+                    }`}
+                    onClick={() => {
+                      handleActive(items._id);
+                      handleClickOnTabel(
+                        lastInvoiceId || items[items.type]._id,
+                        items.type == "invoice"
+                      );
+                    }}
                   >
                     <th
                       scope="row"
@@ -244,14 +341,14 @@ export const InvoicesTable = ({
                     </th>
 
                     <td className="px-6 py-4  text-black  font-medium text-md">
-                       ${items?.invoice?.subTotal || items?.service?.subTotal}
+                      ${items?.invoice?.subTotal || items?.service?.subTotal}
                     </td>
                     <td className="px-6 py-4 text-gray-dark font-medium text-md">
                       {items?.invoice?.client.fullName || "_"}
                     </td>
                     <td
                       className={`px-6 py-4 font-medium ${statusColor(
-                       items.invoice?.status || items.service?.status
+                        items.invoice?.status || items.service?.status
                       )}`}
                     >
                       {items.invoice?.status || items.service?.status}
@@ -280,4 +377,4 @@ export const InvoicesTable = ({
     </div>
   );
 };
- export default InvoicesTable
+export default InvoicesTable;

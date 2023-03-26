@@ -15,4 +15,6 @@ export * from "./Disapproved";
 export * from "./Pending";
 export * from "./SendIcon";
 export * from "./CheckIcon";
+export * from "./SortUpIcon";
+export * from "./SortDownIcon";
 export * from "./Paypal";

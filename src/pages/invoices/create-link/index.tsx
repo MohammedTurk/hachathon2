@@ -15,6 +15,8 @@ CreateLink.mainLayoutProps = {
   title: "Talents Valley Create Link",
   pageDescription: "Create Link page description",
   contentClassName: "!block !p-2 !pr-4",
+  withoutFooter: true
+
 };
 
 export default CreateLink;

@@ -36,8 +36,7 @@ export const EditLinkForm = ({
 }: CreateFormType) => {
   const router = useRouter();
   const { InvoiceId } = router.query;
-  console.log('InvoiceId from edit link',InvoiceId);
-
+ 
   const {
     trigger: GetInvoiceDetails,
     data: LinkDetails,
@@ -70,8 +69,7 @@ export const EditLinkForm = ({
   }, [isMutatingLinkDetails]);
 
   const onSubmit = (data: {}) => {
-    console.log(data);
-    
+     
     editLink();
   };
 

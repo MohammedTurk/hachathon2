@@ -37,8 +37,7 @@ export const EditInvoiceForm = ({
 }: CreateFormType) => {
   const router = useRouter();
   const { InvoiceId } = router.query;
-  console.log(router.query);
-
+ 
   const {
     trigger: GetInvoiceDetails,
     data: InvoiceDetails,

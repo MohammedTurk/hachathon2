@@ -1,25 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useForm, { useFieldArray } from "lib/react-hook-form";
 import { CreateInvoiceFormInputsTypes } from "features/invoices/types";
 import Preview from "../Preview";
 import { Button, Modal } from "components";
-import { useSWRMutationHook, useToggle } from "hooks";
-import { API_SERVICES_URLS } from "data";
-import { useRouter } from "next/router";
+import { useToggle } from "hooks";
+import { Footer } from "layouts/MainLayout/components";
 
 export const CreateWrapper = ({
   children,
 }: {
   children: React.ReactElement;
 }) => {
-   const {
+  const {
     register,
     handleSubmit,
     formState: { errors },
     clearErrorOnChange,
     getValues,
     control,
-    setValue
+    setValue,
   } = useForm<CreateInvoiceFormInputsTypes>({
     defaultValues: {
       fixed: [
@@ -37,7 +36,6 @@ export const CreateWrapper = ({
     control,
   });
 
-
   const { isOpen, closeModal, openModal } = useToggle();
 
   return (
@@ -54,7 +52,7 @@ export const CreateWrapper = ({
             remove,
             control,
             getValues,
-            setValue
+            setValue,
           },
         })}
       </div>
@@ -63,12 +61,25 @@ export const CreateWrapper = ({
           Preview
         </span>
         <Preview getValues={getValues} />
-        
+      
       </div>
-      <Button onClick={openModal} className="lg:hidden fixed top-3 right-4  z-50 rounded-full bg-white hover:bg-gray-light !text-gray-dark border border-gray" buttonSize="small">Show Preview</Button>
-        <Modal isOpen={isOpen} closeModal={closeModal}>
-          <Preview getValues={getValues} />
-        </Modal>
+      <div className="hidden lg:block fixed  bottom-0  left-[50%]">
+          <Footer />
+      </div>
+      <Button
+        onClick={openModal}
+        className="lg:hidden fixed top-3 right-4  z-50 rounded-full bg-white hover:bg-gray-light !text-gray-dark border border-gray"
+        buttonSize="small"
+      >
+        Show Preview
+      </Button>
+      <Modal isOpen={isOpen} closeModal={closeModal}>
+        <Preview getValues={getValues} />
+      </Modal>
+      <div className="lg:hidden">
+      <Footer />
+
+      </div>
     </div>
   );
 };
