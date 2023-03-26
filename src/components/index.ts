@@ -25,5 +25,4 @@ export * from "./Checkbox";
 export * from "./Modal";
 export * from "./TextArea";
 export * from "./PaginationTable";
-export * from "./NavTable"
 export * from "./Toast"

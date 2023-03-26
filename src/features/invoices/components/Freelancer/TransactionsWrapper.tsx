@@ -3,7 +3,7 @@ import { Button, Input,  Card, Checkbox, Link } from "components";
 import { API_SERVICES_URLS } from "data";
 import { useSWRMutationHook } from "hooks";
  import InvoicesTable from './InvoicesTable'
-import { Send, Filter, Invoices } from "components/svg";
+import {  Filter  } from "components/svg";
 
 import { MagnifyingGlassIconOutline, PlusIconMini } from "lib/@heroicons";
 
@@ -149,8 +149,7 @@ export const TransactionsWrapper = () => {
   useEffect(() => {
     if (TransactionData) {
       setTransactions(TransactionData?.data);
-      console.log(TransactionData);
-    }
+     }
   }, [isMutating]);
 
   const handleNextPaginate = () => {
@@ -163,8 +162,8 @@ export const TransactionsWrapper = () => {
     getTransactionData();
   };
   const handleSortData = (value: any) => {
-    const sortedFor = `${value}`;
-    setSortValue(sortedFor);
+    
+    setSortValue(value);
     getTransactionData();
   };
   const handleSearch = (e: any) => {
@@ -220,8 +219,7 @@ export const TransactionsWrapper = () => {
   const handleTabClick = (value: any) => {
     setType(value);
   };
-  console.log(type);
-
+ 
   return (
     <>
       <div className="flex justify-between  ">

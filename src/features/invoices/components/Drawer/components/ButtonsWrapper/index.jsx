@@ -53,10 +53,7 @@ export const ButtonsWrapper = ({
           </Button>
 
           {optionsButtons?.hasSendReminderButton && (
-            <Button
-              className="  text-blue-500 !text-base  bg-white shadow-md font-semibold whitespace-nowrap text-center	w-full hover:!bg-gray-50  "
-              onClick={() => console.log("Send Reminder")}
-            >
+            <Button className="  text-blue-500 !text-base  bg-white shadow-md font-semibold whitespace-nowrap text-center	w-full hover:!bg-gray-50  ">
               Send Reminder
             </Button>
           )}

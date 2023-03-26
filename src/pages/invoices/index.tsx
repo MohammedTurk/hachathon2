@@ -8,8 +8,7 @@ import { useEffect } from "react";
 const InvoicesPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { lastInvoiceId ,type} = router.query;
-  console.log("lastInvoiceId", lastInvoiceId);
- const{isOpen:inOpenToast, closeModal:closeModalToast, openModal:openModalToast}= useToggle()
+  const{isOpen:inOpenToast, closeModal:closeModalToast, openModal:openModalToast}= useToggle()
 useEffect(()=>{
   if(lastInvoiceId){
     openModalToast()

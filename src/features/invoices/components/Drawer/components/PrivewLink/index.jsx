@@ -54,7 +54,7 @@ export const PrivewLink = ({ invoices = [] }) => {
         </>
       ) : (
         <p className="text-blue-500 capitalize font-semibold">
-          you don't have any Inovices in this link
+          you don&#39;t have any Inovices in this link
         </p>
       )}
     </Card>

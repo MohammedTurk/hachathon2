@@ -16,6 +16,8 @@ EditLink.mainLayoutProps = {
   title: "Talents Valley Edit Link",
   pageDescription: "Edit Link page description",
   contentClassName: "!block !p-2 !pr-4",
+  withoutFooter: true
+
 };
 
 export default EditLink;

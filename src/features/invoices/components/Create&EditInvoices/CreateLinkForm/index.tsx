@@ -32,8 +32,7 @@ export const CreateLinkForm = ({
   });
 
   const onSubmit = (data: {}) => {
-    console.log(data);
-    sendLink();
+     sendLink();
   };
 
   useEffect(() => {

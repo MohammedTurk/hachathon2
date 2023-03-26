@@ -35,8 +35,7 @@ export const CreateInvoiceForm = ({
   });
 
   const onSubmit = (data: {}) => {
-    console.log(data);
-    sendInvoice();
+     sendInvoice();
   };
 
   useEffect(() => {
