@@ -28,3 +28,7 @@ export * from "./PaginationTable";
 export * from "./NavTable";
 export * from "./Toast";
 export * from "./svg";
+
+export * from "./Pagination";
+export * from "./Status";
+export * from "./Pagination";

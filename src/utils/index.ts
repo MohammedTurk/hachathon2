@@ -5,3 +5,4 @@ export * from "./getAuthorizationHeader";
 export * from "./getFieldHelperText";
 export * from "./generalUtils";
 export * from "./classNames";
+export * from "./usePagination";

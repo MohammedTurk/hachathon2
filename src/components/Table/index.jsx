@@ -1,13 +1,14 @@
-import { Card, Triangle, IconButton, Divider } from "components";
+import { Card, ArrowFilter, IconButton, Divider, Pagination } from "components";
 import { useState } from "react";
 
 export const Table = ({
   headers = [],
   onSort,
-  data = [],
-  renderRow,
+  children,
   className = "",
   thClassName = "",
+  thClassNameActive = "text-black",
+  pagination = "",
 }) => {
   const [sortBaseOn, setSortBaseOn] = useState([null, false]);
 
@@ -16,28 +17,22 @@ export const Table = ({
     onSort(name);
   }
 
-  const dividerTable = (
-    <tr>
-      <td colSpan={data[0].length}>
-        <Divider className="w-full !mb-0" />
-      </td>
-    </tr>
-  );
-
   function getTh(head) {
     return (
-      <div className="flex gap-3">
+      <div className="flex gap-2 pb-2 text-sm ">
         <span>{head}</span>
         <span className="flex flex-col gap-[2px]">
           <button onClick={() => handleSortBaseOn(head)}>
-            <Triangle
-              className={`w-3 h-3 ${head == sortBaseOn ? "text-black" : ""}`}
+            <ArrowFilter
+              className={`w-3 h-2 ${
+                head == sortBaseOn ? thClassNameActive : ""
+              }`}
             />
           </button>
           <button onClick={() => handleSortBaseOn(`-${head}`)}>
-            <Triangle
-              className={`w-3 h-3 rotate-180 ${
-                `-${head}` == sortBaseOn ? "text-black" : ""
+            <ArrowFilter
+              className={`w-3 h-2  rotate-180 ${
+                `-${head}` == sortBaseOn ? thClassNameActive : ""
               }`}
             />
           </button>
@@ -47,22 +42,22 @@ export const Table = ({
   }
 
   return (
-    <Card className={`   ${className}`}>
+    <Card className={` text-gray-400   ${className}`}>
       <table className="w-full">
         <thead>
-          <tr>
+          <tr className="border-b border-gray-300 ">
             {headers.map((head) =>
               typeof head == "string" ? (
                 <th
                   key={head}
-                  className={`text-gray-400 font-medium  ${thClassName}`}
+                  className={` capitalize text-inherit font-medium  py-3  ${thClassName}`}
                 >
                   {getTh(head)}
                 </th>
               ) : (
                 <th
                   key={head}
-                  className={`text-gray-400 flex gap-4 font-medium ${thClassName}`}
+                  className={` capitalize text-inherit flex gap-4 font-medium  py-3 ${thClassName}`}
                 >
                   {head.map((subhead) => getTh(subhead))}
                 </th>
@@ -70,23 +65,9 @@ export const Table = ({
             )}
           </tr>
         </thead>
-        <tbody>
-          {/* {data.map((row) => {
-            return (
-              <tr
-                onClick={rowOnClick}
-                role="button"
-                className="w-full pt-2 border-b cursor-pointer border-gray hover:bg-gray-light"
-              >
-                {renderRow(row)}
-              </tr>
-            );
-          })} */}
-          {/* w-full xl:w-[1000px] order-2 xl:order-1 h-[calc(100vh-190px)] ml-0  */}
-          {dividerTable}
-          {data.map((row) => renderRow(row))}
-        </tbody>
+        <tbody>{children}</tbody>
       </table>
+      {pagination}
     </Card>
   );
 };

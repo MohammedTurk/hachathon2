@@ -7,4 +7,3 @@ export * from "./Format";
 export * from "./getStatus";
 export * from "./getInvoiceLinkURL";
 export * from "./changeInvoiceLinkURL";
- 
