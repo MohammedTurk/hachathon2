@@ -1,27 +1,49 @@
-import { Card, ArrowFilter, IconButton, Divider, Pagination } from "components";
-import { useState } from "react";
+import { Card, ArrowFilter } from "components";
+import { useEffect, useState } from "react";
 
 export const Table = ({
   headers = [],
   onSort,
-  children,
+
   className = "",
+  children,
+
   thClassName = "",
   thClassNameActive = "text-black",
+
   pagination = "",
+
+  tabs = [],
+  onChangeTab = console.log,
 }) => {
-  const [sortBaseOn, setSortBaseOn] = useState([null, false]);
+  const [sortBaseOn, setSortBaseOn] = useState(null);
 
   function handleSortBaseOn(name) {
-    setSortBaseOn(name);
-    onSort(name);
+    setSortBaseOn(name != sortBaseOn ? name : "");
   }
 
-  function getTh(head) {
+  useEffect(() => {
+    onSort(sortBaseOn);
+  }, [sortBaseOn]);
+
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+
+  function handleSelectActiveTab(tab) {
+    setActiveTab(tab);
+  }
+
+  useEffect(() => {
+    onChangeTab(activeTab);
+  }, [activeTab]);
+
+  function getTh(head, key) {
     return (
-      <div className="flex gap-2 pb-2 text-sm ">
+      <div
+        className={` flex gap-2 px-5 py-3  text-sm  capitalize text-inherit  font-medium  ${thClassName}`}
+        key={key}
+      >
         <span>{head}</span>
-        <span className="flex flex-col gap-[2px]">
+        <div className="flex flex-col justify-center gap-[2px]">
           <button onClick={() => handleSortBaseOn(head)}>
             <ArrowFilter
               className={`w-3 h-2 ${
@@ -36,30 +58,41 @@ export const Table = ({
               }`}
             />
           </button>
-        </span>
+        </div>
       </div>
     );
   }
 
   return (
-    <Card className={` text-gray-400   ${className}`}>
+    <Card className={` text-gray-400 !p-0   ${className}`}>
+      <div className="flex gap-3 ">
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => handleSelectActiveTab(tab)}
+            className={`
+            px-4 py-2
+            ${
+              activeTab == tab
+                ? "text-blue-400 border-b-4 border-blue-400 font-semibold transition-colors "
+                : ""
+            }`}
+          >
+            <span className="capitalize">{tab}</span>
+          </button>
+        ))}
+      </div>
       <table className="w-full">
         <thead>
           <tr className="border-b border-gray-300 ">
             {headers.map((head) =>
               typeof head == "string" ? (
-                <th
-                  key={head}
-                  className={` capitalize text-inherit font-medium  py-3  ${thClassName}`}
-                >
-                  {getTh(head)}
-                </th>
+                <th key={head}>{getTh(head)}</th>
               ) : (
-                <th
-                  key={head}
-                  className={` capitalize text-inherit flex gap-4 font-medium  py-3 ${thClassName}`}
-                >
-                  {head.map((subhead) => getTh(subhead))}
+                <th key={head}>
+                  <div className="flex ">
+                    {head.map((subhead, index) => getTh(subhead, index))}
+                  </div>
                 </th>
               )
             )}

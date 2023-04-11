@@ -7,7 +7,7 @@ export const usePagination = (i = 0, step = 5, length = 0) => {
   const pageNumber = Math.floor(index / step) + 1;
 
   const prev = index - step > 0 ? index - step : 0;
-  const next = index + step >= length ? length - 1 : index + step;
+  const next = index + step >= length ? index : index + step;
 
   const increment = () => setIndex(next);
   const decrement = () => setIndex(prev);

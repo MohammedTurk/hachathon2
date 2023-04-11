@@ -10,7 +10,7 @@ export const Pagination = ({
   totalNumber,
 }) => {
   return (
-    <div className={`flex items-center justify-center gap-2 pt-3 ${className}`}>
+    <div className={`flex items-center justify-center gap-2 p-3 ${className}`}>
       <IconButton
         size="large"
         onClick={decrement}
