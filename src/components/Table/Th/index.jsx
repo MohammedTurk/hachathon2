@@ -11,7 +11,7 @@ export const Th = ({
 }) => {
   return (
     <div
-      className={` flex gap-2 px-5 py-3  text-sm  capitalize text-inherit  font-medium  ${className}`}
+      className={` flex gap-2 px-4 py-3  text-sm  capitalize text-inherit  font-normal  ${className}`}
       {...rest}
     >
       <span>{head}</span>

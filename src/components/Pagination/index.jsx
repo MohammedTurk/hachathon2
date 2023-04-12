@@ -8,20 +8,33 @@ export const Pagination = ({
   getString,
   pageNumber,
   totalNumber,
+  hasPrev = false,
+  hasNext = false,
 }) => {
   return (
-    <div className={`flex items-center justify-center gap-2 p-3 ${className}`}>
-      <IconButton
-        size="large"
-        onClick={decrement}
-        className="flex items-center justify-center text-inherit"
-      >
-        <ChevronLeftIconMini className="" />
-      </IconButton>
+    <div
+      className={`flex items-center justify-center gap-2 p-3 transition-all 
+      ${className}`}
+    >
+      {hasPrev && (
+        <IconButton
+          size="large"
+          onClick={decrement}
+          className="px-3 py-2 text-gray-500 transition-colors rounded-none rounded-l-lg hover:text-gray-700 hover:bg-gray-100 "
+        >
+          <ChevronLeftIconMini className="" />
+        </IconButton>
+      )}
       <span>{getString(pageNumber, totalNumber)}</span>
-      <IconButton size="large" onClick={increment} className=" text-inherit">
-        <ChevronLeftIconMini className="rotate-180 " />
-      </IconButton>
+      {hasNext && (
+        <IconButton
+          size="large"
+          onClick={increment}
+          className="px-3 py-2 text-gray-500 transition-colors rounded-none rounded-r-lg hover:text-gray-700 hover:bg-gray-100 "
+        >
+          <ChevronLeftIconMini className="rotate-180 " />
+        </IconButton>
+      )}
     </div>
   );
 };

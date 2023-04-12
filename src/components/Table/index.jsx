@@ -22,7 +22,7 @@ export const Table = ({
   const [sortBaseOn, setSortBaseOn] = useState(null);
 
   function handleSortBaseOn(name) {
-    setSortBaseOn(name != sortBaseOn ? name : "");
+    setSortBaseOn(name == sortBaseOn ? "" : name);
   }
 
   useEffect(() => {
@@ -35,15 +35,15 @@ export const Table = ({
   }, [selectedIndex]);
 
   return (
-    <Card className={` text-gray-400 !p-0   ${className}`}>
+    <Card className={` text-gray-400 px-5   ${className}`}>
       <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List>
+        <Tab.List className="mb-1 border-b">
           {tabs.map((tab, index) => {
             return (
               <Tab
-                className={`px-4 py-2 text-inherit active:border-none active:outline-none ${
+                className={`px-4 py-2 text-inherit transition-colors  ${
                   selectedIndex == index
-                    ? "text-blue-400 border-b-4 border-blue-400 font-semibold transition-colors "
+                    ? "text-blue-400   border-b-4 border-blue-400 font-semibold "
                     : ""
                 }`}
               >
