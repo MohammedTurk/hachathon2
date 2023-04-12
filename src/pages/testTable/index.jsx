@@ -268,6 +268,1308 @@ export const testTable = () => {
           lastName: "SKHAIL",
         },
         invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "completed",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "completed",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "completed",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "completed",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "completed",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "completed",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "ready",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
+        status: "pending_verification",
+      },
+      type: "invoice",
+      updatedAt: "2023-04-12T12:56:21.160Z",
+    },
+    {
+      _id: "6436965425039600c5b711ff",
+      invoice: {
+        client: {
+          fullName: "mohammed naji",
+          email: "Mohammed@gmail.com",
+          address: {
+            country: "Palestine",
+          },
+        },
+        currency: "USD",
+        revenue: 0,
+        fixed: [
+          {
+            itemName: "taymaa job",
+            description: "test invoice",
+            price: 1000,
+            _id: "6436aa7425039600c5b71712",
+          },
+        ],
+        freelancer: {
+          _id: "63e104aa8bba2cb3f754d7db",
+          firstName: "Heba",
+          lastName: "SKHAIL",
+        },
+        invoiceNo: "INV-394",
         status: "pending_verification",
       },
       type: "invoice",
@@ -731,9 +2033,13 @@ export const testTable = () => {
                       {row.invoice.fixed[0].itemName}
                     </h3>
 
-                    <div class="flex gap-2 pt-1 pb-2">
-                      <small class="text-gray-600 font-semibold">Today</small>
-                      <small class="text-gray-500 font-normal">PayPal</small>
+                    <div className="flex gap-2 pt-1 pb-2">
+                      <small className="font-semibold text-gray-600">
+                        Today
+                      </small>
+                      <small className="font-normal text-gray-500">
+                        PayPal
+                      </small>
                     </div>
                   </div>
                 </td>

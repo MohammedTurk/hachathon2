@@ -58,7 +58,10 @@ export const Table = ({
               <tr className="border-b border-inherit ">
                 {headers.map((head) =>
                   typeof head == "string" ? (
-                    <th key={head}>
+                    <th
+                      key={head}
+                      style={{ width: `${100 / headers.length}%` }}
+                    >
                       <Th
                         className={thClassName}
                         head={head}
@@ -68,7 +71,10 @@ export const Table = ({
                       />
                     </th>
                   ) : (
-                    <th key={head}>
+                    <th
+                      key={head}
+                      style={{ width: `${200 / headers.length}%` }}
+                    >
                       <div className="flex ">
                         {head.map((subhead) => (
                           <Th
