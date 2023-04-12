@@ -41,8 +41,6 @@ export const testTable = () => {
 
   const paginationSettings = usePagination(0, 4, data.length);
 
-  console.log(paginationSettings);
-
   const tabs = ["all", "invoices", "links"].map((item, index) => (
     <span className="relative " key={index}>
       {item}
@@ -66,7 +64,7 @@ export const testTable = () => {
             getString={(start, total) => `Page ${start} / ${total} `}
           />
         }
-        thClassNameActive="text-white"
+        classNameActive="text-white"
       >
         {paginationSettings.getRange(data).map((row) => {
           return (
@@ -74,7 +72,6 @@ export const testTable = () => {
               className="w-full text-white bg-gray-400 border-b cursor-pointer border-gray hover:bg-gray-500 text"
               onClick={() => onClick(row)}
             >
-              
               <td>
                 <div className="flex flex-col px-2 py-3 ">{row[0]}</div>
               </td>

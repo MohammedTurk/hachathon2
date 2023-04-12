@@ -1,5 +1,6 @@
 import { Card, ArrowFilter } from "components";
 import { useEffect, useState } from "react";
+import Th from "./Th";
 
 export const Table = ({
   headers = [],
@@ -7,9 +8,9 @@ export const Table = ({
 
   className = "",
   children,
+  classNameActive = "text-black",
 
   thClassName = "",
-  thClassNameActive = "text-black",
 
   pagination = "",
 
@@ -36,33 +37,6 @@ export const Table = ({
     onChangeTab(activeTab);
   }, [activeTab]);
 
-  function getTh(head, key) {
-    return (
-      <div
-        className={` flex gap-2 px-5 py-3  text-sm  capitalize text-inherit  font-medium  ${thClassName}`}
-        key={key}
-      >
-        <span>{head}</span>
-        <div className="flex flex-col justify-center gap-[2px]">
-          <button onClick={() => handleSortBaseOn(head)}>
-            <ArrowFilter
-              className={`w-3 h-2 ${
-                head == sortBaseOn ? thClassNameActive : ""
-              }`}
-            />
-          </button>
-          <button onClick={() => handleSortBaseOn(`-${head}`)}>
-            <ArrowFilter
-              className={`w-3 h-2  rotate-180 ${
-                `-${head}` == sortBaseOn ? thClassNameActive : ""
-              }`}
-            />
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <Card className={` text-gray-400 !p-0   ${className}`}>
       <div className="flex gap-3 ">
@@ -87,11 +61,28 @@ export const Table = ({
           <tr className="border-b border-gray-300 ">
             {headers.map((head) =>
               typeof head == "string" ? (
-                <th key={head}>{getTh(head)}</th>
+                <th key={head}>
+                  <Th
+                    className={thClassName}
+                    head={head}
+                    onClick={handleSortBaseOn}
+                    isActive={(name) => name == sortBaseOn}
+                    classNameActive={classNameActive}
+                  />
+                </th>
               ) : (
                 <th key={head}>
                   <div className="flex ">
-                    {head.map((subhead, index) => getTh(subhead, index))}
+                    {head.map((subhead, index) => (
+                      <Th
+                        className={thClassName}
+                        key={subhead}
+                        head={subhead}
+                        onClick={handleSortBaseOn}
+                        isActive={(name) => name == sortBaseOn}
+                        classNameActive={classNameActive}
+                      />
+                    ))}
                   </div>
                 </th>
               )
