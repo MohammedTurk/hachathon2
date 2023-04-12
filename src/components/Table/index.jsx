@@ -56,9 +56,10 @@ export const Table = ({
           </button>
         ))}
       </div>
+
       <table className="w-full">
         <thead>
-          <tr className="border-b border-gray-300 ">
+          <tr className="border-b border-inherit ">
             {headers.map((head) =>
               typeof head == "string" ? (
                 <th key={head}>
@@ -73,7 +74,7 @@ export const Table = ({
               ) : (
                 <th key={head}>
                   <div className="flex ">
-                    {head.map((subhead, index) => (
+                    {head.map((subhead) => (
                       <Th
                         className={thClassName}
                         key={subhead}
