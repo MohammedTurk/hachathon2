@@ -73,7 +73,7 @@ export const Table = ({
                   ) : (
                     <th
                       key={head}
-                      style={{ width: `${150 / headers.length}%` }}
+                      style={{ width: `${200 / headers.length}%` }}
                     >
                       <div className="flex ">
                         {head.map((subhead) => (
