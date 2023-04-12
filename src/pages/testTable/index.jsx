@@ -2009,7 +2009,7 @@ export const testTable = () => {
       <Table
         className="w-[800px] "
         tabs={["All", "Invoices", "Links"]}
-        headers={[["name", "date"], "amount", "client", "status"]}
+        headers={["name", "date", "amount", ["client", "status"]]}
         onSort={handleSort}
         onChangeTab={handleTab}
         downSide={
