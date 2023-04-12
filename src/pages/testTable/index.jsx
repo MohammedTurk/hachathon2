@@ -2,6 +2,7 @@ import React from "react";
 import Table from "../../components/Table";
 import { Status, Pagination } from "../../components";
 import { usePagination } from "../../utils";
+import TablePanel from "../../components/Table/TablePanel";
 
 export const testTable = () => {
   const onClick = console.log;
@@ -54,11 +55,11 @@ export const testTable = () => {
       <h2>Table dierentdi table</h2>
       <Table
         className="w-[800px] !bg-gray-700 text-white"
-        tabs={["all", "invoices", "links"]}
+        tabs={["name", "incove", "s"]}
         headers={[["name", "date"], "amount", ["client", "status"]]}
         onSort={(baseon) => console.log("sort", baseon)}
         onChangeTab={(data) => console.log("data", data)}
-        pagination={
+        downSide={
           <Pagination
             {...paginationSettings}
             getString={(start, total) => `Page ${start} / ${total} `}
@@ -66,31 +67,49 @@ export const testTable = () => {
         }
         classNameActive="text-white"
       >
-        {paginationSettings.getRange(data).map((row) => {
-          return (
-            <tr
-              className="w-full text-white bg-gray-400 border-b cursor-pointer border-gray hover:bg-gray-500 text"
-              onClick={() => onClick(row)}
-            >
-              <td>
-                <div className="flex flex-col px-2 py-3 ">{row[0]}</div>
-              </td>
-              <td>
-                <div className="flex flex-col px-2 py-3 ">{row[1]}</div>
-              </td>
-              <td>
-                <div className="flex flex-col px-2 py-3 ">
-                  <Status status={row[2]} />
-                  <p>saddsad</p>
-                  <span>Click here</span>
-                </div>
-              </td>
-            </tr>
-          );
-        })}
+        <TablePanel>
+          {paginationSettings.getRange(data).map((row) => {
+            return (
+              <tr
+                className="w-full text-white bg-gray-400 border-b cursor-pointer border-gray hover:bg-gray-500 text"
+                onClick={() => console.log(row)}
+              >
+                <td>
+                  <div className="flex flex-col px-2 py-3 ">{row[0]}</div>
+                </td>
+                <td>
+                  <div className="flex flex-col px-2 py-3 ">{row[1]}</div>
+                </td>
+                <td>
+                  <div className="flex flex-col px-2 py-3 ">
+                    <Status status={row[2]} />
+                    <p>saddsad</p>
+                    <span>Click here</span>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </TablePanel>
+        <TablePanel>
+          <tr className="w-full text-white bg-gray-400 border-b cursor-pointer border-gray hover:bg-gray-500 text">
+            <td>
+              <div className="flex flex-col px-2 py-3 ">'dssadsadsaadsa'</div>
+            </td>
+            <td>
+              <div className="flex flex-col px-2 py-3 ">dsadxzcxzsadsa</div>
+            </td>
+            <td>
+              <div className="flex flex-col px-2 py-3 ">
+                <p>saddcxzcsad</p>
+                <span>Click here</span>
+              </div>
+            </td>
+          </tr>
+        </TablePanel>
       </Table>
 
-      <Table
+      {/* <Table
         className="w-[800px] "
         tabs={["all", "invoices", "links"]}
         headers={["name", "date", "amount", ["client", "status"]]}
@@ -105,10 +124,7 @@ export const testTable = () => {
       >
         {paginationSettings.getRange(data).map((row) => {
           return (
-            <tr
-              className="w-full text-back bg-white border-b cursor-pointer border-gray hover:bg-[#FAFCFF] text "
-              onClick={() => onClick(row)}
-            >
+            <tr className="w-full text-back bg-white border-b cursor-pointer border-gray hover:bg-[#FAFCFF] text ">
               <td>
                 <div className="flex flex-col px-3 py-3 ">{row[0]}</div>
               </td>
@@ -132,7 +148,7 @@ export const testTable = () => {
             </tr>
           );
         })}
-      </Table>
+      </Table> */}
     </div>
   );
 };

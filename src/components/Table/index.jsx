@@ -1,6 +1,8 @@
-import { Card, ArrowFilter } from "components";
-import { useEffect, useState } from "react";
+import { Card } from "components";
+import React, { useEffect, useState } from "react";
 import Th from "./Th";
+import { Tab } from "@headlessui/react";
+import TablePanel from "./TablePanel";
 
 export const Table = ({
   headers = [],
@@ -12,7 +14,7 @@ export const Table = ({
 
   thClassName = "",
 
-  pagination = "",
+  downSide = "",
 
   tabs = [],
   onChangeTab = console.log,
@@ -27,72 +29,74 @@ export const Table = ({
     onSort(sortBaseOn);
   }, [sortBaseOn]);
 
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-
-  function handleSelectActiveTab(tab) {
-    setActiveTab(tab);
-  }
-
+  const [selectedIndex, setSelectedIndex] = useState(0);
   useEffect(() => {
-    onChangeTab(activeTab);
-  }, [activeTab]);
+    onChangeTab(selectedIndex);
+  }, [selectedIndex]);
 
   return (
     <Card className={` text-gray-400 !p-0   ${className}`}>
-      <div className="flex gap-3 ">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => handleSelectActiveTab(tab)}
-            className={`
-            px-4 py-2
-            ${
-              activeTab == tab
-                ? "text-blue-400 border-b-4 border-blue-400 font-semibold transition-colors "
-                : ""
-            }`}
-          >
-            <span className="capitalize">{tab}</span>
-          </button>
-        ))}
-      </div>
-
-      <table className="w-full">
-        <thead>
-          <tr className="border-b border-inherit ">
-            {headers.map((head) =>
-              typeof head == "string" ? (
-                <th key={head}>
-                  <Th
-                    className={thClassName}
-                    head={head}
-                    onClick={handleSortBaseOn}
-                    isActive={(name) => name == sortBaseOn}
-                    classNameActive={classNameActive}
-                  />
-                </th>
-              ) : (
-                <th key={head}>
-                  <div className="flex ">
-                    {head.map((subhead) => (
+      <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+        <Tab.List>
+          {tabs.map((tab, index) => {
+            return (
+              <Tab
+                className={`px-4 py-2 text-inherit active:border-none active:outline-none ${
+                  selectedIndex == index
+                    ? "text-blue-400 border-b-4 border-blue-400 font-semibold transition-colors "
+                    : ""
+                }`}
+              >
+                {tab}
+              </Tab>
+            );
+          })}
+        </Tab.List>
+        <Tab.Panels>
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-inherit ">
+                {headers.map((head) =>
+                  typeof head == "string" ? (
+                    <th key={head}>
                       <Th
                         className={thClassName}
-                        key={subhead}
-                        head={subhead}
+                        head={head}
                         onClick={handleSortBaseOn}
                         isActive={(name) => name == sortBaseOn}
                         classNameActive={classNameActive}
                       />
-                    ))}
-                  </div>
-                </th>
-              )
-            )}
-          </tr>
-        </thead>
-        <tbody>{children}</tbody>
-      </table>
-      {pagination}
+                    </th>
+                  ) : (
+                    <th key={head}>
+                      <div className="flex ">
+                        {head.map((subhead) => (
+                          <Th
+                            className={thClassName}
+                            key={subhead}
+                            head={subhead}
+                            onClick={handleSortBaseOn}
+                            isActive={(name) => name == sortBaseOn}
+                            classNameActive={classNameActive}
+                          />
+                        ))}
+                      </div>
+                    </th>
+                  )
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {tabs.length == 0 ? (
+                <TablePanel>{children}</TablePanel>
+              ) : (
+                children
+              )}
+            </tbody>
+          </table>
+        </Tab.Panels>
+      </Tab.Group>
+      {downSide}
     </Card>
   );
 };
