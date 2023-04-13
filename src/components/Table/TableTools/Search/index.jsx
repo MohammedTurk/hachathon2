@@ -13,9 +13,7 @@ const Search = ({ setSearch: onSearchSubmit }) => {
   }, [debouncedTerm]);
 
   useEffect(() => {
-    if (term !== "") {
-      onSearchSubmit(term);
-    }
+    onSearchSubmit(term);
   }, [term]);
   return (
     <Input

@@ -21,6 +21,8 @@ export const usePagination = (i = 0, step = 5, length = 0) => {
     }
   };
 
+  const clear = () => setIndex(0);
+
   return {
     index,
     pageNumber,
@@ -32,6 +34,8 @@ export const usePagination = (i = 0, step = 5, length = 0) => {
     hasPrev,
     hasNext,
     goTo,
+    step,
+    clear,
   };
 };
 

@@ -9,25 +9,19 @@ const myFetcher = async (url, method, options) => {
       method,
       ...options,
       headers: { ...getAuthorizationHeader() },
-    });   
+    });
     return response.data;
   } catch (error) {
-   console.log(error);
+    console.log(error);
   }
 };
 
-export const useSWRMutationHook = (
-  url,
-  method = "get",
-  options = {}
-) => {
-  const {trigger, data, error, isMutating } = useSWRMutation(
+export const useSWRMutationHook = (url, method = "get", options = {}) => {
+  const { trigger, data, error, isMutating } = useSWRMutation(
     [url, method, options],
     () => myFetcher(url, method, options)
   );
-  return { trigger , data , error, isMutating };
+  return { trigger, data, error, isMutating };
 };
 
 export default useSWRMutationHook;
- 
- 

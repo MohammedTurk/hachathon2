@@ -1,0 +1,88 @@
+{
+  "all": [
+    {
+      "value": "paid",
+      "label": "Paid"
+    },
+    {
+      "value": "sent",
+      "label": "Sent"
+    },
+    {
+      "value": "pending",
+      "label": "Pending"
+    },
+    {
+      "value": "cancelled",
+      "label": "Cancelled"
+    },
+    {
+      "value": "active",
+      "label": "Active"
+    },
+    {
+      "value": "inactive",
+      "label": "Inactive"
+    },
+    {
+      "value": "rejected",
+      "label": "Disapproved"
+    },
+    {
+      "value": "refunded",
+      "label": "Refunded"
+    }
+  ],
+  "invoice": [
+    {
+      "value": "paid",
+      "label": "Paid"
+    },
+    {
+      "value": "sent",
+      "label": "Sent"
+    },
+    {
+      "value": "pending_payment",
+      "label": "Pending Payment"
+    },
+    {
+      "value": "pending",
+      "label": "Pending"
+    },
+    {
+      "value": "canceled",
+      "label": "Canceled"
+    },
+    {
+      "value": "disapproved",
+      "label": "Disapproved"
+    },
+    {
+      "value": "refunded",
+      "label": "Refunded"
+    }
+  ],
+  "service": [
+    {
+      "value": "active",
+      "label": "Active"
+    },
+    {
+      "value": "inactive",
+      "label": "Inactive"
+    },
+    {
+      "value": "pending Payment",
+      "label": "Pending Payment"
+    },
+    {
+      "value": "pending",
+      "label": "Pending"
+    },
+    {
+      "value": "disapproved",
+      "label": "Disapproved"
+    }
+  ]
+}
