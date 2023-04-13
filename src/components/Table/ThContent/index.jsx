@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowFilter } from "../../svg";
 
-export const Th = ({
+export const ThContent = ({
   head,
   onClick,
   className = "",
@@ -33,4 +33,4 @@ export const Th = ({
   );
 };
 
-export default Th;
+export default ThContent;

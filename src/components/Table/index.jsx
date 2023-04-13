@@ -1,6 +1,6 @@
 import { Card } from "components";
 import React, { useEffect, useState } from "react";
-import Th from "./Th";
+import ThContent from "./ThContent";
 import { Tab } from "@headlessui/react";
 import TablePanel from "./TablePanel";
 
@@ -62,7 +62,7 @@ export const Table = ({
                       key={head}
                       style={{ width: `${100 / headers.length}%` }}
                     >
-                      <Th
+                      <ThContent
                         className={thClassName}
                         head={head}
                         onClick={handleSortBaseOn}
@@ -77,7 +77,7 @@ export const Table = ({
                     >
                       <div className="flex ">
                         {head.map((subhead) => (
-                          <Th
+                          <ThContent
                             className={thClassName}
                             key={subhead}
                             head={subhead}
