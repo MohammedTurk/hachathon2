@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import Table from "../../components/Table";
 import { useToggle } from "hooks";
 import { Status, Pagination, Skeleton, Filter } from "../../components";
-import PopoverMenu from "components/PopoverMenu";
 
 import TableTools from "../../components/Table/TableTools";
-
-import InvoiceStatus from "data/json/InvoiceStatus.json";
 
 import useTable from "../../components/Table/useTable";
 
@@ -16,6 +13,8 @@ export const testTable = () => {
     paginationSettings,
     TransactionData,
     isMutating,
+    selectedOptions,
+    handleSelectedOptions,
   } = useTable({
     sort: "",
     search: "",
@@ -27,50 +26,16 @@ export const testTable = () => {
   const tempData = TransactionData?.data?.transactions;
   const tabs = ["all", "invoice", "link"];
 
-  const [selectedOptions, setSelectedOptions] = useState([]);
-
-  const handleSelectOption = (e) => {
-    const value = e.target.value;
-    if (selectedOptions.includes(value)) {
-      setSelectedOptions(selectedOptions.filter((option) => option !== value));
-    } else {
-      setSelectedOptions([...selectedOptions, value]);
-    }
-  };
-
   console.log("selectedOptions", `filter=${selectedOptions.join()}`);
 
   return (
     <div className="flex flex-col gap-4">
       <h2>Table dierentdi table</h2>
-      <TableTools onSearch={(search) => ChangeURl("search", search)}>
-        <PopoverMenu
-          title="filter"
-          butClassName="h-full !bg-white !shadow-md !text-gray-dark rounded-lg"
-          Icon={<Filter className="self-center w-4 h-4 ml-1 mr-2 font-bold" />}
-        >
-          {InvoiceStatus["all"].map((item, i) => (
-            <div className="p-2 mb-2 hover:bg-gray " key={i}>
-              <label
-                htmlFor={item.label}
-                className="flex items-center content-center justify-start gap-2 px-3 pt-1"
-                onChange={handleSelectOption}
-              >
-                <input
-                  value={item.value}
-                  id={item.label}
-                  name={item.label}
-                  type="checkbox"
-                  className="mb-2 accent-blue"
-                  checked={Boolean(selectedOptions.indexOf(item.value) != -1)}
-                />
-                <span className="self-center"> {item.label}</span>
-              </label>
-            </div>
-          ))}
-        </PopoverMenu>
-        ;
-      </TableTools>
+      <TableTools
+        onSearch={(search) => ChangeURl("search", search)}
+        handleSelectedOptions={handleSelectedOptions}
+        selectedOptions={selectedOptions}
+      ></TableTools>
       <Table
         className="w-[800px] "
         tabs={tabs}

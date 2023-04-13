@@ -2,7 +2,6 @@ import { usePagination } from "utils";
 import { useSWRMutationHook } from "hooks";
 import { API_SERVICES_URLS } from "data";
 import { useEffect, useState } from "react";
-import { data } from "autoprefixer";
 
 export const useTable = (
   params,
@@ -26,6 +25,28 @@ export const useTable = (
   useEffect(() => {
     getTransactionData();
   }, [param]);
+
+  const [selectedOptions, setSelectedOptions] = useState(param.filter || []);
+
+  const handleSelectedOptions = (e) => {
+    const value = e.target.value;
+    if (selectedOptions.includes(value)) {
+      setSelectedOptions(selectedOptions.filter((option) => option !== value));
+    } else {
+      setSelectedOptions([...selectedOptions, value]);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedOptions.length)
+      handleChangeUrlParams("filter", selectedOptions.join(","));
+    else {
+      const temp = { ...param };
+      delete temp.filter;
+      console.log("temp", temp);
+      setPatam(temp);
+    }
+  }, [selectedOptions]);
 
   // i = 0, step = 5, length = 0
   const paginationSettings = usePagination(
@@ -54,6 +75,8 @@ export const useTable = (
     paginationSettings,
     TransactionData,
     isMutating,
+    selectedOptions,
+    handleSelectedOptions,
   };
 };
 
